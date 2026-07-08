@@ -1,0 +1,57 @@
+name: Sauna Science Hub — Daily Update
+
+on:
+  schedule:
+    - cron: "17 1 * * *"   # 매일 KST 10:17 (UTC 01:17) — 사우나 매니아 아침 브리핑
+  workflow_dispatch: {}    # 수동 실행 버튼
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Collect from PubMed (keyless)
+        run: python scripts/collect.py
+      - name: Build static site
+        run: python scripts/build.py
+      - name: Commit research data
+        run: |
+          git config user.name "sauna-bot"
+          git config user.email "bot@sauna-science-hub.local"
+          git add data/research.json index.html
+          if git diff --cached --quiet; then
+            echo "변경 없음 — 커밋 생략"
+          else
+            git commit -m "chore: daily sauna research update $(date -u +%Y-%m-%d)"
+            git push
+          fi
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

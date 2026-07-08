@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>사우나 사이언스 허브 — 증거 기반 사우나 연구 아카이브</title>
+<meta name="description" content="사우나의 과학적 근거: 심혈관, 사망률, 인지, 대사, 회복, 정신건강 등 PubMed 기반 peer-reviewed 연구 및 임상시험 한눈에 보기.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#faf7f2; --bg2:#f3ede3; --ink:#1f1b16; --muted:#6b6258; --line:#e6ddcf;
+  --accent:#b45309; --accent2:#c2410c; --card:#ffffff; --shadow:0 1px 3px rgba(60,40,20,.08),0 8px 24px rgba(60,40,20,.06);
+}
+[data-theme="dark"] {
+  --bg:#15120e; --bg2:#1e1a14; --ink:#f1e9dd; --muted:#a99e8d; --line:#332c22;
+  --accent:#e0913a; --accent2:#f2743d; --card:#211c15; --shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Noto Sans KR',system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; -webkit-font-smoothing:antialiased; }
+.wrap { max-width:1080px; margin:0 auto; padding:0 22px; }
+header.hero { background:linear-gradient(160deg,var(--bg2),var(--bg)); border-bottom:1px solid var(--line); padding:54px 0 40px; }
+.kicker { font-size:.8rem; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); font-weight:700; }
+h1 { font-family:'Noto Serif KR',serif; font-size:clamp(2rem,5vw,3.1rem); line-height:1.15; margin:10px 0 14px; font-weight:700; }
+.lede { max-width:640px; color:var(--muted); font-size:1.05rem; }
+.stats { display:flex; flex-wrap:wrap; gap:14px; margin-top:26px; }
+.stat { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 20px; box-shadow:var(--shadow); }
+.stat b { display:block; font-family:'Noto Serif KR',serif; font-size:1.7rem; color:var(--accent2); line-height:1; }
+.stat span { font-size:.82rem; color:var(--muted); }
+.toolbar { position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--line); padding:14px 0; backdrop-filter:saturate(1.2) blur(6px); }
+.search { width:100%; padding:12px 16px; border:1px solid var(--line); border-radius:12px; background:var(--card); color:var(--ink); font-size:1rem; font-family:inherit; }
+.search:focus { outline:2px solid var(--accent); outline-offset:1px; }
+.filters { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; align-items:center; }
+.fbtn { font-family:inherit; font-size:.85rem; cursor:pointer; border:1px solid var(--line); background:var(--card); color:var(--ink); padding:6px 13px; border-radius:999px; transition:.15s; }
+.fbtn:hover { border-color:var(--accent); }
+.fbtn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.fbtn .cnt { opacity:.7; font-size:.78rem; margin-left:2px; }
+.darktoggle { margin-left:auto; cursor:pointer; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px; padding:6px 14px; font-size:.85rem; font-family:inherit; }
+main { padding:30px 0 70px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:18px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:10px; transition:.18s; border-left:4px solid var(--accent); }
+.card.clinical { border-left-color:var(--accent2); }
+.card:hover { transform:translateY(-3px); box-shadow:0 4px 10px rgba(60,40,20,.1),0 16px 36px rgba(60,40,20,.1); }
+.card-top { display:flex; gap:8px; align-items:center; }
+.evi { font-size:.74rem; font-weight:700; background:var(--bg2); color:var(--accent); padding:3px 9px; border-radius:999px; border:1px solid var(--line); }
+.evi-rank { font-size:.72rem; color:var(--muted); }
+.card h3 { font-family:'Noto Serif KR',serif; font-size:1.12rem; line-height:1.35; font-weight:600; }
+.card h3 a { color:var(--ink); text-decoration:none; }
+.card h3 a:hover { color:var(--accent); text-decoration:underline; }
+.cats { display:flex; flex-wrap:wrap; gap:6px; }
+.tag { font-size:.72rem; color:#fff; background:var(--c,#64748b); padding:2px 9px; border-radius:999px; font-weight:500; }
+.abs { font-size:.88rem; color:var(--muted); display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+.meta { font-size:.8rem; color:var(--muted); margin-top:auto; }
+.link { font-size:.82rem; font-weight:600; color:var(--accent2); text-decoration:none; }
+.link:hover { text-decoration:underline; }
+footer { border-top:1px solid var(--line); background:var(--bg2); padding:30px 0; color:var(--muted); font-size:.85rem; }
+footer a { color:var(--accent); }
+.empty { text-align:center; padding:80px 20px; color:var(--muted); }
+.nores { text-align:center; padding:40px; color:var(--muted); display:none; }
+mark { background:#ffe08a; color:#1f1b16; border-radius:3px; padding:0 2px; }
+@media (max-width:560px) { .grid { grid-template-columns:1fr; } h1 { font-size:2rem; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Evidence-Based Sauna Research</div>
+    <h1>사우나 사이언스 허브</h1>
+    <p class="lede">사우나가 몸에 미치는 영향을 다룬 과학적 연구와 임상시험을 한곳에서. PubMed에서 매일 자동 수집되는 근거 기반 자료 아카이브입니다.</p>
+    <div class="stats">
+      <div class="stat"><b>90</b><span>수집 논문</span></div>
+      <div class="stat"><b>8</b><span>임상시험 · RCT</span></div>
+      <div class="stat"><b>9</b><span>주제 분류</span></div>
+      <div class="stat"><b>2026-07-08</b><span>최종 업데이트</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap">
+    <input id="search" class="search" type="search" placeholder="논문 제목·초록·저널 검색… (예: blood pressure, dementia, recovery)" aria-label="검색">
+    <div class="filters">
+      <button class="fbtn active" data-cat="all">전체 <span class="cnt">{total}</span></button><button class="fbtn" data-cat="심혈관" style="--c:#c2410c">심혈관 <span class="cnt">21</span></button><button class="fbtn" data-cat="사망률·수명" style="--c:#b45309">사망률·수명 <span class="cnt">8</span></button><button class="fbtn" data-cat="인지·뇌" style="--c:#7c3aed">인지·뇌 <span class="cnt">19</span></button><button class="fbtn" data-cat="대사·체중" style="--c:#0d9488">대사·체중 <span class="cnt">15</span></button><button class="fbtn" data-cat="호흡기" style="--c:#2563eb">호흡기 <span class="cnt">2</span></button><button class="fbtn" data-cat="회복·운동" style="--c:#db2777">회복·운동 <span class="cnt">33</span></button><button class="fbtn" data-cat="정신건강" style="--c:#16a34a">정신건강 <span class="cnt">24</span></button><button class="fbtn" data-cat="통증·염증" style="--c:#dc2626">통증·염증 <span class="cnt">7</span></button><button class="fbtn" data-cat="기타" style="--c:#64748b">기타 <span class="cnt">23</span></button>
+      <button class="darktoggle" id="dark">🌙 다크모드</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <div class="grid" id="grid">
+      
+    <article class="card clinical" data-idx="0">
+      <div class="card-top">
+        <span class="evi">대조 임상시험</span>
+        <span class="evi-rank">근거 2급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42340428/" target="_blank" rel="noopener">Low-temperature sulphurous peloids and sulphurous mineral water in active rheumatoid arthritis at the Banja Koviljača Spa (Serbia): a prospective controlled clinical study.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#dc2626">통증·염증</span></div>
+      <p class="abs">Rheumatoid arthritis (RA) is a chronic inflammatory disease in which symptoms such as pain and functional limitations can persist despite pharmacological control. Balneotherapy and pelotherapy are widely used as complementary, non-pharmacological interventions, although clinical evidence remains heterogeneous. To evaluate the clinical effects of a combined balneotherapy protocol consisting of local application of low-temperature sulphurous peloids followed by partial baths in natural sulphurous mineral water, added to a standard rehabilitation program in patients with active rheumatoid arthritis (RA). Seventy patients with active RA were included. The balneotherapy group (n = 35) received local applications of sulphurous peloids (24 °C, 20 min) followed by partial baths in sulphurous mineral water (30 °C, 15 min) for 21 daily sessions. The standard group (n = 35) received four-cell galvanic baths. Both groups received identical physiotherapy and a low-frequency electromagnetic field (5 mT, 25 Hz, 30 min). Primary outcome was change in Disease Activity Score 28 (DAS28). Secondary outcomes included pain, morning stiffness, joint counts, erythrocyte sedimentation rate (ESR), and change in concomitant analgesic medication. The balneotherapy group showed a significantly greater reduction in DAS28 (6.17 ± 0.84 to 4.65 ± 0.78) than the standard group (6.00 ± 0.80 to 5.41 ± 0.92; p &lt; 0.001). Between-group analyses also favored balneotherapy for pain reduction in hands and knees, decreases in tender and swollen joint counts, greater ESR reduction, and a more favorable pattern of analgesic dose reduction (77.1% vs. 20.0%; p &lt; 0.001). No serious adverse events were reported. Adjunctive low-temperature sulphurous peloids plus partial baths in sulphurous mineral water were associated with greater short-term improvement in disease activity, inflammatory markers, pain, and functional outcomes than conventional thermal therapy in active RA.</p>
+      <div class="meta">International journal of biometeorology · 2026 · Grujić Zoran, Carbajo José M, Pavlov-Dolijanović Slavica 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42340428/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card clinical" data-idx="1">
+      <div class="card-top">
+        <span class="evi">무작위 대조 시험(RCT)</span>
+        <span class="evi-rank">근거 1급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42113470/" target="_blank" rel="noopener">Acute effects of passive heat exposure on vascular function and exercise capacity in patients with chronic kidney disease.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Vascular dysfunction and exercise intolerance contribute to chronic kidney disease (CKD)-related cardiovascular disease. Passive heat exposure provides a physiological stimulus for beneficial vascular adaptations and improvements in exercise capacity but has not yet been investigated in CKD. The purpose of this pilot study was to examine the physiological response to an acute bout of passive heat exposure in patients with CKD. In this randomized, crossover trial, 10 participants with Stage G2-G4 CKD were enrolled (means ± SE; age, 41 ± 4 yr; 6 females; estimated glomerular filtration rate, 55 ± 7 mL/min/1.73 m</p>
+      <div class="meta">American journal of physiology. Heart and circulatory physiology · 2026 · Chavez Domenico A, Garten Ryan S, Rodriguez-Miguelez Paula 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42113470/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card clinical" data-idx="2">
+      <div class="card-top">
+        <span class="evi">무작위 대조 시험(RCT)</span>
+        <span class="evi-rank">근거 1급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41837889/" target="_blank" rel="noopener">Effects of serial thermal brine hand baths on hand osteoarthritis: a randomized, double-blind, sham-controlled trial.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#dc2626">통증·염증</span></div>
+      <p class="abs">Balneotherapy is used since ancient times, effects on hand osteoarthritis however are not well elucidated.</p>
+      <div class="meta">European journal of physical and rehabilitation medicine · 2026 · Klemm Philipp, Ehnert Katharina, Vogtherr Beate 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41837889/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card clinical" data-idx="3">
+      <div class="card-top">
+        <span class="evi">무작위 대조 시험(RCT)</span>
+        <span class="evi-rank">근거 1급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41505829/" target="_blank" rel="noopener">The effect of bath applied in two different sequences on stress level and physiological parameters in term babies.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">The sequence of neonatal bathing may significantly influence an infant&#x27;s ability to maintain homeostasis. Traditional methods begin with the head, but deferring head washing to the final stage may reduce thermal loss and procedural distress.</p>
+      <div class="meta">Journal of pediatric nursing · 2026 · Koçak Ayşe Dilan, Inal Sevil</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41505829/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card clinical" data-idx="4">
+      <div class="card-top">
+        <span class="evi">무작위 대조 시험(RCT)</span>
+        <span class="evi-rank">근거 1급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40879771/" target="_blank" rel="noopener">Japanese steam sand bath heat therapy mediates comparable reductions in blood pressure with smaller discomfort and respiratory strains than hot water immersion and sauna.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#2563eb">호흡기</span></div>
+      <p class="abs">Heat therapies such as hot water immersion, Finland saunas, and Waon therapy have been reported to reduce resting arterial blood pressure. However, hyperthermia imposes physiological and perceptual strains. To acquire a habit of heat therapy, it is ideal to develop a modality that offers therapeutic benefits with minimal strain. Here, we hypothesized that the unique Japanese traditional steam sand heat therapy lowers blood pressure with minimum physiological and perceptual strains.</p>
+      <div class="meta">European journal of applied physiology · 2026 · Horiuchi Masahiro, Fujii Naoto</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40879771/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card clinical" data-idx="5">
+      <div class="card-top">
+        <span class="evi">무작위 대조 시험(RCT)</span>
+        <span class="evi-rank">근거 1급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40748694/" target="_blank" rel="noopener">Feasibility of unsupervised, home-based leg heat therapy in older adults: a pilot, sham-controlled trial.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Heat therapy (HT) using sauna or hot water immersion can improve cardiovascular and physical function, but these approaches are often impractical for older adults. This pilot, randomized, sham-controlled trial evaluated the feasibility of unsupervised, home-based leg HT using water-circulating trousers in sedentary older adults. Twenty-four participants (mean age: 70 ± 3 yr; 15 women) were randomized to HT (42°C) or sham (33°C) for 90 min daily over 12 wk. Feasibility outcomes included adherence, retention, and safety. Secondary outcomes included 6-min walk distance, sit-to-stand time, plantar flexor strength, MRI-derived muscle morphology, quality of life, and blood pressure. Four participants (two per group) withdrew early due to health status changes or scheduling conflicts. Among those who completed the study, adherence was high (HT: 93 ± 11% and sham: 92 ± 35%). Four HT participants reported minor thermal injuries at the knees, which did not hinder adherence or study participation. There were no significant differences between groups for the secondary outcomes. At 12 wk, the HT group increased their 6-min walk distance by 37.6 m (95% CI: 14.3 to 60.8), compared with 11.5 m (-12.2 to 35.1) in the sham group (group-by-time interaction,</p>
+      <div class="meta">Journal of applied physiology (Bethesda, Md. : 1985) · 2025 · Ro Bohyun, Castanhas Luiza G, Crenshaw Fiona 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40748694/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card clinical" data-idx="6">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40615151/" target="_blank" rel="noopener">Somatostatin analogue continuation upon progression in patients with gastroenteropancreatic neuroendocrine tumour (SAUNA trial): a randomised controlled trial protocol.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#b45309">사망률·수명</span><span class="tag" style="--c:#7c3aed">인지·뇌</span></div>
+      <p class="abs">Gastroenteropancreatic neuroendocrine tumours (GEP NET) are malignant neoplasms that impact survival. Somatostatin analogues (SSA) are used for treating hormonal symptoms caused by GEP NET and have antiproliferative effects. They are used as first-line therapy in patients with advanced GEP NET, but disease control is limited to a median progression-free survival (mPFS) of 14-32 months. Second-line treatment options include targeted therapy (everolimus or sunitinib), or peptide receptor radionuclide therapy (PRRT) with</p>
+      <div class="meta">BMJ open · 2025 · Chhajlani Siddharth, Kuiper Jelka, Beutels Philippe 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40615151/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card clinical" data-idx="7">
+      <div class="card-top">
+        <span class="evi">무작위 대조 시험(RCT)</span>
+        <span class="evi-rank">근거 1급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40611569/" target="_blank" rel="noopener">Regular postexercise sauna bathing does not improve heart rate variability: A multi-arm randomized controlled trial.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Regular exercise has been shown to increase heart rate variability (HRV) for different populations. Acute and short-term studies using heat therapy and sauna bathing have also shown HRV improvements. However, long-term adaptations in HRV to regular exercise and sauna bathing remain unexplored. In this 1:1:1 multi-arm trial, sedentary participants (n = 38) aged 49 ± 9 years with at least one CVD risk factor were randomly assigned to regular exercise and 15-min postexercise sauna (EXS), regular exercise only (EXE), or control (CON) group, for an 8-week intervention. Indices of HRV (RR interval, RMSSD, SDNN, resting heart rate [HR], HRMAX-HRMIN, high frequency power [HFP], and low frequency power [LFP]) were measured before (PRE) and after (POST) the trial. Compared to CON, EXE increased the time-domain measure of HR</p>
+      <div class="meta">Physiological reports · 2025 · Lee Earric, Ketelhut Sascha, Wiklund Petri 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40611569/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="8">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42390474/" target="_blank" rel="noopener">Thermal and cardiovascular responses to sauna are attenuated by adding cold water immersion to cooling breaks.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">The independent effects of different cooling practices, such as cold-water immersion (CWI), on thermal and cardiovascular responses to sauna remain unclear. This study tested the hypothesis that thermal and cardiovascular responses to sauna are attenuated when CWI was included in a cooling break compared to cooling in air only. In a counterbalanced, crossover design, 16 healthy adults (8 females; age 31 (7) years) participated, on separate visits, in two trials involving 2 × 15 min, 85°C sauna bouts, each followed by a 10-min cooling break in 23°C air (AIR), or AIR with a 90-s, 20°C whole-body CWI. At the end of the second sauna bout, core temperature and heart rate were lower in CWI than AIR (P ≤ 0.003, 37.55°C versus 38.03°C, -0.48°C [95% CI: -0.71, -0.25], d = 1.28, and 108 bpm versus 125 bpm, -17 bpm [95% CI: -26, -6.6], d = 1.05). Skin temperature was also lower in CWI than in AIR (P &lt; 0.001). Systolic blood pressure and mean arterial pressure did not differ between conditions (P ≥ 0.090), whilst diastolic blood pressure was lower in AIR than CWI at the end of cooling breaks and 20 min into recovery (P ≤ 0.038). Participants reported feeling less hot and more able to tolerate the second sauna in CWI than in AIR (P ≤ 0.002, d = 1.27 and 0.97). In conclusion, CWI substantially attenuated thermal and cardiovascular strain and improved the perceptual responses to sauna compared with air cooling alone, making sauna more tolerable and reducing heat illness risks.</p>
+      <div class="meta">Experimental physiology · 2026 · Owen Tomos F, Giles Callum J, Leaney Samuel F 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42390474/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="9">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42386761/" target="_blank" rel="noopener">Pre-existing antibody and T cell responses to SaCas9, AsCas12a and CasΦ are comparable in naïve individuals.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">Cas9 proteins are derived from human pathogens and are immunogenic, thereby raising potential safety concerns and limiting clinical effectiveness when using Cas9 as a gene-editing tool. Cas orthologs developed from organisms not directly associated with human infections may thus be safer. Here we compare the immunogenicity risk of SaCas9 (derived from the human pathogen, Staphylococcus aureus), AsCas12a (derived from the human commensal, Acidaminococcus sp.) and CasΦ (derived from a bacteria phage, Biggiephage). Ex vivo and in vitro analyses show that SaCas9, AsCas12a and CasΦ are recognized similarly by antibodies and T cells from unimmunized individuals. Using mass-spectrometry to identify MHC-I-bound peptides, we find SaCas9, AsCas12a and CasΦ peptides presented on 9 MHC-I proteins commonly found in the North American population. Our results thus indicate that AsCas12a and CasΦ do not present a less immunogenic alternative to Cas9, and underscore the need for systematic immunogenicity evaluation of all Cas proteins intended for clinical use.</p>
+      <div class="meta">Nature communications · 2026 · Simhadri Vijaya L, Bajgain Pratima, Vijayanand Sharon 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42386761/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="10">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42346304/" target="_blank" rel="noopener">Functional Recovery and Emotional Burden After Burn Injury: A Quality of Life Assessment in Romanian Burn Survivors.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      
+      <div class="meta">Diseases (Basel, Switzerland) · 2026 · Ungureanu Andreea, Marinescu Maria-Cristina, Trandafir Adriana-Nicoleta 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42346304/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="11">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42293373/" target="_blank" rel="noopener">Thermal stress: an untapped potential in rehabilitation? An opinion paper on Finnish sauna and whole-body cryostimulation.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      
+      <div class="meta">Frontiers in rehabilitation sciences · 2026 · Alito Angelo, Verme Federica, Costa Lara 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42293373/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="12">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42282896/" target="_blank" rel="noopener">Acute Finnish sauna heat exposure induces stronger immune cell than cytokine responses.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#b45309">사망률·수명</span></div>
+      <p class="abs">Regular exposure to Finnish sauna bathing (FSB) has been associated with reduced morbidity and mortality. This study aimed to examine the acute effects of FSB on immune cell mobilization, circulating cytokines, and their associations with changes in body temperature. A total of 51 adults - 27 women (mean age 50 ± 9 years, body mass index (BMI) 27 ± 5 kg/m</p>
+      <div class="meta">Temperature (Austin, Tex.) · 2026 · Heinonen Ilkka H A, Koivula Tiia, Hollmén Maija 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42282896/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="13">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42213968/" target="_blank" rel="noopener">Passive Heating Via Heating Pads Improves Vertical Jump and Agility Performance in NCAA Division III Soccer Players.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Jiwan, NC, DeKuiper, KJ, Sysol, LA, Chabala, GE, and Costa, PA. Passive heating via heating pads improves vertical jump and agility performance in NCAA Division III soccer players. J Strength Cond Res XX(X): 000-000, 2026-Passive heating may enhance performance by increasing blood flow, improving nerve conduction, and stimulating calcium release. Although most studies focus on saunas or hot water immersion, research on heating pads (HP) remains limited. Thus, this study aims to investigate the effect of HP on athletic performance in soccer players. Nineteen male (n = 10) and female (n = 9) soccer players completed 2 identical testing sessions in a randomized, counterbalanced design. HP was applied to both thighs and set to 66°C in the passive heat treatment (PHT) and maintained at body temperature in the sham condition. Skin temperature was taken before (Pre) and after (Post) HP application. After heating, subjects completed 3 performance tests: passing accuracy, vertical jump, and agility t test. Peak power was derived from vertical jump height (VJH). The alpha level was set at p ≤ 0.05. PHT significantly increased thigh skin temperature, improved VJH, peak power, and agility times, while no differences were observed for passing accuracy. PHT improved VJH and agility times in soccer players, supporting HP as an accessible and effective preactivity strategy to enhance performance.</p>
+      <div class="meta">Journal of strength and conditioning research · 2026 · Jiwan Nigel C, DeKuiper Keegan J, Sysol Lauren A 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42213968/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="14">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42167335/" target="_blank" rel="noopener">Novel Exercise-based Strategies for Lowering Blood Pressure.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#b45309">사망률·수명</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Cardiovascular diseases remain the leading cause of death worldwide. Above-normal blood pressure is the primary modifiable risk factor for cardiovascular diseases and rates of blood pressure control remain suboptimal. Aerobic and resistance exercise are recommended lifestyle interventions for lowering blood pressure; however, adherence to exercise guidelines is low, contributing to poor rates of blood pressure control. Thus, alternative forms of physical activity that lower blood pressure and promote adherence are needed. This review examines isometric exercise, the Weekend Warrior physical activity pattern, and heat therapy as strategies for blood pressure lowering. Randomized controlled trials support isometric exercise for lowering blood pressure; however, the mechanisms of action require further investigation. The Weekend Warrior physical activity pattern, i.e., concentrating physical activity in 1-2 d/wk, is associated with lower rates of hypertension in cohort studies, but clinical trials are lacking. Cohort studies also support that regular sauna use is associated with lower rates of cardiovascular diseases. Small clinical trials also suggest that heat therapy can lower blood pressure; however, study designs are heterogeneous and the results are mixed. Overall, isometric exercise, the Weekend Warrior physical activity pattern, and heat therapy represent potential lifestyle approaches for lowering blood pressure and reducing cardiovascular disease risk.</p>
+      <div class="meta">International journal of sports medicine · 2026 · Craighead Daniel Harrison, Runion Joseph Karl, Killip Sean Wesley 외 1명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42167335/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="15">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42153013/" target="_blank" rel="noopener">A preliminary pilot study of the effect of oatmeal and oxygen-ozone (O2-O3) administrations on NRF2 pathway-related antioxidants after intense exercise.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">This preliminary pilot study aimed to evaluate how oatmeal and oxygen-ozone (O</p>
+      <div class="meta">Avicenna journal of phytomedicine · 2026 · Abbasian Sadegh, Mortezae Zohreh, Kargar Moghadam Mahsa 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42153013/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="16">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42045791/" target="_blank" rel="noopener">Response to: &quot;Feasibility, multiplicity, and the interpretation of pilot findings in SAUNA-HFpEF&quot;.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      
+      <div class="meta">European journal of heart failure · 2026 · Bekfani Tarek, Schmeisser Alexander, Anker Stefan D 외 1명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42045791/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="17">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/42034392/" target="_blank" rel="noopener">Passive heat intervention research in women: Systematic review and audit of female representation.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Passive heat interventions (PHIs) are non-exercise heat-acclimation strategies that improve physiological markers associated with heat tolerance and reduce vulnerability to heat-related illness, when exercise is not feasible. However, representation of female participants within this literature remains unclear. In this study, we integrated an audit of PHI research with a systematic review of selected heat-adaptation phenotypes to characterize current practices and identify methodological gaps. Using a standardized framework, searches of PubMed, Web of Science, ScienceDirect, SPORT Discus and Scopus were conducted. Included studies implemented PHIs (≥3 days) and reported markers of heat adaptation. Seventy-three studies (1392 participants; 427 females) met inclusion criteria. Six studies recruited only female participants, four conducted sex-based subanalyses, and none was designed to examine sex differences. No study achieved gold classification menstrual status reporting, with most classified as ungraded (n = 16) or unclassified (n = 22), using the standardized framework. Participants were predominantly sedentary, recreationally active or trained, with ∼49% representing clinical populations. The systematic review showed PHI-associated heat-adaptation outcomes, including changes in core temperature (0.0°C to -0.5°C), skin temperature (-0.4°C to 0.1°C), heart rate (-2 to -11 beats min</p>
+      <div class="meta">Experimental physiology · 2026 · Mee Jessica A, Barnes Olivia, Lawrence Emma J 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/42034392/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="18">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41992292/" target="_blank" rel="noopener">Are &#x27;evidence-based&#x27; cooling strategies fit-for-purpose?-Investigating the gap between guidance and behaviour.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">OBJECTIVE: Across two summers self-report surveys were completed by a total of 130 older adults who were trialling a digital heat early warning system in Southeast Queensland. The purpose of the project was to assess participants’ access to (accessibility), and willingness to use (acceptability) commonly promoted cooling strategies, and to further explore the reasons for reluctance to use. RESULTS: Most participants reported access to all strategies (93–100%). Acceptability (mean response [95%CI]) was high for opening/closing windows or blinds (97 [94–100]%), fans, drinking cool water, sitting quietly, removing excess clothing (all 96 [93–99]%), cold showers (92 [87–96]%), and air-conditioning (90 [84–95] %). Conversely, hand/forearm baths (76 [69–84]%), icepacks (68 [60–76]%), dampened clothing (64 [56–72]%), foot baths (63 [54–71]%), and cold baths (49 [39–60]%) were less acceptable. Key reported barriers included messiness (n = 48), physical discomfort (n = 47), and preference for other strategies (n = 47). Among this sample of older adults, several widely promoted water-based cooling strategies were reported as unacceptable despite high accessibility. These findings highlight an implementation gap between public health recommendations and self-reported willingness to use such strategies, underscoring the need for co-designed heat-health interventions.</p>
+      <div class="meta">BMC research notes · 2026 · Oberai Mehak, Rutherford Shannon, Paas Karlien H W 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41992292/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="19">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41929765/" target="_blank" rel="noopener">Do coaches and athletes share the same weight-loss practices and perceptions? Insights from 23 combat sport teams.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#0d9488">대사·체중</span></div>
+      <p class="abs">The present study aimed to examine whether coaches&#x27; weight loss (WL) guidance practices and perceptions are consistent with those of the combat sport (CS) athletes they coach.</p>
+      <div class="meta">Frontiers in nutrition · 2026 · Meng Fanjie, Zhang Zhao, Langan-Evans Carl 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41929765/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="20">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41923774/" target="_blank" rel="noopener">Factors associated with one-night stands among men who have sex with men recruited via the internet: a cross-sectional survey in China.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">One-night stands among men who have sex with men (MSM) significantly increase the risk of HIV transmission. Given the growing role of the Internet in facilitating such encounters, this study examined the factors associated with one-night stands among Internet-recruited MSM in China to identify actionable targets for behavioral interventions and HIV prevention strategies.</p>
+      <div class="meta">Frontiers in public health · 2026 · Yang Zhongrong, You Jicun, Zhu Zhenguo 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41923774/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="21">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41904832/" target="_blank" rel="noopener">A qualitative insight into the experience of slamming: A focus group study in western France.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">Slamming refers to the injection of psychoactive substances in a sexual context and has been developing in Europe since the late 2000s. It typically involves the use of psychostimulants such as cathinones, cocaine, or methamphetamine. The experience of individuals in slamming has rarely been studied through group interviews. This study aimed to describe the experience of slamming from the users&#x27; perspectives through focus groups.</p>
+      <div class="meta">Addictive behaviors · 2026 · Corre Caroline, Bourdon Marianne, Caillon Julie 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41904832/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="22">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41899724/" target="_blank" rel="noopener">Effects of Bathtub Bathing and Sauna Practices on Cardiovascular and Systemic Health: A Narrative Review.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#b45309">사망률·수명</span><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Thermal bathing practices, including domestic hot-water immersion and sauna use, have been linked to cardiovascular and systemic health outcomes. However, the amount and type of evidence differ between these practices. This review examines current epidemiological and mechanistic findings and discusses their relevance to cardiovascular health. A narrative review was conducted using Ichushi-Web and PubMed. Observational and interventional studies evaluating habitual bathtub bathing or sauna use in relation to physiological or health-related outcomes were included. Studies involving children or pregnant/postpartum women and those without relevant biological endpoints were excluded. In total, 45 studies met the inclusion criteria (17 on bathtub bathing and 28 on sauna use). Studies of habitual bathtub bathing, conducted mainly in Japan, have reported associations with lower arterial stiffness, improved glycemic control, and selected inflammatory or stress-related markers. Experimental work shows that hot-water immersion increases core body temperature, promotes peripheral vasodilation, and induces heat shock protein expression. Sauna bathing, investigated primarily in Finnish prospective cohorts, has been associated with lower cardiovascular and all-cause mortality, as well as favorable inflammatory and endothelial markers. Bathing conditions, age, sex, and cultural context appear to influence these findings. Thermal exposure produces circulatory and molecular responses relevant to cardiovascular regulation. Prospective data support associations between frequent sauna use and long-term outcomes, whereas evidence for domestic bathtub bathing is limited to observational studies of intermediate markers. Further research with clearly defined exposure parameters and clinical endpoints is needed to better understand the long-term cardiovascular implications of habitual thermal practices.</p>
+      <div class="meta">International journal of environmental research and public health · 2026 · Nagai Masayo, Tanaka Akiko</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41899724/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="23">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41893929/" target="_blank" rel="noopener">Heat and cold interventions: unveiling synergistic and counteractive mechanisms for health benefits - a narrative review.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#db2777">회복·운동</span><span class="tag" style="--c:#16a34a">정신건강</span><span class="tag" style="--c:#dc2626">통증·염증</span></div>
+      <p class="abs">Thermal stress caused by extreme heat or cold, challenges homeostasis and physiological limits of the body. However, through thermoregulatory mechanisms, the human body is able to adapt efficiently to both cold and hot environments. A growing body of evidence suggests that exposure to thermal stress may provide several health benefits, particularly in post-exercise recovery and in the management of cardiovascular or inflammatory diseases. Thermal strategies such as cold exposure and sauna bathing have been used for centuries to enhance recovery, with documented effects on improving cardiovascular health, reducing inflammation, and improving well-being. Although the effects of heat and cold exposures have been widely investigated, it remains uncertain whether combining these two stimuli offers greater, lesser, or simply different benefits compared with each modality alone. Relatively few studies directly compare these protocols. In this narrative review, we discuss the known therapeutic effects of heat and cold modalities, and explore their individual and combined physiological mechanisms. It also examines how contrast therapy may induce synergistic benefits or potentially negate the effects of each modality. While the combination of heat and cold therapy is promising, further research is needed to clarify whether the opposing physiological responses of each therapy may interfere with each other, thereby compromising their effectiveness.</p>
+      <div class="meta">International journal of biometeorology · 2026 · Douzi Wafa, Hohenauer Erich, Dupuy Olivier 외 1명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41893929/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="24">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41889337/" target="_blank" rel="noopener">Sauna Therapy in HFpEF: More than Just Heat?</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      
+      <div class="meta">European journal of heart failure · 2026 · Haaf Philip, Ukena Christian, Mahfoud Felix</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41889337/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="25">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41857669/" target="_blank" rel="noopener">Study on the effect of aquatic exercise combined with hot spring bathing for patients with chronic low back pain: a randomized controlled trial.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span><span class="tag" style="--c:#dc2626">통증·염증</span></div>
+      <p class="abs">BACKGROUND: Chronic low back pain (CLBP) is a common musculoskeletal symptom associated with spinal disorders, impairing quality of life while imposing significant medical and socioeconomic burdens. Traditional land-based rehabilitation training is often limited by pain, whereas aquatic exercise utilizes water’s buoyancy, hydrostatic pressure, and viscosity to reduce spinal loading and provide a stable environment. Hot spring bathing employs thermal stimulation to dilate local blood vessels, enhance blood circulation in muscles and soft tissues, and alleviate muscle spasms and pain sensitivity. This study aims to evaluate the effects of combining hot spring bathing with aquatic exercise alongside conventional physical therapy on clinical symptoms and functional outcomes in CLBP patients. METHODS: A randomized controlled clinical trial was conducted with blinding of outcome assessors; participants were not masked to the intervention group, in which 36 participants were randomly distributed into control and intervention groups. The control group received conventional physical therapy, while the intervention group additionally underwent aquatic exercise combined with hot spring bathing. The primary (subjective pain intensity, degree of functional impairment) and secondary outcomes (motor Balance Ability, lower back muscle strength) were evaluated before and after the session using the Visual Analogue Scale (VAS), Oswestry Disability Index (ODI), Functional Movement Screen scale (FMS), and BCS-400 electronic back dynamometer. For all outcomes, multiple mixed 2 (group) × 2 (time) ANOVAs were performed. RESULTS: After intervention, the outcome measures of VAS, ODI, FMS and back muscle strength were improved significantly in intervention groups. There was a significant difference in the VAS change in the control group, while no significant differences were observed in ODI, FMS, or lumbar back muscle strength. It was noteworthy that the intervention group showed greater improvement after intervention than the control group: △VAS: 2.56 ± 0.92 &amp; 0.94 ± 0.54; △ODI: 9% ± 6% &amp; 4% ± 5%; △FMS: 3.44 ± 2.20 &amp; 1.44 ± 1.62; △back muscle strength: 18.50 ± 8.52 &amp; 12.44 ± 7.69 kg, all the changes showed significant difference between two groups. CONCLUSIONS: Aquatic exercise combined with hot spring bathing can significantly enhance the therapeutic effect of conventional physical therapy in CLBP patients, alleviating the subjective pain intensity and functional impairment, and improving motor function and lumbar and back strength. TRIAL REGISTRATION: This study has been prospectively registered with the China Clinical Trial Registry (ChiCTR) (Registration Number: ChiCTR2500106741/29. 07. 2025, https://www.chictr.org.cn/bin/project/edit?pid=280890 ) and was conducted in the hydrotherapy department of a specialized rehabilitation center.</p>
+      <div class="meta">BMC sports science, medicine &amp; rehabilitation · 2026 · Qin Lingli, Dong Nian, Zhao Yufei 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41857669/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="26">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41854926/" target="_blank" rel="noopener">Medical effects of balneotherapy for managing diabetes and obesity: a review.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#0d9488">대사·체중</span></div>
+      <p class="abs">In light of the rapidly increasing number of people with diabetes worldwide and the resulting surge in medical costs, we have attempted to reassess the effectiveness of inexpensive and readily available balneotherapy on diabetes and obesity by summarizing recent related papers. For this analysis, 22 studies were selected through searches of multiple databases, including MEDLINE, Embase, CENTRAL, Medical Central Journal Web, and Web of Science. The selected studies consisted of 12 full-body baths, six on foot baths, two on saunas, and two on drinking water therapies. Among participants receiving full-body bath therapy, reductions in blood glucose levels and weight loss were reported. Moreover, immersion in hot water at high temperatures appeared to be more effective. In balneotherapy, using water containing solutes was more effective than using plain hot water. Saunas were effective in reducing participants’ blood glucose levels and weight. Hot-spring foot baths were effective for diabetic complications such as peripheral circulatory disorders and peripheral neuropathy. Drinking water containing sulfur or bicarbonate was effective in reducing the blood glucose levels. The previously reported effects of hot-spring therapy on diabetes and obesity were reconfirmed, and it became evident that the solutes present in hot-spring water contributes to its therapeutic effects. However, in the present analysis, only three studies included more than 100 participants. Although larger studies are desirable, hot-spring interventions are not well-suited to large-scale trials requiring uniform conditions. Therefore, it is essential to continue collecting new findings and comprehensively evaluating the therapeutic effects of balneotherapy, as demonstrated in this review.</p>
+      <div class="meta">International journal of biometeorology · 2026 · Maeda Toyoki, Makino Naoki, Ohmura Koichiro 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41854926/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="27">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41848374/" target="_blank" rel="noopener">Lifelong heat exposure as a potential contributor to Alzheimer&#x27;s disease resilience.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span></div>
+      <p class="abs">A recent case study reported a</p>
+      <div class="meta">Journal of Alzheimer&#x27;s disease : JAD · 2026 · Canet Geoffrey, Lucey Brendan P, Blessing Esther M 외 1명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41848374/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="28">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41831305/" target="_blank" rel="noopener">Effects of Sauna bathing on Exercise Capacity and Muscle Function in HFpEF.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Treatment options to improve exercise capacity in heart failure with preserved ejection fraction (HFpEF) are limited. We hypothesized that sauna bathing enhances exercise performance, skeletal muscle function, body composition, and quality of life (QoL) in HFpEF. However, benefits may decline after discontinuation. SAUNA-HFpEF is the first prospective mechanistic, translational pilot study investigating feasibility, safety, and efficacy of supervised sauna bathing in stable HFpEF outpatients.</p>
+      <div class="meta">European journal of heart failure · 2026 · Bekfani Tarek, Abo Hwach Ammar, Moebert Ricarda 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41831305/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="29">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41827327/" target="_blank" rel="noopener">Acute Heat Exposure-Related Illness: A Unified Emergency Medicine Framework for Hot Baths, Hot Springs, and Saunas-A Narrative Review.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Hot springs, hot-water bathing, and saunas are widely practiced forms of acute heat exposure and are often perceived as health-promoting. However, emergency clinicians frequently encounter patients in whom these exposures precipitate syncope, hypotension, drowning/aspiration, heat-related illness, and renal or electrolyte disturbances. This narrative review integrates these modalities within a unified &quot;acute heat exposure&quot; framework and summarizes pathophysiology and clinical implications from an emergency medicine perspective. We searched PubMed/MEDLINE from inception to January 2026 using controlled vocabulary and free-text terms related to heat stress, thermoregulation, hot-water immersion, sauna exposure, and acute clinical outcomes; evidence was synthesized qualitatively. Across modalities, acute heat exposure induces shared physiological responses-peripheral vasodilation, relative hypovolemia, circulatory stress, and internal heat storage-that can trigger diverse emergency presentations. We classify acute heat exposure-related illness into four domains: (1) cardiovascular events, including syncope, hypotension, and arrhythmic/ischemic complications in vulnerable individuals; (2) the heat-illness spectrum from exhaustion to heat stroke with organ dysfunction; (3) renal and electrolyte disturbances related to dehydration and hypoperfusion; and (4) neurological and traumatic complications, including falls, drowning, and aspiration. This framework may support risk stratification, evaluation, management, and prevention after hot spring, hot bath, or sauna use.</p>
+      <div class="meta">Journal of clinical medicine · 2026 · Yokoyama Ryuto, Yarimizu Kenya, Hayasaka Tatsuya 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41827327/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="30">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41797237/" target="_blank" rel="noopener">Burn injuries in patients with epilepsy: A narrative review.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">Epilepsy is a chronic condition with a high risk of associated morbidity, including burn injuries, which can increase lifelong disability burden. People with epilepsy (PWE) can incur burns secondary to seizures, which often require prolonged care and can be life- or limb-threatening.</p>
+      <div class="meta">Epilepsy &amp; behavior : E&amp;B · 2026 · Shah Rahul, Jain Ananyaa, Vaughan Kerry</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41797237/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="31">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41794190/" target="_blank" rel="noopener">Acute blood pressure responses and safety considerations in heat therapy interventions: A narrative review.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#b45309">사망률·수명</span></div>
+      <p class="abs">Hypertension is a major global cause of cardiovascular morbidity and mortality, and acute blood pressure (BP) responses to heat therapy are often assumed to be benign. However, the safety of heat therapy in medicated and frail older adults remains unclear. This review synthesizes evidence for acute (≤24-hour) BP responses and safety considerations during heat therapy, with a focus on older adults and beta-blocker users. Electronic databases (MEDLINE, Embase, CENTRAL, Web of Science Core Collection, Ichushi-Web) and relevant clinical trial registries were searched to 13 March 2024 for human studies published in English or Japanese, including randomized controlled trials (RCTs), crossover studies, non-randomized interventions, and observational studies. Two RCTs, one crossover study, seven non-randomized interventional studies, and 11 observational studies including participants aged 18-94 years were included. Across modalities, namely, saunas, mineral hot spring bathing, hot water immersion, and mudpack therapy, systolic BP reductions of approximately 11-27 mmHg within 24 h were reported. However, most studies lacked control groups and showed marked heterogeneity in populations, temperatures, timing of exposure, and outcome assessment. A few small studies suggested greater BP reductions among beta-blocker users. Serious acute adverse events were rare, but few studies specifically targeted adults aged ≥ 65 years or systematically reported comorbidities and background antihypertensive therapy. Heat therapy consistently induced transient reductions in BP. The long-term antihypertensive efficacy of heat therapy is unproven, and safety margins in frail older adults and beta-blocker users remain insufficiently defined, underscoring the need for standardized protocols and high-quality RCTs.</p>
+      <div class="meta">Complementary therapies in medicine · 2026 · Yamasaki Satoshi, Tokunou Tomotake, Kashiwado Yusuke 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41794190/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="32">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41785641/" target="_blank" rel="noopener">Cytokine expression mediated immunogenic response of therapeutic IgG aggregates obtained by forced degradative stress factors and the role of a deep neural network in its prediction.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Biotherapeutic products can aggregate during different stages of the product life cycle. Activation of immune cells due to aggregates of mAb is an important issue. Cytokines are significant biomarkers and potent mediators of several biological processes.</p>
+      <div class="meta">Biochemical and biophysical research communications · 2026 · Dash Rozaleen, Sreenivasan Shravan, Chowdhury Anandi 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41785641/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="33">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41709225/" target="_blank" rel="noopener">Outreach mpox vaccination at sex-on-premises venues in Sydney: an audit of a collaborative intervention by public health nurses and LGBTQI+ peer workers.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">In 2024, in response to a re-surge in mpox transmission in New South Wales, Australia, Kirketon Road Centre (KRC) partnered with an HIV and LGBTQI+ community organisation, ACON, to conduct outreach vaccination in two sex-on-premises venues (SOPVs), also known as &quot;saunas&quot;. SOPV attendees were approached by an ACON peer worker who offered health education and referral to on-site mpox vaccination (Jynneos®) by a registered nurse. We aim to describe the scope, the acceptability, and the outcomes of mpox vaccination outreach at SOPVs in Sydney, and compare characteristics of people who received mpox vaccination at SOPVs to those who were vaccinated for mpox at a KRC&#x27;s fixed-site vaccination clinic.</p>
+      <div class="meta">BMC public health · 2026 · Belackova Vendula, Doab Anna, van der Merwe Joubert 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41709225/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="34">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41679164/" target="_blank" rel="noopener">Sauna culture improves physical and mental wellbeing in the UK through social connection and ritual.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Sauna culture is experiencing rapid global growth, yet beyond physical health benefits, remains largely understudied within academic research. We investigate both its physical and mental health benefits in the UK using the Social Cure model in conjunction with a ritual lens to understand how feelings of connection grow via sauna. Across three studies (N = 1,907), we explored the role of social identities in shaping wellbeing outcomes among sauna users. Studies 1 and 3 employed longitudinal designs, revealing increases in emotional wellbeing over time, while Study 2 used a cross-sectional approach and showed that stronger sauna identities were associated with self-reported improvements in both physical and emotional wellbeing. Study 3 further demonstrated that perceiving sauna use as a ritual, alongside experiencing emotional synchrony during sauna sessions, was positively linked to stronger sauna identities. Together, these findings suggest that the social and ritual aspects of sauna use may contribute to its wellbeing effects, with potential implications for sauna operators in the UK and beyond.</p>
+      <div class="meta">Social science &amp; medicine (1982) · 2026 · Newson M, McGrath R, Mosina I 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41679164/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="35">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41677572/" target="_blank" rel="noopener">Molecular insights into diverse heat hormesis regimens in Caenorhabditis elegans.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#db2777">회복·운동</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Heat hormesis describes a biphasic, dose-dependent response in which low levels of heat stress induce beneficial effects, such as enhanced lifespan and stress resilience. This phenomenon is commonly studied in Caenorhabditis elegans using regimens that involve mild heat stress priming, followed by a recovery period and subsequent stress challenge or lifespan measurement. The concept is conserved across species and has gained renewed interest due to its potential relevance to therapeutic strategies, including sauna-based wellness practices. This review synthesizes phenotypic and molecular findings from C. elegans heat hormesis studies, organizing them by regimen type, defined by temperature, duration, and developmental stage of priming. This structure enables comparisons across regimens, revealing both shared and distinct physiological outcomes and mechanistic responses. We highlight current knowledge gaps and discuss considerations for future experimental design, including more consistent control of key variables, to support efforts in identifying optimized conditions with potential translational relevance for health and therapeutic applications. Lastly, we draw from heat hormesis studies performed in mammals to compare methodologies and emphasize conserved mechanisms.</p>
+      <div class="meta">Genetics · 2026 · Chang Hsin-Yun, Heinke Charles L, Lee Siu Sylvia</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41677572/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="36">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41675746/" target="_blank" rel="noopener">Sweating out stress: sauna bathing&#x27;s rising role in mental health recovery.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#db2777">회복·운동</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      
+      <div class="meta">Annals of medicine and surgery (2012) · 2026 · Niazi Rukash Khan, Rubab Ume, Naqvi Syeda Sarah 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41675746/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="37">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41630126/" target="_blank" rel="noopener">Testosterone-Optimizing Strategies in Athletes.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Testosterone is a steroid hormone produced primarily in the testes in men and ovaries in women, playing crucial roles in androgenic, anabolic, and psychological functions, including muscle growth, bone formation, erythropoiesis, risk-taking, and aggression, making it important for athletes. Sports performance is linked closely to testosterone level, prompting athletes to explore legal and illegal ways to boost testosterone. This review examines testosterone physiology and legal strategies for optimizing testosterone levels in athletes, as well as their practical applications.</p>
+      <div class="meta">Sports health · 2026 · Lazarev Artemii, Pujalte George G A, Philibert Christina 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41630126/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="38">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41510673/" target="_blank" rel="noopener">Through their lens: A photovoice study exploring pregnant and postpartum women&#x27;s experiences, coping strategies and barriers to heat adaptation in an urban township in South Africa.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Rising global temperatures and heatwaves pose major health risks, particularly for pregnant women, infants and other vulnerable groups. Using Photovoice, we aimed to foreground how pregnant and postpartum women in an urban township in Tshwane, South Africa, experience and cope with heat stress. Fourteen women participated in two structured workshops held during the hot season (December 2023-January 2024). The first included reflective discussions on coping with heat and basic photography training. Over two weeks, participants captured over 300 images using disposable cameras or mobile phones. Selected images were reviewed and discussed in the second workshop. Thematic analysis of photographs and workshop transcripts identified three key themes: health impacts, coping strategies and structural challenges. Women preferred staying home on very hot days, where they had greater control over their environment. However, they struggled to soothe overheated infants, which they found distressing. They used simple cooling methods such as bathing or wet cloths but faced constraints including heat-trapping housing materials, inadequate ventilation, and limited access to water and electricity. These challenges led to a state of &quot;</p>
+      <div class="meta">Global public health · 2026 · Solarin Ijeoma, Scorgie Fiona, Lamola Rose Refilwe 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41510673/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="39">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41406696/" target="_blank" rel="noopener">Dual-functional Cu</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">Bovine Mastitis (BM) adversely impacts the health of dairy cows and the quality of milk. Rapid and precise detection to miRNA-146a, a biomarker of BM for early diagnosis, is therefore crucial for the safety of dairy products. Herein, a high-efficiency method for the detection of miRNA-146a was developed, integrating photothermal Cu</p>
+      <div class="meta">Talanta · 2026 · Yu Liu-Feng, Zhou Jie, Cao Jing 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41406696/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="40">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41265722/" target="_blank" rel="noopener">Hydrogen sulfide and the physiology of &quot;totonou&quot;: a hypothesis on sauna-induced vascular recovery.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Sauna bathing, a traditional health practice in Finland and Japan, has been associated with reduced cardiovascular and neurological risks. Circulatory recovery, marked by a shift from sympathetic to parasympathetic dominance, underlies the relaxation state known as &quot;totonou.&quot; Traditionally attributed to nitric oxide (NO), this effect may also involve hydrogen sulfide (H</p>
+      <div class="meta">Nitric oxide : biology and chemistry · 2026 · Shinkai Ryosuke, Tomita Takashi</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41265722/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="41">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41248517/" target="_blank" rel="noopener">Sexual Behavior, App Use, and Venue Comfort During COVID-19: A Global Study of Gay, Bisexual, and Other Men Who Have Sex with Men.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">Little global research exists exploring the impact of COVID-19 on the sexual behavior of gay, bisexual, and other men who have sex with men (GBMSM). Using data from a global dataset representing GBMSM from 132 countries, this study assessed sexual behavior and comfort attending social and sexual venues (bars, saunas, sex parties) during the pandemic. Data were derived from a cross-sectional survey implemented by Hornet, a popular gay social-networking app, from October to November 2020. A total of 15,499 GBMSM were included in this analysis. Nearly two thirds (64.8%) of the sample had met a sexual partner through a dating/hookup app since the COVID-19 crisis began. GBMSM waiting to attend social and sexual venues until public health officials indicated it was safe, there was a vaccine, or their friends started going were less likely to have an app-based sex partner. Additionally, both HIV-positive status and current PrEP use were associated with higher odds of app-based sexual contact. These findings highlight the dynamic relationship between digital platforms and in-person sexual contexts during public health crises. Integrating harm reduction and sex-positive messaging across both digital and offline spaces is critical, especially during crises that limit access to social connection and affirming spaces.</p>
+      <div class="meta">Journal of sex research · 2026 · Jauregui Juan C, Hong Chenglin, Garner Alex 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41248517/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="42">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41240763/" target="_blank" rel="noopener">Domains of maternal knowledge and practices in essential newborn care in Urban Ghana: A factor analysis.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#b45309">사망률·수명</span></div>
+      <p class="abs">Neonatal mortality remains a major public health concern in low- and middle-income countries, including Ghana. Maternal knowledge and practices of essential newborn care (ENC) influence neonatal outcomes but remain inconsistent in many urban settings.</p>
+      <div class="meta">Midwifery · 2026 · Abukari Alhassan Sibdow, Korsah Emmanuel Kwame, Okworu Eva Fusser 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41240763/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="43">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41145239/" target="_blank" rel="noopener">Characterization of pathogenic endosymbionts in free-living amoebae isolated from indoor sport water complexes.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">This study aimed to investigate FLA and their endosymbionts in indoor sport water complexes (ISWCs). A total of 90 samples were collected from 15 ISWCs. After morphological and molecular detection, fungi and viral pathogens were investigated in isolated FLA using real-time PCR. Totally, 51 (56.7%) were positive for FLA, including</p>
+      <div class="meta">International journal of environmental health research · 2026 · Haghbayan Narjes, Niyyati Maryam, Mahdavi Fatemeh 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41145239/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="44">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41138443/" target="_blank" rel="noopener">Hierarchical spindle-structured carbon nanotube fiber as efficient enzyme-enriched reservoir for robust Biosensing textiles.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#0d9488">대사·체중</span></div>
+      <p class="abs">Enzyme-based electrochemical fiber biosensors are attractive for wearable health monitoring but suffer from low sensitivity and limited stability due to restricted enzyme loading and enzyme loss during use or washing. Here, we report a one-step electrochemical morphology reconstruction strategy to fabricate spindle-structured carbon nanotube fibers (SS-CNTFs) that serve as enzyme-enriched reservoirs. The hierarchical multilayered nodules provide a &gt;40-fold increase in electroactive surface area, enabling dense and protected enzyme immobilization. Using glucose oxidase as a model, the SS-CNTF biosensor achieved a sensitivity of 22.6 nA μM</p>
+      <div class="meta">Biosensors &amp; bioelectronics · 2026 · Zhao Yixin, Zhou Yue, Zhang Shanshan 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41138443/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="45">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41088928/" target="_blank" rel="noopener">Prevalence of Vitamin B12 Deficiency in Patients with Type 2 Diabetes Mellitus on Metformin: A Single Retrospective Study in a Tertiary Health Care Center Experience.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#0d9488">대사·체중</span></div>
+      <p class="abs">Globally, type 2 diabetes mellitus (T2DM) is a common metabolic disorder affecting millions of people annually. Metformin, a prevalent prescribed antihyperglycemic medication for T2DM, has been associated with vitamin B12 deficiency. This study aimed to determine the prevalence of vitamin B12 deficiency in T2DM patients receiving metformin.</p>
+      <div class="meta">Current diabetes reviews · 2026 · Bissar Lina, Alghamdi Maha Khider, Alwajeeh Sultan 외 1명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41088928/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="46">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41085630/" target="_blank" rel="noopener">MHC II MAPPs for High-Confident Immunogenicity Risk Assessment of Biotherapeutics.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">Biotherapeutics can provoke unwanted immunogenicity, which can affect the safety and/or efficacy of the drug. Consequently, immunogenicity risk assessments are carried out during drug development. Further, immunogenicity is evaluated during clinical trials prior to licensure. Most therapeutic proteins are either purified from plasma or, increasingly, manufactured using recombinant DNA technology. The immune response to these protein therapies involves internalization of the protein into antigen-presenting cells (APCs), enzymatic processing of the protein into peptides, and presentation of peptides on major histocompatibility class II (MHC II) proteins (HLA class II in humans). The MHC II-peptide complex if recognized by T cell receptors (TCRs) engages with CD4+ T helper cells, which ultimately results in formation of anti-drug antibodies (ADAs). The MHC-associated peptide proteomics (MAPPs) is an assay that in principle can identify the peptides derived from the therapeutic protein that are associated with an individual subject&#x27;s MHC variants. The MAPPs assay is the only assay that provides information about both protein processing in APCs and peptide presentation by MHC proteins. This is important because not all possible peptides from a protein can be generated during protein processing in APCs. Here we describe a highly robust protocol for MHC II MAPPs.</p>
+      <div class="meta">Methods in molecular biology (Clifton, N.J.) · 2026 · Pepermans Elise, Sauna Zuben E, Pattyn Sofie</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41085630/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="47">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40975779/" target="_blank" rel="noopener">Valorization of low-grade</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">Low-grade</p>
+      <div class="meta">Preparative biochemistry &amp; biotechnology · 2026 · Choerun Nissa Rossy, Irmayanti Maya, Nurhamiyah Yeyen 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40975779/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="48">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41516983/" target="_blank" rel="noopener">Women&#x27;s Perceptions on Newborn Care Practices, Knowledge Sources, Benefits, and Challenges in Rural Northern Jordan: A Qualitative Study.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      
+      <div class="meta">Healthcare (Basel, Switzerland) · 2025 · Alrabab&#x27;a Mahmoud H, Maabreh Roqia S, Yehia Dalal B 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41516983/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="49">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41516955/" target="_blank" rel="noopener">Standardized Thalassotherapy Versus Conventional Rehabilitation in Post-Traumatic Patients: Clinical, Biochemical, and Quality-of-Life Outcomes.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      
+      <div class="meta">Healthcare (Basel, Switzerland) · 2025 · Mihai Mihaela, Adriana Nica Sarah, Mitoiu Brindusa Ilinca 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41516955/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="50">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41492841/" target="_blank" rel="noopener">2025 White Paper on Recent Issues in Bioanalysis: Redosing Patients with AAV Gene Therapy; CRS Immunogenicity Risk; Shedding Assays; NHP Studies Immunogenicity; CMC vs Bioanalytical Assays; Artificial Intelligence-Powered Genomic Pipelines for NGS (</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">The 19</p>
+      <div class="meta">Bioanalysis · 2025 · Tounekti Omar, Shubow Sophie, Wassmer Sarah 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41492841/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="51">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41470908/" target="_blank" rel="noopener">Rapid Weight Reduction in Judo: Dietary Practices and Short-Term Health Effects.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#0d9488">대사·체중</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Rapid weight loss (RWL) is a widespread practice among judo athletes seeking to compete in lower weight categories. Restrictive nutritional and behavioral strategies used to achieve short-term reductions in body mass may impair physiological and psychological functioning. This study aimed to assess dietary behaviors, weight-cutting methods, and short-term physical and psychological effects of RWL among competitive judo athletes.</p>
+      <div class="meta">Nutrients · 2025 · Staśkiewicz-Bartecka Wiktoria, Ziomek Paulina, Dobkowska-Szefer Daria 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41470908/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="52">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41461792/" target="_blank" rel="noopener">Acute Finnish sauna heating and cold water immersion effects on cardiovascular dynamic response in normotensive women.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">The study aims to evaluate the acute effects of sauna heating and cold immersion on cardiovascular dynamic response in normotensive women. Twenty-eight healthy females underwent a sauna protocol comprising three consecutive 10-min exposures, each separated by a 10-min cooling interval. Blood pressure and heart rate (HR) were measured immediately after leaving the sauna room and in the last minute of the cooling period. Three acute responses after heating in the sauna and three cooling responses had a statistically significant effect on SBP (systolic blood pressure) (p &lt; 0.001), DBP (diastolic blood pressure) (p &lt; 0.001), and HR (p &lt; 0.001). SBP was significantly higher in the first heating session compared to the baseline measurement, while DBP was significantly lower. HR was significantly higher in all three heating sessions compared to the baseline measurement (p &lt; 0.001). Progression analysis revealed a decreasing trend in SBP across heating sessions, whereas no significant trend was observed during cooling sessions. DBP and HR remained stable across heating and cooling cycles. SBP shows high sensitivity to repeated sauna stress, suggesting adaptive cardiovascular effects. However, it is still a preliminary study in young, healthy women, and in the future, more longitudinal studies are needed to identify cardiovascular responses in different age and sex groups, as well as the impact of sauna cycles on individuals with coexisting cardiovascular diseases.</p>
+      <div class="meta">Scientific reports · 2025 · Szafraniec Rafał, Poręba Rafał, Domaradzki Jarosław</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41461792/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="53">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41426898/" target="_blank" rel="noopener">The Role of Sauna Bathing in Ischemic Heart Disease: A Narrative Review of Therapeutic Potential, Physiological Mechanisms, and Emerging Clinical Applications.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#b45309">사망률·수명</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Ischemic heart disease (IHD) continues to be one of the main causes of morbidity and mortality among the general adult population. It occurs due to a lack of sufficient coronary blood flow. Sauna bathing has recently been reported to give cardiovascular benefits that are similar to those from a moderate level of exercise. The proposed benefits include increased vascular function, lower blood pressure, and improved cardiac performance. Thus, sauna therapy could be considered as an adjunctive intervention for patients with IHD. This review assesses the existing clinical research on the therapeutic use of sauna bathing in managing IHD, the physiological pathways contributing to its protective effects, and future research directions. Relevant studies were identified in PubMed and Google Scholar (2015-2025) using keywords such as IHD, sauna bathing, and steam bath. The studies showed that with consistent usage of Finnish or far-infrared saunas, patients with IHD gain better hemodynamic stability, endothelial function, autonomic balance, and anti-inflammatory activity. Observational studies have been most consistent in showing that sauna use produces a favorable impact on the cardiovascular system. However, the results of randomized controlled trials offer rather mixed conclusions. In conclusion, while sauna treatment seems safe and beneficial (especially for patients who are not able to undergo regular exercise), it warrants the need for unitary protocols and larger, longer-lasting trials to both establish its effectiveness and clarify its position in cardiovascular prevention and rehabilitation.</p>
+      <div class="meta">Cureus · 2025 · Hachem Georges, Slim Jad Rafic, Imam Bashir 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41426898/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="54">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41413811/" target="_blank" rel="noopener">Trends of sexual behaviors and related factors in high-risk MSM from 2010 to 2023: a repeated cross-sectional study in Zhejiang, China.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#0d9488">대사·체중</span></div>
+      <p class="abs">BACKGROUND: Specific high-risk subgroups of men who have sex with men (MSM) play crucial roles in sexually transmitted infection (STI) transmission. This study investigated temporal trends in sexual behaviors and associated factors among bisexual MSM, active MSM, and active MSM in bisexuality. METHODS: From 2010 to 2023, MSM were recruited in Zhejiang, China, through multiple strategies, including community popular opinion leader (CPOL) outreach, venue-based sampling (VBS), HIV voluntary counseling and testing (VCT) clinics, and online platforms. MSM who reported anal sex in the past six months and completed a standardized survey were classified into three high-risk subgroups. We used chi-square trend tests and weighted multivariable logistic regression analyses to assess temporal trends and associated factors. Additionally, SHapley Additive exPlanations (SHAPs) were applied to evaluate the relative importance of predictors. RESULTS: Among the 4197 MSM, 2709 were classified as high-risk, with the proportions of the three high-risk subgroups showing gradual declines but remaining above 20%. Significantly, the rate of consistent condom use has decreased since COVID-19. Weighted logistic regression revealed that bisexual MSM were less likely to be recruited from networks (OR 0.70, 95% CI: 0.21–0.89), younger (OR 0.97, 95% CI: 0.96–0.98), and married (OR 12.68, 95% CI: 10.38–15.33). Active MSM were more likely to be recruited from public bathhouses/sauna rooms/foot spas/massage spas (OR 1.58, 95% CI: 1.32–1.88), had lower education (OR 0.70, 95% CI: 0.61–0.82), and reported lower consistent condom use (OR 0.73, 95% CI: 0.63–0.86). Engagement in commercial anal sex was associated with all three high-risk subgroups (bisexual MSM: OR 2.86, 95% CI: 2.10–3.86; active MSM: OR 1.84, 95% CI: 1.39–2.43; active MSM in bisexuality: OR 2.18, 95% CI: 1.40–3.39). CONCLUSIONS: Despite gradual declines, the proportions of high-risk MSM remain substantial, and the decline in consistent condom use since COVID-19 underscores ongoing prevention challenges. Married MSM, younger bisexual MSM, active MSM with lower education, those recruited from public venues, and individuals engaging in commercial sex represent key targets for future targeted interventions to reduce STI transmission.</p>
+      <div class="meta">BMC public health · 2025 · Liu Wenwen, Chen Xiaoxiao, Wang Shanling 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41413811/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="55">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41406341/" target="_blank" rel="noopener">A systematic appraisal of emerging alternative therapies in men&#x27;s health and wellness.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">The use of alternative therapies for men&#x27;s health continues to grow in popularity, as claims of their urologic and overall health benefits become more widespread. This study aimed to evaluate commonly purported therapies (intravenous [IV] nutrient infusions, saunas, ice baths, light therapy, and condensed nutritional supplements) in the treatment or improvement of men&#x27;s urologic health.</p>
+      <div class="meta">Canadian Urological Association journal = Journal de l&#x27;Association des urologues du Canada · 2025 · Qaoud Yazan, Morcos Maya, Macdonald Madeleine 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41406341/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="56">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41402915/" target="_blank" rel="noopener">Weight loss magnitude, prevalence and methods among male and female Olympic-level judo athletes.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#0d9488">대사·체중</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Weight loss (WL) is common among judokas; however, most studies concentrate on non-elite competitors. This study examined the extent, methodologies, and contributing variables of WL among Olympic-level judo competitors during the qualifying cycle, positing that elevated WL scores signify detrimental practices. Research data was collected using the cross-sectional survey method. Research data was collected from 44 judokas (32 males, 12 females) rated in the top 50 globally during 2024 Antalya Grand Slam. Independent samples t-tests and Mann-Whitney U tests were used to assess between-group differences, while Spearman&#x27;s rank-order correlation coefficients were calculated to assess the relationship between variables. Male athletes had markedly elevated typical weight loss percentages, peak career weight reduction (in kg and %), and post-competition weight return compared to females. Gradual dieting (87.9%), meal skipping (77.3%), increased exercise (72.7%), and sauna usage (70.5%) were the most common WL methods. The main sources of influence were coach/sensei (70.5%), fellow judokas (50%), and peers in the judo community (47.7%). Health professionals had little effect on WL behaviors. The age of judo practice onset was correlated with higher weight loss percentages and weight regain. Olympic-level judokas participate in substantial WL, mostly shaped by their coaching and peer dynamics. The results indicate that coaches and players need to have focused information to encourage safer ways to control their weight.</p>
+      <div class="meta">BMC sports science, medicine &amp; rehabilitation · 2025 · Özbal Ayşe Feray, Ektirici Arıkan, Ceylan Bayram</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41402915/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="57">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41373696/" target="_blank" rel="noopener">Traditional Health Practices May Promote Nrf2 Activation Similar to Exercise.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Various non-pharmacological practices have been reported to enhance overall health. The molecular effects of exercise have been shown to involve the upregulation of enzymes and transcription factors that enhance antioxidative and anti-inflammatory activity, boost mitochondrial function and growth, and promote a parasympathetic tone. These beneficial changes occur as an adaptive/hormetic response to an initial increase in oxygen radical and nitric oxide production in working muscles. The redox-sensitive nuclear factor erythroid 2-related factor 2 (Nrf2) was identified as the key mediator of the cellular defense response. A similar adaptive response appears to occur in response to exposure to heat or cold, hyperbaric or hypobaric oxygen, cupping therapy, acupuncture, caloric restriction, and the consumption of polyphenol-rich plant-based foods or spices, and there is direct or indirect evidence for the involvement of Nrf2. In many cases, additional stress signaling pathways have been observed to be upregulated, including the nicotinamide adenine dinucleotide (NAD+)-sirtuin and the adenosine monophosphate (AMP)-activated protein kinase pathways. We conclude that while several traditional health practices may share a hormetic mechanism-mild radical-induced damage triggers a defense response through upregulation of antioxidative, anti-inflammatory, and repair activities, which may impact body-wide tissue function.</p>
+      <div class="meta">International journal of molecular sciences · 2025 · Kolb Hubert, Martin Stephan, Kempf Kerstin</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41373696/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="58">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41348413/" target="_blank" rel="noopener">Spraying cooling room with essential oils: effects on milk, behavior and thermal comfort.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#0d9488">대사·체중</span><span class="tag" style="--c:#2563eb">호흡기</span><span class="tag" style="--c:#db2777">회복·운동</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">There is evidence of the benefits of essential oils (EOs) for improving the performance and health of dairy cows when supplied per diet, as opposed to using them as sprays. Therefore, the objective of this study was to evaluate whether the spraying of eucalyptus and mint EOs in a cooling room alters the behavior and thermoregulatory responses of Jersey cows during the transition period. Fourteen cows were divided into treatment (spraying with EOs) and control (spraying with water only). Daily baths were performed in a cooling room for 14 min under summer conditions. The animals’ respiratory rate (RR; movements/min), rectal temperature (RT, °C), and surface temperature (ST, °C) were measured in three daily collections (before spraying: T-before, 15 min after spraying: T-15, and 60 min after spraying: T-60). The RR was lower in the group with EO after spraying (P ≤ 0.05), with an interaction effect between collection time and treatment (P = 0.0004). The ST measurements showed differences between treatments and collection times at all measurement points, with lower values obtained in the group with EO. The behavior of the cows did not differ (P &gt; 0.05) during the experimental period, and no difference was observed in the quality of colostrum and milk. In this study, it was observed more milk production and feed efficiency in the animals in the group with EO (P &lt; 0.05), thus showing itself to be an option to alleviate the everyday heat stress of lactating dairy cows in the Brazilian version, period. The calves did not differ in weight gain during the suckling period. However, it was observed that calves born to cows in the EO group had higher serum albumin levels and higher erythrocyte counts, combined with lower monocyte counts in these animals. Thus, we conclude that there were benefits from daily spraying with mint and eucalyptus oil during the transition period, especially for the cow, which reduced the surface temperature without altering the internal temperature, enhancing milk production and improving feed efficiency.</p>
+      <div class="meta">Tropical animal health and production · 2025 · Silva Gean Henrique Carlesso da, Silva Aleksandro S Da, Shogor Ana Luiza Bachmann 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41348413/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="59">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41340471/" target="_blank" rel="noopener">Women&#x27;s perceptions of sauna bathing and its impact on health and well-being: insights from a cross-sectional study.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#16a34a">정신건강</span><span class="tag" style="--c:#dc2626">통증·염증</span></div>
+      <p class="abs">Sauna bathing has gained increasing attention in medical and nursing research for its potential health-enhancing properties. It may be a valuable self-care practice for women, complementing conventional healthcare in prevention of diseases and promoting health and well-being. Since most studies focus on male participants, it is important to explore women&#x27;s experiences with sauna bathing and its significance for their health and well-being. The aim of this study was to examine women&#x27;s perceptions of sauna bathing and its impact on their health and well-being. A cross-sectional study was conducted using an online questionnaire comprising 17 items and four open-ended questions, which formed a subset of a larger questionnaire. A total of 384 women sauna users participated. Data was analyzed using descriptive statistics and qualitative content analysis. Women described a range of health and well-being experiences, with sauna bathing perceived as restorative and emotionally grounding, promoting improved sleep and reduced bodily pain, yet occasionally associated with social insecurity and counterproductive effects.</p>
+      <div class="meta">International journal of circumpolar health · 2025 · Lennkvist Maria, Hägglund Hans, Engström Åsa</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41340471/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="60">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41339598/" target="_blank" rel="noopener">The Impact of Cognate Antigen Binding on the FcRn-mediated Transcytosis and Recycling of Monoclonal Antibodies.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">Immunoglobulin G (IgG) antibodies rely on neonatal Fc receptor (FcRn)-mediated recycling and transcytosis for prolonged serum half-life and tissue distribution. However, high antigen loads during infection may alter FcRn-mediated trafficking, impacting therapeutic efficacy. This study investigates how cognate antigen binding influences FcRn-mediated transport of two SARS-CoV-2-specific (SCoV-2) monoclonal antibodies: Sotrovimab, an Fc-engineered antibody with enhanced FcRn affinity, and B38, a non-engineered comparator. We evaluated antibody binding using ELISA and bio-layer interferometry (BLI) and assessed FcRn-mediated transport through transcytosis and recycling assays in MDCK cells expressing human FcRn. Experiments were conducted with and without SCoV-2 wild-type (WT) spike protein (SP) at a 1:1 molar ratio. Sotrovimab demonstrated superior binding affinity to both SCoV-2 WT SP and FcRn, exhibiting greater baseline transcytosis and recycling efficiency. However, antigen presence significantly reduced transcytosis for both antibodies, with Sotrovimab showing a more pronounced decrease (46.7% vs. 23% for B38). Recycling responses also diverged: Sotrovimab showed a modest, non-significant decrease while recycling of B38 significantly increased. Kinetic analysis revealed antigen binding altered FcRn interactions differently. The higher binding affinity of Sotrovimab was due to reduced dissociation at neutral pH, potentially trapping complexes intracellularly. B38 showed faster association at pH 6.0 without compromised dissociation. These data suggest that cognate antigen binding and interaction of immune complexes (ICs) with FcRn, play a major role in influencing transcytosis and recycling of mAb. These findings emphasize the complex interplay between antigen binding and FcRn function, with implications for antibody dosing strategies during infection to optimize tissue distribution and efficacy.</p>
+      <div class="meta">The AAPS journal · 2025 · Vijayanand Sharon, Lagasse H A Daniel, Tegenge Million A 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41339598/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="61">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41320841/" target="_blank" rel="noopener">Reliability of achieving target dehydration levels using a portable infrared sauna protocol in healthy young adults.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Although environmental chambers have traditionally been used to study passive dehydration and recovery in the context of sports nutrition, portable infrared saunas may provide a more accessible and cost-effective alternative. This study aimed to assess the efficacy and test-retest reliability of achieving target body mass (BM) losses using a portable infrared sauna.</p>
+      <div class="meta">Journal of the International Society of Sports Nutrition · 2025 · Lebron Modesto A, Fukuda David H, Cregan Jack T 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41320841/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="62">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41311774/" target="_blank" rel="noopener">Efficacy and Safety of Seawater Therapy Versus Non-pharmacological Interventions for Atopic Dermatitis: A Systematic Review.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#dc2626">통증·염증</span></div>
+      <p class="abs">Marine water-based topical creams have been proposed as non-pharmacologic treatments for atopic dermatitis (AD), leveraging their mineralized nature to control inflammation, restore the skin barrier, and inhibit microbial colonization. However, their clinical efficacy and safety remain insufficiently characterized in existing observational and controlled studies. This systematic review aims to evaluate the effectiveness and safety of seawater and marine mineral-based therapies for patients with AD. A systematic review was conducted following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) 2020 guidance. Randomized controlled trials and observational studies that investigated seawater or marine mineral-based treatments for AD were included. Seven databases were searched from April 2025 to September 10, 2025, using comprehensive Boolean and MeSH-based strategies. Extracted data included study design, intervention details, validated severity scores such as the Scoring Atopic Dermatitis (SCORAD) index, microbial colonization data, and adverse event profiles. Risk of bias was assessed with Risk of Bias (RoB) 2.0 and Risk Of Bias In Non-randomized Studies - of Interventions (ROBINS-I) tools. No review protocol was registered. Quantitative analysis of the 10 included studies demonstrated mean SCORAD improvements ranging from 26% to 55% in intervention groups. One trial reported a reduction from 45±4 to 7±1 in SCORAD, and another observed a 46±7.71% reduction with corticosteroids compared with 26±9.4% with thermal balneotherapy (therapeutic bathing in mineral water; p&lt;0.03). Dead Sea climatotherapy (treatment in the unique climatic and mineral environment of the Dead Sea) and synchronous balneophototherapy (combined mineral water bathing with ultraviolet light therapy) consistently outperformed comparators in reducing severity scores. Qualitative findings revealed improvements in stratum corneum hydration, transepidermal water loss (TEWL, a measure of skin barrier integrity), and microbial composition, with marked reductions in</p>
+      <div class="meta">Cureus · 2025 · Alshalhoob Hind B, Almagushi Nouf A, Alanazi Razan S 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41311774/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="63">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41226825/" target="_blank" rel="noopener">Hydrogen Sulfide in Balneology: Physiology, Evidence, and Clinical Translation.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">This review integrates the biology and clinical translation of hydrogen sulfide (H</p>
+      <div class="meta">International journal of molecular sciences · 2025 · Carbajo Jose Manuel, Maraver Francisco, Vela Lorena 외 1명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41226825/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="64">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41207121/" target="_blank" rel="noopener">Paternal scrotal heat stress epigenetically impairs spatial memory in F1 male offspring in mice.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Increasing evidence indicates that the maternal preconception environment and lifestyle affect offspring health; however, the effects of paternal preconception environment and lifestyle have rarely been examined. Therefore, we aimed to examine whether paternal infertility-related factors affect offspring produced via assisted reproductive technology in mice. Scrotal heat impairment, which can result from factors such as varicoceles, sauna use, physical inactivity, or occupations such as welding, is a common risk factor associated with reduced male fertility. To model these effects, we exposed the scrota of C57BL/6 J male mice to 39 °C water for 30 min once weekly for 5 consecutive weeks, establishing frequent and mild scrotal heat stress (fmSHS) that mimics human SHS. Sperm from these mice, along with untreated female oocytes, were used for in vitro fertilization with embryo transfer to produce first-generation (F1) offspring. Second-generation (F2) offspring were obtained by mating F1 males with untreated females. Reduced spatial memory was observed in F1 males derived from fmSHS-exposed fathers, whereas F2 fmSHS males showed no significant impairment in spatial-memory testing. In F1 fmSHS offspring, hippocampal histology and N-methyl-D-aspartate receptor expression did not differ from controls. However, genes involved in the long-term potentiation pathway were dysregulated in the hippocampi of F1 fmSHS males, and abnormal methylation of the Pi3kcg promoter was observed in both the sperm of fmSHS fathers and the hippocampi of F1 males. These findings highlight the adverse effects of paternal preconception scrotal heat stress on offspring health.</p>
+      <div class="meta">Ecotoxicology and environmental safety · 2025 · Huang Jiezhen, Huang Zheng, Chen Na 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41207121/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="65">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41146956/" target="_blank" rel="noopener">A Randomized Trial Testing a Novel Mind and Body Intervention for Depression: Cognitive Behavioral Therapy (CBT) and Whole-Body Hyperthermia (WBH).</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">To assess the acceptability of a randomized single-blind trial of cognitive behavioral therapy (CBT) and whole-body hyperthermia (WBH) treatment for major depressive disorder (MDD).</p>
+      <div class="meta">Global advances in integrative medicine and health · 2025 · Mason Ashley E, Hartogensis Wendy, Chowdhary Anoushka 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41146956/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="66">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41081920/" target="_blank" rel="noopener">Effects of repeated balneotherapy on skin hydration and psychophysiological stress: findings from a 16-week korean spa trial.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Balneotherapy has traditionally been associated with skin health and psychological well-being. However, few studies have assessed its effects during extended use in real-world, community-based settings. This study aimed to evaluate the effects of repeated balneotherapy on skin barrier function and psychological stress regulation in middle-aged women. A 16-week quasi-experimental trial was conducted in Asan, Republic of Korea, involving 58 community-dwelling women aged 40-64 years. Participants were assigned to either an intervention group (n = 29), which received biweekly 20-minute immersion sessions in naturally mineralized hot spring water, or a control group (n = 29) with no spa exposure. Primary outcomes included corneometry-based skin hydration and transepidermal water loss (TEWL). Secondary outcomes were assessed using the Stress Response Inventory (SRI), salivary cortisol, heart rate variability (HRV), and the Patient Global Impression of Change (PGIC). Significant in-group improvements were observed in the intervention group for skin hydration (p &lt; 0.001), TEWL (p &lt; 0.001), and SRI scores (p = 0.043). Between-group comparisons at week 16 showed significant differences for skin hydration, TEWL, SRI, and PGIC (all p &lt; 0.05), whereas no significant differences were found for salivary cortisol or HRV. Repeated balneotherapy over 16 weeks improved skin barrier function and reduced psychological stress in middle-aged women. These findings support the feasibility of thermal bathing as a non-pharmacologic, community-based intervention for preventive wellness and highlight the need for larger randomized trials with long-term follow-up.</p>
+      <div class="meta">International journal of biometeorology · 2025 · Yu Hana, Kwak Jinyoung, Lee Sunhee 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41081920/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="67">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41049507/" target="_blank" rel="noopener">Non-acute effects of passive heating interventions on cardiometabolic risk and vascular health: systematic review and meta-analysis of randomized controlled trials.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#0d9488">대사·체중</span></div>
+      <p class="abs">Passive heating practices, such as hot water immersion and Finnish sauna bathing, have been associated with reduced cardiovascular disease (CVD) risk in observational studies. This systematic review and meta-analysis aimed to comprehensively evaluate the present literature about non-acute effects of passive heating interventions on cardiometabolic and vascular health in randomized controlled trials (RCTs).</p>
+      <div class="meta">American journal of preventive cardiology · 2025 · Hamaya Rikuta, Joyama Yuki, Miyata Tomohiro 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41049507/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="68">
+      <div class="card-top">
+        <span class="evi">체계적 문헌고찰</span>
+        <span class="evi-rank">근거 2급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41032138/" target="_blank" rel="noopener">Effects of Post-Exercise Heat Exposure on Acute Recovery and Training-Induced Performance Adaptations: A Systematic Review.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Whole-body heat exposure, such as sauna bathing or hot water immersion (HWI) has been shown to induce various physiological adaptations that can improve athletic performance. However, the effects of post-exercise heat exposure on acute recovery and promoting training-induced performance adaptations are not well understood. The aim of this systematic review was to summarise the current evidence on the effects of post-exercise heat exposure on physical performance in healthy adults.</p>
+      <div class="meta">Sports medicine - open · 2025 · Ahokas Essi K, Hennessy Richard S, Hanstock Helen G 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41032138/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="69">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41029862/" target="_blank" rel="noopener">Factors associated with delayed neonatal bathing in Afghanistan: insights from the 2022-2023 multiple indicator cluster survey.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">Delayed neonatal bathing, defined as postponing the first bath until at least 24 h after birth, is a key component of essential newborn care that helps maintain thermal stability and reduces the risk of hypothermia and infection. This study estimates the national prevalence of delayed neonatal bathing and identifies its determinants in Afghanistan. This study analyzed data from the Afghanistan Multiple Indicator Cluster Survey (MICS) 2022-2023. We fitted multivariable binary logistic regression models to determine factors associated with delayed neonatal bathing.</p>
+      <div class="meta">BMC research notes · 2025 · Stanikzai Muhammad Haroon, Tawfiq Essa, Jafari Massoma 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/41029862/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="70">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40981361/" target="_blank" rel="noopener">Effects of Different Interventions Aimed at Reducing Dermal and Internal Polycyclic Aromatic Hydrocarbon Exposure Among Firefighters.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">Firefighters are inherently exposed to soot and polycyclic aromatic hydrocarbons (PAHs) at work. In this repeated measures study, we assessed if three different interventions reduced PAH exposure. For each sub-study, the firefighters participated in two sampling periods and thereby served as their own controls. The first period served as baseline, while the second period was the intervention period where the participants received education on health effects of soot, information on own PAH exposure, and participated in one of three interventions: (1) sauna after fire calls, (2) use of fire suits with improved barrier, and (3) showering after every fire call. We recruited 26 firefighters from three different fire stations. Dermal wipes were assessed for 16 PAHs and spot urine for eight hydroxylated metabolites. Pre-shift PAH burden was significantly reduced compared to our previous biomonitoring study. Post-shift levels of two PAH metabolites (1-hydroxypyrene and 1-hydroxyfluorene) were increased for firefighters after a work shift without fire calls compared to pre-shift. The sauna intervention significantly reduced the levels of all the measured urinary PAH metabolites while the dermal PAH exposure remained unaffected. The fire suit intervention yielded more inconsistent results. While standard shower reduced dermal PAH levels, no additional effects were observed for the shower intervention.</p>
+      <div class="meta">Journal of xenobiotics · 2025 · Saber Anne Thoustrup, Frederiksen Marie, Jensen Simon Pelle 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40981361/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="71">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40968579/" target="_blank" rel="noopener">Utilization of Machine Learning Approaches for Drug Clearance Prediction and Population Pharmacokinetic Covariate Analysis.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Population pharmacokinetic (popPK) analysis is routinely used to evaluate drug clearance and covariate effects on pharmacokinetic parameters to support dosing recommendations. While stepwise methods are traditionally employed for covariate identification, artificial intelligence (AI) and machine learning (ML) approaches offer promising alternatives for enhancing these analyses. This proof-of-concept study illustrates the application of AI/ML and explainable artificial intelligence (XAI) techniques for drug clearance prediction and covariate analysis using two distinct datasets for the drugs methotrexate and remifentanil. For the larger methotrexate dataset, we utilized multiple ML models including convolutional neural networks, logistic regression, and gradient boosting and highlighted exceptional performance (R</p>
+      <div class="meta">Clinical and translational science · 2025 · Rawal Atul, Ou Jiayi, Zhu Hao 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40968579/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="72">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40937941/" target="_blank" rel="noopener">[A study on nutrition habits and weight loss practice methods in wrestlers].</a></h3>
+      <div class="cats"><span class="tag" style="--c:#0d9488">대사·체중</span></div>
+      <p class="abs">Today, the use of dietary supplements and unhealthy weight loss methods is becoming increasingly common, particularly among athletes who compete in weight-class sports like wrestling.</p>
+      <div class="meta">Voprosy pitaniia · 2025 · Canbolat E, Cakiroglu F P</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40937941/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="73">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40926789/" target="_blank" rel="noopener">Salivary cortisol response to post-exercise infrared sauna declines over time.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#db2777">회복·운동</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Heat exposure after exercise may enhance recovery of physical performance but can also impose additional physiological stress on athletes. This study investigated the effects of post-exercise infrared sauna (IRS) on adrenal and autonomic nervous system (ANS) responses and examined how these responses adapt over time during a 6-week training intervention. Forty female team-sport athletes were pair-matched into an IRS-group and a control group (CON). Participants completed jumping exercises followed by IRS (10 min, 50 °C) or passive recovery and physiological assessments during two experimental trials: in the first (EX1) and in the last (EX2) week of the training intervention. The ANS responses were assessed by nocturnal heart rate (HR) and heart rate variability recorded before and after exercise session. Saliva cortisol concentrations, muscle soreness, and perceived recovery were assessed in the morning, before and after the exercise sessions. Cortisol increased by 5.1 ± 8.6 nmol/l the morning after EX1 in the IRS-group (</p>
+      <div class="meta">Temperature (Austin, Tex.) · 2025 · Ahokas Essi K, Kyröläinen Heikki, Ihalainen Johanna K 외 1명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40926789/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="74">
+      <div class="card-top">
+        <span class="evi">체계적 문헌고찰</span>
+        <span class="evi-rank">근거 2급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40914321/" target="_blank" rel="noopener">Hot spring and sauna use for improving blood lipid profiles: A systematic review and expert consensus on efficacy and recommendations.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#0d9488">대사·체중</span></div>
+      <p class="abs">Dyslipidemia is a significant risk factor for cardiovascular disease. Traditional treatments often focus on pharmacological interventions; however, alternative therapies, such as hot spring and sauna use, have recently gained attention because of their potentially beneficial effects on lipid profiles and cardiovascular health.</p>
+      <div class="meta">Complementary therapies in medicine · 2025 · Yamasaki Satoshi, Tokunou Tomotake, Kashiwado Yusuke 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40914321/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="75">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40881680/" target="_blank" rel="noopener">Case Report:</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      <p class="abs">The</p>
+      <div class="meta">Frontiers in immunology · 2025 · Ye Jiaqing, Hao Jiahao, Zheng Cuiying 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40881680/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="76">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40878827/" target="_blank" rel="noopener">Detyrosinated α-tubulin mediates mitochondrial dysfunction and diastolic impairment in heart failure with preserved ejection fraction.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Heart failure with preserved ejection fraction (HFpEF) is characterized by diastolic dysfunction, yet its molecular basis remains unclear. Here, we identified detyrosinated α-tubulin as a key cause of mitochondrial dysfunction and impaired mitophagy in HFpEF. In a SAUNA-induced HFpEF mouse model, elevated vasohibin-1 (VASH1) expression was associated with increased detyrosinated α-tubulin. In H9c2 cardiomyocytes, VASH1 overexpression or tubulin tyrosine ligase knockout raised detyrosinated α-tubulin levels, leading to reduced mitochondrial respiration. Detyrosinated α-tubulin on mitochondria impaired Parkin recruitment and polyubiquitination of voltage-dependent anion channel 1, suppressing mitophagy. Cardiac-specific VASH1 expression recapitulated HFpEF-like phenotypes, including diastolic dysfunction, reduced exercise capacity, and decreased mitochondrial complex activity. These findings suggest that α-tubulin detyrosination contributes to HFpEF pathogenesis and may serve as a therapeutic target. Impact statement This study reveals a novel cytoskeletal mechanism linking α-tubulin detyrosination to mitochondrial dysfunction in heart failure with preserved ejection fraction (HFpEF). Our findings may advance understanding of the pathogenesis of HFpEF and provide new molecular targets for therapeutic strategies aimed at preserving mitochondrial quality control in heart failure.</p>
+      <div class="meta">FEBS letters · 2025 · Miura Shunsuke, Misaka Tomofumi, Sekine Toranosuke 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40878827/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="77">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40843850/" target="_blank" rel="noopener">Effects of Weight-Cutting Practices on Sleep, Recovery, and Injury in Combat Sports: A Scoping Review.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#0d9488">대사·체중</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      
+      <div class="meta">Journal of functional morphology and kinesiology · 2025 · Kużdżał Adrian, Bilianskyi Oleg, Wroński Zbigniew 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40843850/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="78">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40844961/" target="_blank" rel="noopener">Advanced Mist Bath Wheelchair with integrated automatic body drying and sanitization system for enhanced patient care.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">As global populations age, a growing segment of older adults faces challenges with personal hygiene and reduced caregiver availability. This study presents the design and evaluation of a novel Mist Bath Wheelchair (MBWC) that integrates bathing, sanitization, and drying functionalities to enhance autonomy and hygiene for users with mobility impairments. The MBWC includes a servo-controlled posture adjustment system, an ultrasonic misting unit for bathing, foam-based moisture absorption, heated drying, and joystick-based mobility-all within a single framework. The system aims to address limitations in existing assistive bathing devices, such as high cost, lack of automation, and limited integration. A prototype was developed and tested through lab simulations and user trials involving four aging individuals and four caregivers. Key metrics included thermal comfort, time to achieve warmth, drying duration, and user satisfaction. Results showed reliable temperature maintenance (232 s in rainy conditions; 208 s in winter) and high usability ratings. This integrated solution demonstrates the feasibility of improving assisted bathing through a multifunctional and user-centric design.IMPLICATIONS FOR REHABILITATIONThe Advanced Mist Bath Wheelchair with an Integrated Automatic Body Drying and Sanitization System enhances hygiene management for individuals with mobility impairments by providing an efficient, touch-free bathing solution, reducing dependency on caregivers.This innovation promotes dignity and independence for users, especially those with severe disabilities, by enabling self-care in daily hygiene routines, thereby improving their quality of life and psychological well-being.The system&#x27;s automated sanitization feature minimizes the risk of infections in rehabilitation and long-term care settings, contributing to a safer and more hygienic environment for both users and healthcare providers.By integrating assistive technology with rehabilitation care, the wheelchair supports faster recovery and improved mobility outcomes, particularly for patients undergoing post-surgical rehabilitation or those with chronic conditions requiring long-term assistance.</p>
+      <div class="meta">Disability and rehabilitation. Assistive technology · 2025 · Mane Vijay Mahadeo, Durge Harshal, Shieh Chin-Shiuh 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40844961/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="79">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40832012/" target="_blank" rel="noopener">Treating major depressive disorder with an integrated mind-body intervention: Whole-body hyperthermia and cognitive behavioral therapy, a case report.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">Major depressive disorder (MDD) is a critical health issue that is inadequately addressed with currently available treatments, indicating a need for novel treatment approaches. This case report describes a patient&#x27;s outcomes after completing an integrated mind-body depression intervention that combined cognitive-behavioral therapy (CBT) administered by a clinician with whole-body hyperthermia (WBH) administered using an infrared sauna device.</p>
+      <div class="meta">Advances in integrative medicine · 2025 · Siwik Chelsea J, Chowdhary Anoushka, Anglo Claudine 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40832012/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="80">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40750871/" target="_blank" rel="noopener">Essential newborn care practices at health facilities and homes in Ethiopia: a cross-sectional study.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#b45309">사망률·수명</span></div>
+      <p class="abs">WHO recommends essential newborn care practices that every newborn needs for health and survival regardless of birthplace. Previous Ethiopian studies of these actions had long recall periods and most considered either facility or home deliveries. We aimed to assess selected practices, i.e., thermal care, cord care, initiation of breastfeeding, and first immunizations among neonates born at health facilities and homes in Ethiopia.</p>
+      <div class="meta">BMC pregnancy and childbirth · 2025 · Guadu Tadesse, Alemu Kassahun, Schellenberg Joanna 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40750871/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="81">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40693611/" target="_blank" rel="noopener">Energy transduction in complex networks with multiple resources: The chemistry paradigm.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#0d9488">대사·체중</span></div>
+      <p class="abs">We extend the traditional framework of steady state energy transduction-typically characterized by a single input and output-to multi-resource transduction in open chemical reaction networks (CRNs). Transduction occurs when stoichiometrically balanced processes are driven against their spontaneous directions by coupling them with thermodynamically favorable ones. However, when multiple processes (resources) interact through a shared CRN, identifying the relevant set of processes for analyzing transduction becomes a critical and complex challenge. To address this, we introduce a systematic procedure based on elementary processes, which cannot be further decomposed into subprocesses. Our theory generalizes the methodology used to define transduction efficiency in thermal engines operating between multiple heat baths. By selecting a reference equilibrium environment, it explicitly reveals the inherently relative nature of transduction efficiency and ties its definition to exergy. This framework also allows one to exclude unusable outputs from efficiency calculations. We further extend the concept of chemical gears to multi-process transduction, demonstrating their versatility as an analytical tool in complex settings. Finally, we apply our framework to central metabolic pathways, uncovering deep insights into their operation and highlighting the crucial difference between thermodynamic efficiencies and stoichiometric yields.</p>
+      <div class="meta">The Journal of chemical physics · 2025 · Bilancioni Massimo, Esposito Massimiliano</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40693611/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="82">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40643207/" target="_blank" rel="noopener">Sexually Transmitted Dermatophyte Infections-A Scoping Review.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span></div>
+      <p class="abs">Sexually transmitted dermatophyte infections are an emerging public health concern, with increasing incidence reported across multiple countries. These infections are mainly spread through direct skin-to-skin contact during sexual activity and are more commonly found in individuals with high-risk sexual practices. The likelihood of infection is heightened by frequent pubic hair grooming or regular use of shared spaces like gyms and saunas. Clinically, presentations are often severe, widespread and atypical, which may delay diagnosis or lead to misidentification. Accurate species-level identification is critical and increasingly reliant on molecular sequencing techniques, including ITS and tef1α regions, which are also valuable for strain surveillance and contact tracing. Management strategies should emphasise systemic antifungal therapy, with consideration for adjunctive topical agents or antibiotics in cases of secondary infection. Individualised treatment plans may require extended therapy durations or combination regimens to ensure clinical resolution. In addition to pharmacologic intervention, education on hygiene practices, risk of reinfection and the importance of environmental decontamination and follow-up care is essential for preventing recurrence and curbing transmission.</p>
+      <div class="meta">Mycoses · 2025 · Gupta Aditya K, Liddy Amanda, Megal Lee 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40643207/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="83">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40641233/" target="_blank" rel="noopener">Multifunctional pH-Responsive Gemini Surfactant.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Stimuli-responsive surfactants have garnered significant attention as promising candidates for diverse applications in efficient oil recovery, programmable all-liquid devices, and microreactors owing to their dynamic interfacial self-assembly behavior under specific triggers. However, contemporary applications of stimuli-responsive surfactants remain constrained within monofunctional paradigms, significantly impeding their integration into advanced multifunctional manufacturing. Here, an interesting pH-responsive gemini surfactant is reported that can dynamically switch between gemini (GTL, pH ≥ 8.0) and single-chain (TL</p>
+      <div class="meta">Small (Weinheim an der Bergstrasse, Germany) · 2025 · Hu Bin, Liu Jiani, Deng Chengwen 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40641233/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="84">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40617059/" target="_blank" rel="noopener">Acute effects of heat intervention and hybrid exercise on protein synthesis, ribosome biogenesis and autophagy.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span><span class="tag" style="--c:#16a34a">정신건강</span></div>
+      <p class="abs">The use of kaumatherapy (i.e. heat exposure like sauna-bathing) as passive intervention has become of growing interest to promote skeletal muscle adaptations such as strength gains and preservation of muscle mass. Importantly, the effects of a single exposure to heat (HE) in combination with hybrid exercises, designed to induce both aerobic and resistance adaptations (EX), on protein turnover remains unclear. The objective of this investigation was to evaluate the responses to HE, EX and their combination (EX + HE) on the expression of mRNA and protein related to proteosynthesis, ribosome biogenesis and content, as well as autophagy and cellular stress pathways. Eight-week-old male mice C57BL/6 J mice (n = 8 per condition) underwent acute HE (45min, 40 °C), EX (high-intensity inclined treadmill running) or EX + HE immediately after exercise. Mice were euthanized 240 min post-interventions and quadriceps muscles were harvested for analysis. Acute HE increased the mRNA expression of markers of ribosome biogenesis (POL1RA, UBF), but did not enhance ribosomal content (rRNA 18 S and 28 S) nor ribosomal transcription (pre-rRNA 45 S). Concerning the modulation of protein synthesis, EX induced an increase of MTORC1 downstream targets (P-S6K1, P-RPS6) and protein synthesis flux (assessed by puromycin incorporation) while HE alone did not and post-exercise HE had no additional effects. EX + HE also led to enhanced protein synthesis rates, but did not confer any additional benefit compared to EX alone. Finally, only EX + HE increased the autophagy flux marker LC3-B II/I, the microautophagy marker LAMP2A and phosphorylation level of P-NFκB Ser536. However, no changes in protein carbonylation were detected at this time point. These results suggest that acute post-exercise HE has no additional effects on protein synthesis at 4 h post-exercise but, when combined with EX, increases autophagy and P-NFκB Ser536, suggesting a heightened cellular stress response.</p>
+      <div class="meta">Journal of thermal biology · 2025 · Normand-Gravier Tom, Solsona Robert, Arnould Flavie 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40617059/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="85">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40566470/" target="_blank" rel="noopener">Passive Heat Stimuli as a Systemic Training in Elite Endurance Athletes: A New Strategy to Promote Greater Metabolic Flexibility.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#0d9488">대사·체중</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      
+      <div class="meta">Journal of functional morphology and kinesiology · 2025 · Cinca-Morros Sergi, Burtscher Martin, Benito-Lopez Fernando 외 1명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40566470/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="86">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40560403/" target="_blank" rel="noopener">Physical activity of older patients with rheumatoid arthritis.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#7c3aed">인지·뇌</span><span class="tag" style="--c:#0d9488">대사·체중</span><span class="tag" style="--c:#db2777">회복·운동</span><span class="tag" style="--c:#16a34a">정신건강</span><span class="tag" style="--c:#dc2626">통증·염증</span></div>
+      <p class="abs">Rheumatoid arthritis (RA) in older adults presents a complex clinical challenge, exacerbated by age-related comorbidities, musculoskeletal degeneration, and psychosocial factors, all contributing to significant mobility limitations and reduced quality of life. This narrative review synthesizes current evidence on rehabilitation interventions to enhance physical function in RA patients, focusing on walking, aquatic therapy, sauna and massage therapies, and yoga. A comprehensive search of Medline/PubMed, Scopus, Web of Science, and DOAJ (up to May 2025) identified studies highlighting the efficacy of structured physical activity (PA) in reducing disease activity, fatigue, and pain, while improving functional capacity and mental health. Walking interventions, including high-intensity interval protocols, demonstrate immunomodulatory and cardiometabolic benefits, with significant reductions in Disease Activity Score (DAS28) and inflammatory markers. Aquatic therapy, leveraging water&#x27;s buoyancy, improves functional outcomes and reduces depressive symptoms, while sauna and massage therapies offer pain relief and enhanced flexibility. Yoga, as a mind-body practice, significantly lowers disease activity and enhances physical function and psychological well-being. Wearable technologies, such as actigraphy and pedometry, support personalized exercise regimens by providing real-time data for dynamic goal-setting. The European Alliance of Associations for Rheumatology (EULAR) and American College of Rheumatology (ACR) guidelines advocate for tailored exercise integration into RA management. Despite these benefits, adherence remains challenging due to pain, fatigue, and psychological barriers, necessitating individualized, biopsychosocial approaches. This review provides practical recommendations for rheumatology specialists to implement evidence-based rehabilitation strategies, emphasizing multidisciplinary care to optimize mobility and quality of life in older adults with RA.</p>
+      <div class="meta">Rheumatology international · 2025 · Fedorchenko Yuliya, Zimba Olena, Qumar Ainur B 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40560403/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="87">
+      <div class="card-top">
+        <span class="evi">리뷰</span>
+        <span class="evi-rank">근거 4급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40538474/" target="_blank" rel="noopener">Differences in the Effectiveness of Different Physical Therapy Modalities in the Treatment of Delayed-Onset Muscle Soreness: A Systematic Review and Bayesian Network Meta-Analysis.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">Delayed-onset muscle soreness (DOMS) is a common clinical condition that frequently affects various populations. Physical therapy offers distinct advantages in managing this condition. However, many recently published studies have produced conflicting results and lack compelling evidence, complicating clinicians&#x27; decision making. We employed a Bayesian meta-analysis to assess the efficacy and safety of physical therapy modalities (PTMs) for DOMS, aiming to provide robust, evidence-based medical insights for clinical application.</p>
+      <div class="meta">Journal of pain research · 2025 · Chen Jing, Hu Qing, Hu Jiajie 외 2명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40538474/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="88">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40511315/" target="_blank" rel="noopener">A controlled clinical trial of leg thermal therapy in conjunction with standard cardiac rehabilitation in patients with decompensated heart failure.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#c2410c">심혈관</span><span class="tag" style="--c:#db2777">회복·운동</span></div>
+      <p class="abs">[Purpose] Leg thermal therapy (LTT) using far-infrared-ray dry sauna stimulation improves hemodynamics in patients with heart failure (HF); however, its additive effect when combined with cardiac rehabilitation (CR) remains unknown. This study aimed to investigate whether incorporating LTT into acute-phase CR confers exercise capacity in hospitalized patients with HF. [Participants and Methods] Seventeen patients with decompensated HF (median age 75 years) admitted between June 2018 and November 2019 were prospectively assigned to the CR plus LTT (11 participants) or the CR group (6 participants). Both groups performed structured exercise sessions for 40 min, five times a week. The LTT group received additional leg heating at 45°C for 20 min. Cardiopulmonary function and blood tests were performed before and after the intervention. [Results] At one month, peak oxygen uptake was equal between groups. However, anaerobic threshold oxygen uptake increased in the CR plus LTT group, noradrenaline levels decreased, and no complications were observed. [Conclusion] The addition of LTT to CR did not improve overall exercise capacity in hospitalized patients with HF, but it contributes to specific physiological improvements. Hence, this could be a potential approach to optimize cardiac rehabilitation for patients with decompensated HF.</p>
+      <div class="meta">Journal of physical therapy science · 2025 · Ogino Tomoyuki, Kondo Hideyuki, Okada Makoto 외 1명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40511315/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+
+    <article class="card " data-idx="89">
+      <div class="card-top">
+        <span class="evi">기타</span>
+        <span class="evi-rank">근거 5급</span>
+      </div>
+      <h3><a href="https://pubmed.ncbi.nlm.nih.gov/40413631/" target="_blank" rel="noopener">Therapeutic implications of synonymous gene recoding: insights into mechanisms controlling protein biogenesis and activity.</a></h3>
+      <div class="cats"><span class="tag" style="--c:#64748b">기타</span></div>
+      
+      <div class="meta">Protein &amp; cell · 2025 · Lin Brian C, Jankowska Katarzyna I, Katneni Upendra K 외 3명</div>
+      <a class="link" href="https://pubmed.ncbi.nlm.nih.gov/40413631/" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
+    </article>
+    </div>
+    <div class="nores" id="nores">검색 결과가 없습니다.</div>
+    <p class="empty" style="display:none">아직 수집된 자료가 없습니다. 곧 자동 업데이트됩니다.</p>
+    <p style="color:var(--muted);font-size:.8rem;margin-top:24px;">연도별 분포: 2026년 45편, 2025년 45편</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>사우나 사이언스 허브 · <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a> E-utilities 기반 무료 키없는 자동 수집. 모든 자료는 원 논문 출처(PubMed)로 연결됩니다.</p>
+    <p style="margin-top:6px;">본 사이트는 교육·정보 목적이며 의학적 조언을 대체하지 않습니다. 건강 상태에 따른 사우나 이용은 전문의와 상담하세요.</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var grid = document.getElementById('grid');
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+  var search = document.getElementById('search');
+  var nores = document.getElementById('nores');
+  var activeCat = 'all';
+
+  function norm(s) { return (s||'').toLowerCase(); }
+
+  function apply() {
+    var q = norm(search.value).trim();
+    var shown = 0;
+    cards.forEach(function(c) {
+      var txt = norm(c.textContent);
+      var catOk = activeCat === 'all' || c.querySelector('.tag') && Array.prototype.some.call(c.querySelectorAll('.tag'), function(t){ return t.textContent.trim() === activeCat; });
+      var match = !q || txt.indexOf(q) !== -1;
+      var visible = catOk && match;
+      c.style.display = visible ? '' : 'none';
+      if (visible) {
+        shown++;
+        if (q) highlight(c, q); else clearHL(c);
+      } else clearHL(c);
+    });
+    nores.style.display = shown === 0 ? 'block' : 'none';
+  }
+
+  function highlight(card, q) {
+    clearHL(card);
+    card.querySelectorAll('h3 a, .abs').forEach(function(node) {
+      var re = new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+      node.innerHTML = node.innerHTML.replace(re, '<mark>$1</mark>');
+    });
+  }
+  function clearHL(card) {
+    card.querySelectorAll('mark').forEach(function(m) {
+      var p = m.parentNode; if(!p) return; p.replaceChild(document.createTextNode(m.textContent), m); p.normalize();
+    });
+  }
+
+  search.addEventListener('input', apply);
+
+  document.querySelectorAll('.fbtn').forEach(function(b) {
+    b.addEventListener('click', function() {
+      document.querySelectorAll('.fbtn').forEach(function(x){ x.classList.remove('active'); });
+      b.classList.add('active');
+      activeCat = b.getAttribute('data-cat');
+      apply();
+    });
+  });
+
+  // 다크모드
+  var btn = document.getElementById('dark');
+  var saved = localStorage.getItem('ssh-theme');
+  if (saved === 'dark') setDark(true);
+  btn.addEventListener('click', function() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    setDark(!isDark);
+  });
+  function setDark(on) {
+    document.documentElement.setAttribute('data-theme', on ? 'dark' : 'light');
+    btn.textContent = on ? '☀️ 라이트모드' : '🌙 다크모드';
+    localStorage.setItem('ssh-theme', on ? 'dark' : 'light');
+  }
+})();
+</script>
+</body>
+</html>
