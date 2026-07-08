@@ -63,6 +63,28 @@ def fetch_xml(url):
         return r.read().decode("utf-8")
 
 
+def translate(text, sl="en", tl="ko"):
+    """키없는 Google 번역(gtx). 실패 시 빈 문자열 반환(fallback)."""
+    if not text or not text.strip():
+        return ""
+    try:
+        q = urllib.parse.quote(text[:5000])
+        url = (f"https://translate.googleapis.com/translate_a/single"
+               f"?client=gtx&sl={sl}&tl={tl}&dt=t&q={q}")
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            data = json.loads(r.read().decode("utf-8"))
+        parts = [seg[0] for seg in data[0] if seg and seg[0]]
+        return "".join(parts)
+    except Exception as e:
+        print(f"[translate] 실패({sl}->{tl}): {str(e)[:80]}", file=sys.stderr)
+        return ""
+    finally:
+        time.sleep(0.12)
+
+
 def search_pmids():
     q = urllib.parse.quote(QUERY)
     url = f"{BASE}/esearch.fcgi?db=pubmed&term={q}&retmode=json&retmax={RETMAX}&sort=date"
@@ -80,6 +102,17 @@ def fetch_details(pmids):
         for art in root.iter("PubmedArticle"):
             out.append(parse_article(art))
         time.sleep(0.4)
+    # 한국어 번역 (제목 + 초록). 배치 수집 후 일괄 처리.
+    print(f"[collect] 한국어 번역 시작 ({len(out)}편)...", file=sys.stderr)
+    done = 0
+    for a in out:
+        if a.get("title"):
+            a["title_ko"] = translate(a["title"])
+        if a.get("abstract"):
+            a["abstract_ko"] = translate(a["abstract"])
+        done += 1
+        if done % 20 == 0:
+            print(f"[collect] 번역 {done}/{len(out)}", file=sys.stderr)
     return out
 
 
@@ -137,7 +170,9 @@ def parse_article(art):
     return {
         "pmid": pmid,
         "title": title,
+        "title_ko": "",
         "abstract": abstract,
+        "abstract_ko": "",
         "journal": journal,
         "year": year,
         "volume": volume,
