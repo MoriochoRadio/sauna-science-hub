@@ -91,29 +91,31 @@ def card(a, idx):
     title_en = esc(a.get("title", ""))
     abs_ko = esc(a.get("abstract_ko", ""))
     abs_en = esc(a.get("abstract", ""))
-    top = '<span class="top-badge">★ 최고 근거</span>' if rank <= 1 else ""
+    top_cls = ' top' if rank <= 1 else ""
+    top = '<span class="topstar">★ 최고근거</span>' if rank <= 1 else ""
+    cats_html = cat_html
     abs_ko_html = f'<span class="t-ko">{abs_ko}</span>' if abs_ko else ""
     abs_en_html = f'<span class="t-en">{abs_en}</span>' if abs_en else ""
-    # 제목: 한글(주), 영문(보조). 영문 모드에선 반전.
     title_html = (
         f'<span class="t-ko t-main">{title_ko}</span>'
         f'<span class="t-en t-sub">{title_en}</span>' if title_ko
         else f'<span class="t-en t-main">{title_en}</span>'
     )
+    year_disp = esc(a.get("year", "—"))
+    src = esc(a.get("journal", "출처 미상"))
     data_text = esc((title_en + " " + title_ko + " " + abs_en + " " + abs_ko + " " +
-                    a.get("journal", "") + " " + " ".join(authors)).lower())
+                    src + " " + " ".join(authors)).lower())
     return f"""
-    <article class="card" data-year="{esc(a.get('year','0'))}" data-rank="{rank}" data-clinical="{clinical}" data-group="{group}" data-cats='{esc(json.dumps(cats, ensure_ascii=False))}' data-text="{data_text}">
-      <div class="card-top">
-        <span class="evi">{esc(evidence)}</span>
-        <span class="evi-rank">근거 {rank}급</span>
-        {top}
+    <article class="entry{top_cls}" data-year="{esc(a.get('year','0'))}" data-rank="{rank}" data-clinical="{clinical}" data-group="{group}" data-cats='{esc(json.dumps(cats, ensure_ascii=False))}' data-text="{data_text}">
+      <div class="yr">{year_disp}<small>{esc(a.get('volume',''))}</small></div>
+      <div class="body">
+        <span class="ev">{esc(evidence)}</span><span class="rank">근거 {rank}급</span>{top}
+        <h3><a href="{esc(a['url'])}" target="_blank" rel="noopener">{title_html}</a></h3>
+        <div class="cats">{cats_html}</div>
+        <p class="abs collapsed" id="abs-{esc(a.get('pmid',''))}">{abs_ko_html}{abs_en_html}</p>
+        <div class="abs-toggle" data-target="abs-{esc(a.get('pmid',''))}">초록 { '펴기 ▲' if (abs_ko or abs_en) else '없음' }</div>
+        <div class="meta"><span class="src">{src}</span> · {esc(author_str)} <a class="lk" href="{esc(a['url'])}" target="_blank" rel="noopener">PubMed →</a></div>
       </div>
-      <h3><a href="{esc(a['url'])}" target="_blank" rel="noopener">{title_html}</a></h3>
-      <div class="cats">{cat_html}</div>
-      <p class="abs">{abs_ko_html}{abs_en_html}</p>
-      <div class="meta">{meta} · {esc(author_str)}</div>
-      <a class="link" href="{esc(a['url'])}" target="_blank" rel="noopener">PubMed에서 전문 보기 →</a>
     </article>"""
 
 
@@ -178,123 +180,150 @@ TEMPLATE = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>__TITLE__</title>
 <meta name="description" content="__DESC__">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<meta property="og:title" content="__TITLE__">
+<meta property="og:description" content="__DESC__">
+<meta property="og:type" content="website">
 <style>
-:root { --bg:#faf7f2; --bg2:#f3ede3; --ink:#1f1b16; --muted:#6b6258; --line:#e6ddcf; --accent:#b45309; --accent2:#c2410c; --card:#ffffff; --shadow:0 1px 3px rgba(60,40,20,.08),0 8px 24px rgba(60,40,20,.06); --top:#b45309; }
-[data-theme="dark"] { --bg:#15120e; --bg2:#1e1a14; --ink:#f1e9dd; --muted:#a99e8d; --line:#332c22; --accent:#e0913a; --accent2:#f2743d; --card:#211c15; --shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35); --top:#e0913a; }
-* { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:'Noto Sans KR',system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; -webkit-font-smoothing:antialiased; }
-.wrap { max-width:1100px; margin:0 auto; padding:0 22px; }
-header.hero { background:linear-gradient(160deg,var(--bg2),var(--bg)); border-bottom:1px solid var(--line); padding:54px 0 38px; }
-.kicker { font-size:.8rem; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); font-weight:700; }
-h1 { font-family:'Noto Serif KR',serif; font-size:clamp(2rem,5vw,3.1rem); line-height:1.15; margin:10px 0 14px; font-weight:700; }
-.lede { max-width:660px; color:var(--muted); font-size:1.05rem; }
-.stats { display:flex; flex-wrap:wrap; gap:14px; margin-top:26px; }
-.stat { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 20px; box-shadow:var(--shadow); min-width:96px; }
-.stat b { display:block; font-family:'Noto Serif KR',serif; font-size:1.7rem; color:var(--accent2); line-height:1; }
-.stat span { font-size:.8rem; color:var(--muted); }
-.toolbar { position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--line); padding:14px 0; backdrop-filter:saturate(1.2) blur(6px); }
-.search { width:100%; padding:12px 16px; border:1px solid var(--line); border-radius:12px; background:var(--card); color:var(--ink); font-size:1rem; font-family:inherit; }
-.search:focus { outline:2px solid var(--accent); outline-offset:1px; }
-.row2 { display:flex; gap:10px; margin-top:12px; align-items:center; flex-wrap:wrap; }
-.filters { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
-.fbtn { font-family:inherit; font-size:.85rem; cursor:pointer; border:1px solid var(--line); background:var(--card); color:var(--ink); padding:6px 13px; border-radius:999px; transition:.15s; }
-.fbtn:hover { border-color:var(--accent); }
-.fbtn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
-.fbtn .cnt { opacity:.7; font-size:.78rem; margin-left:2px; }
-.fbtn.ev.active { background:var(--accent2); border-color:var(--accent2); }
-.spacer { flex:1; }
-.darktoggle,.langtoggle { cursor:pointer; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px; padding:6px 14px; font-size:.85rem; font-family:inherit; }
-select.sort { font-family:inherit; font-size:.85rem; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:10px; padding:7px 12px; cursor:pointer; }
-.countbar { font-size:.85rem; color:var(--muted); margin-top:12px; }
-.countbar b { color:var(--accent2); }
-.about { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:18px 22px; margin-top:18px; }
-.about summary { cursor:pointer; font-weight:700; font-family:'Noto Serif KR',serif; font-size:1.05rem; }
-.about ul { margin:12px 0 0 18px; color:var(--muted); font-size:.9rem; }
-.about li { margin:5px 0; }
-main { padding:26px 0 70px; }
-.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:18px; }
-.card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:10px; transition:.18s; border-left:4px solid var(--accent); }
-.card:hover { transform:translateY(-3px); box-shadow:0 4px 10px rgba(60,40,20,.1),0 16px 36px rgba(60,40,20,.1); }
-.card-top { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-.evi { font-size:.74rem; font-weight:700; background:var(--bg2); color:var(--accent); padding:3px 9px; border-radius:999px; border:1px solid var(--line); }
-.evi-rank { font-size:.72rem; color:var(--muted); }
-.top-badge { font-size:.7rem; font-weight:700; color:var(--top); margin-left:auto; }
-.card h3 { font-family:'Noto Serif KR',serif; font-size:1.12rem; line-height:1.35; font-weight:600; }
-.card h3 a { color:var(--ink); text-decoration:none; }
-.card h3 a:hover { color:var(--accent); text-decoration:underline; }
-.cats { display:flex; flex-wrap:wrap; gap:6px; }
-.tag { font-size:.72rem; color:#fff; background:var(--c,#64748b); padding:2px 9px; border-radius:999px; font-weight:500; }
-.abs { font-size:.88rem; color:var(--muted); display:-webkit-box; -webkit-line-clamp:5; -webkit-box-orient:vertical; overflow:hidden; }
-.abs .t-en { display:none; }
-.meta { font-size:.8rem; color:var(--muted); margin-top:auto; }
-.link { font-size:.82rem; font-weight:600; color:var(--accent2); text-decoration:none; }
-.link:hover { text-decoration:underline; }
-/* 영문 모드 */
-body[data-lang="en"] .t-ko { display:none; }
-body[data-lang="en"] .abs .t-en { display:block; }
-body[data-lang="ko"] .t-en { display:none; }
-body[data-lang="ko"] .abs .t-ko { display:block; }
-/* 제목 보조 텍스트: 한글 모드에선 영문이 보조, 영문 모드에선 한글이 보조 */
-body[data-lang="ko"] .t-sub { display:block; font-size:.82rem; font-weight:400; color:var(--muted); margin-top:4px; line-height:1.3; font-family:'Noto Sans KR',sans-serif; }
-body[data-lang="en"] .t-sub { display:block; font-size:.82rem; font-weight:400; color:var(--muted); margin-top:4px; line-height:1.3; }
-body[data-lang="ko"] .t-main, body[data-lang="en"] .t-main { font-family:'Noto Serif KR',serif; }
-.empty { text-align:center; padding:80px 20px; color:var(--muted); }
-.nores { text-align:center; padding:40px; color:var(--muted); display:none; }
-footer { border-top:1px solid var(--line); background:var(--bg2); padding:30px 0; color:var(--muted); font-size:.85rem; }
-footer a { color:var(--accent); }
-.totop { position:fixed; right:20px; bottom:20px; width:44px; height:44px; border-radius:50%; border:1px solid var(--line); background:var(--card); color:var(--accent); font-size:1.2rem; cursor:pointer; box-shadow:var(--shadow); display:none; z-index:30; }
-@media (max-width:560px) { .grid { grid-template-columns:1fr; } h1 { font-size:2rem; } .spacer { display:none; } }
+:root{
+  --paper:#f4f1ea; --panel:#ffffff; --ink:#1c1a15; --ink2:#57534a;
+  --rule:#d6d0c2; --rule2:#e7e1d4; --accent:#6e5a1c; --accent2:#8a6a14;
+  --cat:#6b665c; --mark:#f0e0a8; --shadow:0 1px 2px rgba(35,33,28,.06),0 6px 18px rgba(35,33,28,.05);
+}
+[data-theme="dark"]{
+  --paper:#16140f; --panel:#1f1c16; --ink:#e9e3d6; --ink2:#9a9183;
+  --rule:#332f27; --rule2:#27231d; --accent:#dc8f87; --accent2:#d3a85f;
+  --cat:#948b7e; --mark:#574a1e; --shadow:0 1px 2px rgba(0,0,0,.45),0 6px 18px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Apple SD Gothic Neo","Malgun Gothic",-apple-system,"Segoe UI",sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+
+/* 좌측 정렬 마스트헤드 — 저널/편집자 톤 */
+.masthead{border-bottom:3px double var(--rule);padding:40px 0 30px}
+.mast-kicker{font:600 .72rem/1 "Courier New",monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2)}
+.mast h1{font-size:clamp(2.1rem,5vw,3rem);font-weight:800;letter-spacing:-.02em;line-height:1.08;margin:12px 0 10px}
+.mast .dek{max-width:640px;color:var(--ink2);font-size:1.02rem}
+.mast-meta{display:flex;flex-wrap:wrap;gap:0;margin-top:22px;border-top:1px solid var(--rule2)}
+.mast-meta div{flex:1 1 120px;padding:12px 14px 12px 0;border-right:1px solid var(--rule2)}
+.mast-meta div:last-child{border-right:0}
+.mast-meta b{display:block;font-size:1.5rem;font-weight:800;color:var(--accent);line-height:1}
+.mast-meta span{font-size:.74rem;color:var(--ink2);letter-spacing:.02em}
+.issue{font:600 .7rem/1 "Courier New",monospace;letter-spacing:.1em;color:var(--ink2);text-transform:uppercase;margin-top:18px}
+
+/* 컨트롤 바 */
+.bar{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule);padding:12px 0}
+.search{width:100%;padding:11px 14px;border:1px solid var(--rule);border-radius:0;background:var(--panel);color:var(--ink);font:inherit;font-size:.95rem}
+.search:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.bar2{display:flex;gap:10px;margin-top:10px;align-items:center;flex-wrap:wrap}
+.filters{display:flex;flex-wrap:wrap;gap:0}
+.fbtn{font:inherit;font-size:.82rem;cursor:pointer;border:1px solid var(--rule);border-right-width:0;background:var(--panel);color:var(--ink);padding:6px 12px;transition:.12s}
+.filters .fbtn:first-child{border-top-left-radius:4px;border-bottom-left-radius:4px}
+.filters .fbtn:last-of-type{border-right-width:1px;border-top-right-radius:4px;border-bottom-right-radius:4px}
+.fbtn:hover{border-color:var(--accent)}
+.fbtn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.fbtn .cnt{opacity:.65;font-size:.74rem;margin-left:3px}
+.fbtn.ev.active{background:var(--accent2);border-color:var(--accent2)}
+.spacer{flex:1}
+.txtbtn{cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:4px;padding:6px 13px;font:inherit;font-size:.82rem}
+.txtbtn:hover{border-color:var(--accent)}
+select.sort{font:inherit;font-size:.82rem;border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:4px;padding:6px 10px;cursor:pointer}
+.countbar{font-size:.82rem;color:var(--ink2);margin-top:10px}
+.countbar b{color:var(--accent);font-weight:800}
+.countbar .reset{cursor:pointer;color:var(--accent2);text-decoration:underline;margin-left:8px}
+
+/* 방법론 노트 */
+.note{border:1px solid var(--rule);border-left:3px solid var(--accent2);background:var(--panel);padding:14px 18px;margin-top:16px;font-size:.88rem;color:var(--ink2)}
+.note summary{cursor:pointer;font-weight:700;color:var(--ink);font-size:.95rem}
+.note ul{margin:10px 0 0 18px}
+.note li{margin:4px 0}
+
+/* 리스트 레이아웃 (카드 아님) */
+main{padding:24px 0 60px}
+.grid{display:flex;flex-direction:column}
+.entry{border-top:1px solid var(--rule);padding:18px 0;display:grid;grid-template-columns:72px 1fr;gap:18px;transition:background .12s}
+.entry:hover{background:var(--panel)}
+.entry:first-child{border-top:0}
+.entry.top{background:linear-gradient(90deg,rgba(110,90,28,.06),transparent 60%);border-left:3px solid var(--accent);padding-left:14px;margin-left:-17px}
+.entry .yr{font:700 1.05rem/1.1 "Courier New",monospace;color:var(--accent);text-align:right;padding-top:2px}
+.entry .yr small{display:block;font-size:.62rem;color:var(--ink2);font-weight:400;letter-spacing:.05em;margin-top:3px}
+.entry .body{min-width:0}
+.ev{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.03em;border:1px solid var(--rule);padding:1px 7px;color:var(--accent2);margin-bottom:6px}
+.rank{font-size:.66rem;color:var(--ink2);margin-left:6px}
+.topstar{color:var(--accent);font-weight:800;margin-left:6px}
+.entry h3{font-size:1.08rem;font-weight:700;line-height:1.34;letter-spacing:-.01em}
+.entry h3 a{text-decoration:none}
+.entry h3 a:hover{color:var(--accent);text-decoration:underline}
+.t-en.t-sub{display:block;font-weight:400;font-size:.82rem;color:var(--ink2);margin-top:3px;line-height:1.35}
+.cats{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
+.tag{font-size:.7rem;color:#fff;background:var(--cat);padding:2px 8px;letter-spacing:.02em}
+.abs{font-size:.9rem;color:var(--ink2);line-height:1.7;margin-top:6px}
+.abs.collapsed{max-height:3.4em;overflow:hidden;position:relative}
+.abs .t-en{display:none}
+.abs-toggle{cursor:pointer;font-size:.76rem;color:var(--accent2);font-weight:700;margin-top:6px;user-select:none}
+.abs-toggle:hover{text-decoration:underline}
+.meta{font-size:.78rem;color:var(--ink2);margin-top:8px}
+.meta .src{color:var(--accent);font-weight:600}
+.lk{font-size:.78rem;font-weight:700;color:var(--accent2);text-decoration:none;margin-left:10px}
+.lk:hover{text-decoration:underline}
+mark{background:var(--mark);color:inherit;padding:0 1px}
+
+[data-theme="dark"] .entry .yr{color:var(--accent)}
+[data-theme="dark"] .fbtn.active{color:#16140f}
+[data-theme="dark"] .fbtn.ev.active{color:#16140f}
+
+.totop{position:fixed;right:18px;bottom:18px;width:40px;height:40px;border:1px solid var(--rule);background:var(--panel);color:var(--ink);font-size:1.1rem;cursor:pointer;display:none;z-index:30}
+.nores{text-align:center;padding:40px;color:var(--ink2);display:none}
+@media(max-width:620px){.entry{grid-template-columns:1fr}.entry .yr{text-align:left;font-size:.9rem}.entry .yr small{display:inline;margin:0 0 0 6px}.mast-meta div{flex-basis:50%}}
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="wrap">
-    <div class="kicker">Evidence-Based Sauna Research</div>
+<header class="masthead">
+  <div class="wrap mast">
+    <div class="mast-kicker">Evidence-Based Sauna Research Archive</div>
     <h1>사우나 사이언스 허브</h1>
-    <p class="lede">사우나가 몸에 미치는 과학적 근거를 한곳에서. PubMed에서 매일 자동 수집되는 peer-reviewed 연구·임상시험 아카이브. 제목·요약은 한국어 번역과 원문을 함께 제공합니다.</p>
-    <div class="stats">
-      <div class="stat"><b>__TOTAL__</b><span>수집 논문</span></div>
-      <div class="stat"><b>__CLINICAL__</b><span>임상시험 · RCT</span></div>
-      <div class="stat"><b>__NCAT__</b><span>주제 분류</span></div>
-      <div class="stat"><b>__UPDATED__</b><span>최종 업데이트</span></div>
+    <p class="dek">사우나가 인체에 미치는 과학적 근거를 모았다. PubMed에서 매일 자동 수집되는 peer-reviewed 연구와 임상시험을 주제·근거 수준별로 정리했다. 제목과 초록은 기계번역 한국어와 원문을 함께 읽는다.</p>
+    <div class="mast-meta">
+      <div><b>__TOTAL__</b><span>수집 논문</span></div>
+      <div><b>__CLINICAL__</b><span>임상시험 · RCT</span></div>
+      <div><b>__NCAT__</b><span>주제 분류</span></div>
+      <div><b>__UPDATED__</b><span>최종 갱신</span></div>
     </div>
+    <div class="issue">정기 간행물 형태 · 매일 KST 10:17 자동 발행</div>
   </div>
 </header>
 
-<div class="toolbar">
+<div class="bar">
   <div class="wrap">
-    <input id="search" class="search" type="search" placeholder="논문 제목·요약·저널 검색… (예: blood pressure, 치매, 회복)" aria-label="검색">
-    <div class="row2">
+    <input id="search" class="search" type="search" placeholder="논문 검색 — 제목·초록·저널·저자 (예: blood pressure, 치매, 회복)" aria-label="검색">
+    <div class="bar2">
       <div class="filters" id="catFilters">__FILTERS__</div>
       <div class="spacer"></div>
       <select class="sort" id="sort" aria-label="정렬">
         <option value="latest">최신순</option>
-        <option value="evidence">근거 높은순</option>
-        <option value="clinical">임상 우선</option>
+        <option value="evidence">근거 수준순</option>
+        <option value="clinical">임상시험 우선</option>
       </select>
-      <button class="langtoggle" id="lang">🌐 원문(EN)</button>
-      <button class="darktoggle" id="dark">🌙 다크</button>
+      <button class="txtbtn" id="lang">원문 보기</button>
+      <button class="txtbtn" id="dark">다크모드</button>
     </div>
-    <div class="row2">
+    <div class="bar2">
       <div class="filters" id="evFilters">__EVIDENCE_FILTERS__</div>
     </div>
-    <div class="countbar">표시 중: <b id="shown">__TOTAL__</b> / __TOTAL__편</div>
+    <div class="countbar">표시 <b id="shown">__TOTAL__</b> / __TOTAL__편<span class="reset" id="reset" style="display:none">필터 초기화</span></div>
   </div>
 </div>
 
 <div class="wrap">
-  <details class="about">
-    <summary>ℹ️ 이 사이트는 어떻게 만들어졌나요? (방법론)</summary>
+  <details class="note">
+    <summary>이 아카이브는 어떻게 만들어졌나 (방법론)</summary>
     <ul>
-      <li><b>출처</b>: <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a>(NCBI)의 peer-reviewed 논문 메타데이터. 키 없이 무료 E-utilities로 매일 수집합니다.</li>
-      <li><b>근거 등급</b>: 출판 유형에 따라 RCT·임상시험·메타분석·코호트 등을 라벨링하고 1~5급으로 표시(1급=가장 높은 근거). '★ 최고 근거'는 1급(RCT·메타분석)입니다.</li>
-      <li><b>번역</b>: 제목·초록은 키없는 기계번역으로 한국어 제공(원문 토글 가능). 번역 품질은 참고용이며 정확한 내용은 원문 링크를 확인하세요.</li>
+      <li><b>출처</b>: <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a>(NCBI)의 peer-reviewed 논문 메타데이터. 키 없이 무료 E-utilities로 매일 수집한다.</li>
+      <li><b>근거 수준</b>: 출판 유형별로 RCT·임상시험·메타분석·코호트 등을 라벨링하고 1~5급으로 표시(1급=가장 높은 근거). <b>★</b> 표시는 1급(RCT·메타분석)이다.</li>
+      <li><b>번역</b>: 제목·초록은 기계번역으로 한국어를 제공한다(원문 토글 가능). 번역 품질은 참고용이며 정확한 내용은 원문 링크를 확인하라.</li>
       <li><b>주제 분류</b>: 초록 키워드 기반 자동 태깅(심혈관·사망률·인지·대사·호흡기·회복·정신건강·통증·염증).</li>
-      <li><b>자동화</b>: GitHub Actions가 매일 갱신하며, 빌드 타임에 정적 HTML로 렌더링됩니다.</li>
-      <li><b>면책</b>: 교육·정보 목적이며 의학적 조언을 대체하지 않습니다. 사우나 이용은 건강 상태에 따라 전문의와 상담하세요.</li>
+      <li><b>면책</b>: 교육·정보 목적이며 의학적 조언을 대체하지 않는다. 사우나 이용은 건강 상태에 따라 전문의와 상담하라.</li>
     </ul>
   </details>
 </div>
@@ -304,9 +333,8 @@ footer a { color:var(--accent); }
     <div class="grid" id="grid">
 __CARDS__
     </div>
-    <div class="nores" id="nores">검색/필터 결과가 없습니다.</div>
-    <p class="empty" style="display:__EMPTY_DISPLAY__">아직 수집된 자료가 없습니다. 곧 자동 업데이트됩니다.</p>
-    <p style="color:var(--muted);font-size:.8rem;margin-top:24px;">연도별 분포: __YEARSTATS__</p>
+    <div class="nores" id="nores">검색·필터 결과가 없습니다.</div>
+    <p style="color:var(--ink2);font-size:.78rem;margin-top:22px;border-top:1px solid var(--rule2);padding-top:14px;">연도별 분포: __YEARSTATS__</p>
   </div>
 </main>
 
@@ -314,19 +342,20 @@ __CARDS__
 
 <footer>
   <div class="wrap">
-    <p>사우나 사이언스 허브 · <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a> 기반 무료 키없는 자동 수집 · 모든 자료는 원 논문(PubMed)으로 연결됩니다.</p>
-    <p style="margin-top:6px;">본 사이트는 교육·정보 목적이며 의학적 조언을 대체하지 않습니다.</p>
+    <p>사우나 사이언스 허브 · <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a> 기반 무료 키없는 자동 수집. 모든 항목은 원논문(PubMed)으로 연결된다.</p>
+    <p style="margin-top:6px;">본 아카이브는 교육·정보 목적이며 의학적 조언을 대체하지 않는다.</p>
   </div>
 </footer>
 
 <script>
 (function() {
   var grid = document.getElementById('grid');
-  var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.entry'));
   var search = document.getElementById('search');
   var nores = document.getElementById('nores');
   var shownEl = document.getElementById('shown');
   var sortSel = document.getElementById('sort');
+  var resetBtn = document.getElementById('reset');
   var activeCat = 'all', activeGroup = 'all';
   function norm(s){ return (s||'').toLowerCase(); }
   function toInt(v){ var n=parseInt(v,10); return isNaN(n)?0:n; }
@@ -334,63 +363,100 @@ __CARDS__
   function apply() {
     var q = norm(search.value).trim();
     var list = cards.filter(function(c){
-      var cats = JSON.parse((c.getAttribute('data-cats')||'[]').replace(/&quot;/g,'"'));
+      var raw = (c.getAttribute('data-cats')||'[]').replace(/&quot;/g,'"');
+      var cats; try { cats = JSON.parse(raw); } catch(e){ cats = []; }
       var catOk = activeCat==='all' || cats.indexOf(activeCat)!==-1;
       var grpOk = activeGroup==='all' || c.getAttribute('data-group')===activeGroup;
       var txt = norm(c.getAttribute('data-text'));
       var match = !q || txt.indexOf(q)!==-1;
       return catOk && grpOk && match;
     });
-    // 정렬
     var mode = sortSel.value;
     list.sort(function(a,b){
       if(mode==='evidence'){ var r=toInt(a.getAttribute('data-rank'))-toInt(b.getAttribute('data-rank')); return r!==0?r:toInt(b.getAttribute('data-year'))-toInt(a.getAttribute('data-year')); }
       if(mode==='clinical'){ var c=toInt(b.getAttribute('data-clinical'))-toInt(a.getAttribute('data-clinical')); return c!==0?c:toInt(b.getAttribute('data-year'))-toInt(a.getAttribute('data-year')); }
       return toInt(b.getAttribute('data-year'))-toInt(a.getAttribute('data-year'));
     });
-    // DOM 재배치
     cards.forEach(function(c){ c.style.display='none'; clearHL(c); });
     list.forEach(function(c){ c.style.display=''; grid.appendChild(c); if(q) highlight(c,q); });
     shownEl.textContent = list.length;
     nores.style.display = list.length===0 ? 'block' : 'none';
+    resetBtn.style.display = (activeCat!=='all' || activeGroup!=='all' || q) ? 'inline' : 'none';
   }
 
+  function escapeRe(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
   function highlight(card, q){
     card.querySelectorAll('h3 a, .abs').forEach(function(node){
-      try{ var re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'); node.innerHTML=node.innerHTML.replace(re,'<mark>$1</mark>'); }catch(e){}
+      try {
+        var re = new RegExp('('+escapeRe(q)+')','gi');
+        node.innerHTML = node.innerHTML.replace(re, '<mark>$1</mark>');
+      } catch(e){}
     });
   }
   function clearHL(card){
-    card.querySelectorAll('mark').forEach(function(m){ var p=m.parentNode; if(!p) return; p.replaceChild(document.createTextNode(m.textContent),m); p.normalize(); });
+    card.querySelectorAll('mark').forEach(function(m){
+      var p=m.parentNode; if(!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m); p.normalize();
+    });
   }
 
   search.addEventListener('input', apply);
   sortSel.addEventListener('change', apply);
-  document.querySelectorAll('#catFilters .fbtn').forEach(function(b){
-    b.addEventListener('click', function(){ document.querySelectorAll('#catFilters .fbtn').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); activeCat=b.getAttribute('data-cat'); apply(); });
-  });
-  document.querySelectorAll('#evFilters .fbtn').forEach(function(b){
-    b.addEventListener('click', function(){ document.querySelectorAll('#evFilters .fbtn').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); activeGroup=b.getAttribute('data-group'); apply(); });
+  function bindFilters(sel, attr, cb){
+    document.querySelectorAll(sel).forEach(function(b){
+      b.addEventListener('click', function(){
+        document.querySelectorAll(sel).forEach(function(x){ x.classList.remove('active'); });
+        b.classList.add('active');
+        cb(b.getAttribute(attr)); apply();
+      });
+    });
+  }
+  bindFilters('#catFilters .fbtn', 'data-cat', function(v){ activeCat=v; });
+  bindFilters('#evFilters .fbtn', 'data-group', function(v){ activeGroup=v; });
+  resetBtn.addEventListener('click', function(){
+    activeCat='all'; activeGroup='all'; search.value='';
+    document.querySelectorAll('.fbtn').forEach(function(x){ x.classList.remove('active'); });
+    document.querySelector('#catFilters .fbtn').classList.add('active');
+    document.querySelector('#evFilters .fbtn').classList.add('active');
+    apply();
   });
 
   // 언어 토글 (한국어 <-> 원문)
   var langBtn = document.getElementById('lang');
   var savedLang = localStorage.getItem('ssh-lang') || 'ko';
   setLang(savedLang);
-  langBtn.addEventListener('click', function(){ var cur=document.documentElement.getAttribute('data-lang'); setLang(cur==='ko'?'en':'ko'); });
-  function setLang(l){ document.documentElement.setAttribute('data-lang', l); langBtn.textContent = l==='ko' ? '🌐 원문(EN)' : '🌐 한국어'; localStorage.setItem('ssh-lang', l); }
+  langBtn.addEventListener('click', function(){
+    var cur = document.documentElement.getAttribute('data-lang');
+    setLang(cur==='ko' ? 'en' : 'ko');
+  });
+  function setLang(l){
+    document.documentElement.setAttribute('data-lang', l);
+    langBtn.textContent = l==='ko' ? '원문 보기' : '한국어 보기';
+    localStorage.setItem('ssh-lang', l);
+  }
 
   // 다크모드
   var btn = document.getElementById('dark');
   var saved = localStorage.getItem('ssh-theme');
   if(saved==='dark') setDark(true);
   btn.addEventListener('click', function(){ setDark(document.documentElement.getAttribute('data-theme')==='dark' ? false : true); });
-  function setDark(on){ document.documentElement.setAttribute('data-theme', on?'dark':'light'); btn.textContent = on?'☀️ 라이트':'🌙 다크'; localStorage.setItem('ssh-theme', on?'dark':'light'); }
+  function setDark(on){ document.documentElement.setAttribute('data-theme', on?'dark':'light'); btn.textContent = on?'라이트모드':'다크모드'; localStorage.setItem('ssh-theme', on?'dark':'light'); }
 
   // 맨 위로
   var top = document.getElementById('totop');
   window.addEventListener('scroll', function(){ top.style.display = window.scrollY>500?'block':'none'; });
   top.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+
+  // 초록 펼침/접힘 토글
+  document.querySelectorAll('.abs-toggle').forEach(function(t){
+    if(t.textContent.indexOf('없음')!==-1) return;
+    t.addEventListener('click', function(){
+      var el = document.getElementById(t.getAttribute('data-target'));
+      if(!el) return;
+      var open = el.classList.toggle('collapsed') === false;
+      t.textContent = open ? '초록 닫기 ▼' : '초록 펼치기 ▲';
+    });
+  });
 
   apply();
 })();

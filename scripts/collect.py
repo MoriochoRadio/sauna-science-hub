@@ -9,6 +9,7 @@ PubMed E-utilities 에서 가져와 data/research.json 으로 저장한다.
 import json
 import sys
 import time
+import os
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -16,6 +17,7 @@ from datetime import date
 
 BASE = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 OUT = "data/research.json"
+CACHE = "data/translations.json"
 
 # 사우나 과학 증거를 좁히는 쿼리 (PubMed 검색 구문)
 QUERY = '(sauna OR "sauna bathing" OR "thermal bathing") AND (health OR cardiovascular OR mortality OR "clinical trial" OR "randomized" OR cognition OR metabolic OR recovery OR "blood pressure")'
@@ -51,10 +53,38 @@ EVIDENCE_LABELS = {
 }
 
 
+def load_cache():
+    try:
+        with open(CACHE, encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def save_cache(cache):
+    tmp = CACHE + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, indent=1)
+    os.replace(tmp, CACHE)
+
+
 def fetch_json(url):
     req = urllib.request.Request(url, headers={"User-Agent": "sauna-science-hub/1.0"})
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.loads(r.read().decode("utf-8"))
+
+def translate_cached(cache, text, sl="en", tl="ko", key=None):
+    """캐시 우선 번역. key 는 캐시 구분용(PMID+필드)."""
+    if not text or not text.strip():
+        return ""
+    if key:
+        ck = f"{sl}>{tl}:{key}"
+        if ck in cache and cache[ck]:
+            return cache[ck]
+    tr = translate(text, sl, tl)
+    if key and tr:
+        cache[ck] = tr
+    return tr
 
 
 def fetch_xml(url):
@@ -102,17 +132,25 @@ def fetch_details(pmids):
         for art in root.iter("PubmedArticle"):
             out.append(parse_article(art))
         time.sleep(0.4)
-    # 한국어 번역 (제목 + 초록). 배치 수집 후 일괄 처리.
+    # 한국어 번역 (제목 + 초록). 캐시 우선 — 재번역·rate-limit 방지.
+    cache = load_cache()
+    cache_hit = 0
     print(f"[collect] 한국어 번역 시작 ({len(out)}편)...", file=sys.stderr)
     done = 0
     for a in out:
+        pid = a.get("pmid", "")
         if a.get("title"):
-            a["title_ko"] = translate(a["title"])
+            ko = translate_cached(cache, a["title"], key=f"{pid}:title")
+            a["title_ko"] = ko
+            if ko and ko == cache.get(f"en>ko:{pid}:title"):
+                cache_hit += 1
         if a.get("abstract"):
-            a["abstract_ko"] = translate(a["abstract"])
+            a["abstract_ko"] = translate_cached(cache, a["abstract"], key=f"{pid}:abstract")
         done += 1
         if done % 20 == 0:
-            print(f"[collect] 번역 {done}/{len(out)}", file=sys.stderr)
+            print(f"[collect] 번역 {done}/{len(out)} (캐시 히트 누적 {cache_hit})", file=sys.stderr)
+    save_cache(cache)
+    print(f"[collect] 번역 완료 — 캐시 히트 {cache_hit}건", file=sys.stderr)
     return out
 
 
@@ -188,6 +226,27 @@ def parse_article(art):
 
 
 def main():
+    # 기존 research.json 에 이미 번역된 값이 있으면 캐시로 적재 (재번역 방지)
+    cache = load_cache()
+    migrated = 0
+    try:
+        old = json.load(open(OUT, encoding="utf-8"))
+        for a in old.get("articles", []):
+            pid = a.get("pmid", "")
+            if pid and a.get("title_ko"):
+                k = f"en>ko:{pid}:title"
+                if k not in cache:
+                    cache[k] = a["title_ko"]; migrated += 1
+            if pid and a.get("abstract_ko"):
+                k = f"en>ko:{pid}:abstract"
+                if k not in cache:
+                    cache[k] = a["abstract_ko"]; migrated += 1
+        if migrated:
+            save_cache(cache)
+            print(f"[collect] 기존 번역 {migrated}건 캐시 적재", file=sys.stderr)
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+
     print(f"[collect] PubMed 검색: {QUERY}", file=sys.stderr)
     pmids = search_pmids()
     print(f"[collect] {len(pmids)}편 검색됨", file=sys.stderr)

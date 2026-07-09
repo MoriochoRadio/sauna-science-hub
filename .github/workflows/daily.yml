@@ -34,7 +34,7 @@ jobs:
         run: |
           git config user.name "sauna-bot"
           git config user.email "bot@sauna-science-hub.local"
-          git add data/research.json index.html
+          git add data/research.json data/translations.json index.html
           if git diff --cached --quiet; then
             echo "변경 없음 — 커밋 생략"
           else
