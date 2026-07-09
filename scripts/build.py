@@ -47,7 +47,23 @@ EVIDENCE_GROUPS = OrderedDict([
 
 
 def esc(s):
-    return html.escape(str(s or ""), quote=True)
+    return (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+# 주제별 색상 (차분한 톤 — AI 팔레트 지양)
+_CAT_COLORS = {
+    "심혈관": "#9a3b3b",
+    "사망률·수명": "#5b6b8a",
+    "인지·뇌": "#5a7d6b",
+    "대사·체중": "#8a6a2e",
+    "호흡기": "#4f7a86",
+    "회복·운동": "#6b4f86",
+    "정신건강": "#7a6a3a",
+    "통증·염증": "#9a5a3a",
+    "기타": "#6b665c",
+}
+def cat_color(cat):
+    return _CAT_COLORS.get(cat, "#6b665c")
 
 
 def ev_group(ev):
@@ -69,7 +85,7 @@ def load():
 def card(a, idx):
     cats = a.get("categories", ["기타"])
     cat_html = "".join(
-        f'<span class="tag" style="--c:{CATEGORY_META.get(c, CATEGORY_META["기타"])[0]}">{esc(c)}</span>'
+        f'<span class="tag" style="--c:{cat_color(c)}">{esc(c)}</span>'
         for c in cats
     )
     authors = a.get("authors", [])
@@ -138,7 +154,7 @@ def build():
     filter_btns = ['<button class="fbtn active" data-cat="all">전체 <span class="cnt">{total}</span></button>']
     for c in CATEGORY_META:
         if cat_counts.get(c):
-            color = CATEGORY_META[c][0]
+            color = cat_color(c)
             filter_btns.append(
                 f'<button class="fbtn" data-cat="{esc(c)}" style="--c:{color}">{esc(c)} <span class="cnt">{cat_counts[c]}</span></button>'
             )
@@ -218,11 +234,11 @@ a{color:inherit}
 .search:focus{outline:2px solid var(--accent);outline-offset:-1px}
 .bar2{display:flex;gap:10px;margin-top:10px;align-items:center;flex-wrap:wrap}
 .filters{display:flex;flex-wrap:wrap;gap:0}
-.fbtn{font:inherit;font-size:.82rem;cursor:pointer;border:1px solid var(--rule);border-right-width:0;background:var(--panel);color:var(--ink);padding:6px 12px;transition:.12s}
+.fbtn{font:inherit;font-size:.82rem;cursor:pointer;border:1px solid var(--rule);border-right-width:0;background:var(--panel);color:var(--ink);padding:6px 12px;transition:.12s;border-left:3px solid var(--c,transparent)}
 .filters .fbtn:first-child{border-top-left-radius:4px;border-bottom-left-radius:4px}
 .filters .fbtn:last-of-type{border-right-width:1px;border-top-right-radius:4px;border-bottom-right-radius:4px}
 .fbtn:hover{border-color:var(--accent)}
-.fbtn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.fbtn.active{background:var(--accent);border-color:var(--accent);color:#fff;border-left-color:var(--c,var(--accent))}
 .fbtn .cnt{opacity:.65;font-size:.74rem;margin-left:3px}
 .fbtn.ev.active{background:var(--accent2);border-color:var(--accent2)}
 .spacer{flex:1}
@@ -275,7 +291,17 @@ mark{background:var(--mark);color:inherit;padding:0 1px}
 
 .totop{position:fixed;right:18px;bottom:18px;width:40px;height:40px;border:1px solid var(--rule);background:var(--panel);color:var(--ink);font-size:1.1rem;cursor:pointer;display:none;z-index:30}
 .nores{text-align:center;padding:40px;color:var(--ink2);display:none}
-@media(max-width:620px){.entry{grid-template-columns:1fr}.entry .yr{text-align:left;font-size:.9rem}.entry .yr small{display:inline;margin:0 0 0 6px}.mast-meta div{flex-basis:50%}}
+@media(max-width:620px){
+  .entry{grid-template-columns:1fr;gap:6px;padding:26px 0}
+  .entry .yr{text-align:left;font-size:.9rem}
+  .entry .yr small{display:inline;margin:0 0 0 6px}
+  .mast-meta div{flex-basis:50%}
+  .masthead{padding:30px 0 22px}
+  .mast h1{font-size:1.9rem}
+  .mast-kicker{font-size:.66rem}
+  .bar{padding:14px 0}
+  .bar2{gap:8px}
+}
 </style>
 </head>
 <body>
@@ -382,6 +408,20 @@ __CARDS__
     shownEl.textContent = list.length;
     nores.style.display = list.length===0 ? 'block' : 'none';
     resetBtn.style.display = (activeCat!=='all' || activeGroup!=='all' || q) ? 'inline' : 'none';
+    syncURL(q);
+  }
+
+  // 현재 필터/검색을 URL 쿼리에 반영 (공유용)
+  function syncURL(q){
+    try {
+      var p = new URLSearchParams();
+      if(q) p.set('q', q);
+      if(activeCat!=='all') p.set('cat', activeCat);
+      if(activeGroup!=='all') p.set('grp', activeGroup);
+      if(sortSel.value!=='latest') p.set('sort', sortSel.value);
+      var s = p.toString();
+      history.replaceState(null, '', s ? (location.pathname+'?'+s) : location.pathname);
+    } catch(e){}
   }
 
   function escapeRe(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
@@ -420,6 +460,21 @@ __CARDS__
     document.querySelector('#evFilters .fbtn').classList.add('active');
     apply();
   });
+
+  // 공유 링크 복원: URL 쿼리에서 필터/검색/정렬 적용
+  try {
+    var u = new URLSearchParams(location.search);
+    if(u.get('q')){ search.value = u.get('q'); }
+    if(u.get('cat')){
+      var cb = document.querySelector('#catFilters .fbtn[data-cat="'+u.get('cat')+'"]');
+      if(cb){ document.querySelectorAll('#catFilters .fbtn').forEach(function(x){x.classList.remove('active');}); cb.classList.add('active'); activeCat=u.get('cat'); }
+    }
+    if(u.get('grp')){
+      var gb = document.querySelector('#evFilters .fbtn[data-group="'+u.get('grp')+'"]');
+      if(gb){ document.querySelectorAll('#evFilters .fbtn').forEach(function(x){x.classList.remove('active');}); gb.classList.add('active'); activeGroup=u.get('grp'); }
+    }
+    if(u.get('sort')){ sortSel.value=u.get('sort'); }
+  } catch(e){}
 
   // 언어 토글 (한국어 <-> 원문)
   var langBtn = document.getElementById('lang');
