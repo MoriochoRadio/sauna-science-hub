@@ -1,8 +1,8 @@
 {
-  "updated": "2026-07-10",
+  "updated": "2026-07-11",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
-  "clinical_count": 8,
+  "clinical_count": 7,
   "articles": [
     {
       "pmid": "42340428",
@@ -57,33 +57,6 @@
       "categories": [
         "심혈관",
         "회복·운동"
-      ]
-    },
-    {
-      "pmid": "41837889",
-      "title": "Effects of serial thermal brine hand baths on hand osteoarthritis: a randomized, double-blind, sham-controlled trial.",
-      "title_ko": "손 골관절염에 대한 일련의 열 염수 손 목욕 효과: 무작위, 이중 맹검, 가짜 대조 시험.",
-      "abstract": "Balneotherapy is used since ancient times, effects on hand osteoarthritis however are not well elucidated.",
-      "abstract_ko": "온천요법은 고대부터 사용되어 왔지만 손 골관절염에 대한 효과는 잘 밝혀지지 않았습니다.",
-      "journal": "European journal of physical and rehabilitation medicine",
-      "year": "2026",
-      "volume": "62",
-      "issue": "1",
-      "pages": "69-77",
-      "authors": [
-        "Klemm Philipp",
-        "Ehnert Katharina",
-        "Vogtherr Beate",
-        "Neumann Elena",
-        "Wilhelmi Tim",
-        "van Wjinen Pascal"
-      ],
-      "doi": "10.1007/s10067-012-2026-0",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/41837889/",
-      "evidence": "무작위 대조 시험(RCT)",
-      "is_clinical": true,
-      "categories": [
-        "통증·염증"
       ]
     },
     {
@@ -746,10 +719,37 @@
       ],
       "doi": "10.1177/13872877261433226",
       "url": "https://pubmed.ncbi.nlm.nih.gov/41848374/",
-      "evidence": "리뷰",
+      "evidence": "기타",
       "is_clinical": false,
       "categories": [
         "인지·뇌"
+      ]
+    },
+    {
+      "pmid": "41837889",
+      "title": "Effects of serial thermal brine hand baths on hand osteoarthritis: a randomized, double-blind, sham-controlled trial.",
+      "title_ko": "손 골관절염에 대한 일련의 열 염수 손 목욕 효과: 무작위, 이중 맹검, 가짜 대조 시험.",
+      "abstract": "Balneotherapy is used since ancient times, effects on hand osteoarthritis however are not well elucidated.",
+      "abstract_ko": "온천요법은 고대부터 사용되어 왔지만 손 골관절염에 대한 효과는 잘 밝혀지지 않았습니다.",
+      "journal": "European journal of physical and rehabilitation medicine",
+      "year": "2026",
+      "volume": "62",
+      "issue": "1",
+      "pages": "69-77",
+      "authors": [
+        "Klemm Philipp",
+        "Ehnert Katharina",
+        "Vogtherr Beate",
+        "Neumann Elena",
+        "Wilhelmi Tim",
+        "van Wjinen Pascal"
+      ],
+      "doi": "10.1007/s10067-012-2026-0",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41837889/",
+      "evidence": "기타",
+      "is_clinical": false,
+      "categories": [
+        "통증·염증"
       ]
     },
     {
