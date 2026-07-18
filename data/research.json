@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-17",
+  "updated": "2026-07-18",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 8,
@@ -214,6 +214,34 @@
       "is_clinical": true,
       "categories": [
         "심혈관",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "42465611",
+      "title": "Evaluation of a new system to determine wireless real-time skin temperature.",
+      "title_ko": "무선 실시간 피부 온도를 결정하는 새로운 시스템 평가.",
+      "abstract": "To evaluate the body's thermal status, it is essential to determine the mean skin temperature, ideally using wireless technology with real-time feedback. Such a system was not yet available. Therefore, the aim of current study was to examine the in- and ex-vivo validity and reliability of an innovative skin temperature sensor. New skin temperature sensors, named eTemp Performance, were developed with memory and direct read-out capabilities as an alternative to commonly used wireless iButton sensors that provide no real-time feedback. The time constant and precision of the sensors were evaluated by immersion in water baths and human experiments during exercise in the heat. The absolute skin temperature values measured with the eTemp Performance sensors and iButtons were compared to a calibrated gold standard with a variation during measurements of 0.12 °C. The time constant in water of the eTemp Performance sensors was 10.5 ± 1.1 s and 25.8 ± 3.3 s for the iButtons. The mean absolute offset from the standard was 0.06 ± 0.04 °C for the eTemp Performance sensors and 0.19 ± 0.03 °C for the iButtons (",
+      "abstract_ko": "신체의 열 상태를 평가하려면 평균 피부 온도를 결정하는 것이 필수적이며, 이상적으로는 실시간 피드백이 가능한 무선 기술을 사용합니다. 그러한 시스템은 아직 사용할 수 없었습니다. 따라서 현재 연구의 목적은 혁신적인 피부 온도 센서의 생체 내 및 생체 외 타당성과 신뢰성을 조사하는 것이었습니다. eTemp Performance라는 이름의 새로운 피부 온도 센서는 실시간 피드백을 제공하지 않는 일반적으로 사용되는 무선 iButton 센서의 대안으로 메모리 및 직접 판독 기능을 갖추고 개발되었습니다. 센서의 시상수와 정밀도는 수조에 담그는 것과 더위 속에서 운동하는 동안의 인간 실험을 통해 평가되었습니다. eTemp Performance 센서와 iButton으로 측정한 절대 피부 온도 값은 측정 중 0.12°C의 변화가 있는 보정된 표준 표준과 비교되었습니다. eTemp Performance 센서의 수중 시상수는 10.5 ± 1.1초, iButton의 경우 25.8 ± 3.3초였습니다. 표준 대비 평균 절대 오프셋은 eTemp Performance 센서의 경우 0.06 ± 0.04°C, iButton의 경우 0.19 ± 0.03°C였습니다(",
+      "journal": "Journal of thermal analysis and calorimetry",
+      "year": "2026",
+      "volume": "151",
+      "issue": "9",
+      "pages": "7899-7904",
+      "authors": [
+        "Daanen Hein A M",
+        "Haakma Nienke J",
+        "Quraishi Hashim A",
+        "Klous Lisa",
+        "van Marken Lichtenbelt Wouter D",
+        "Bongers Coen C W G"
+      ],
+      "doi": "10.1016/j.infrared.2015.02.007",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42465611/",
+      "evidence": "기타",
+      "is_clinical": false,
+      "categories": [
+        "인지·뇌",
         "회복·운동"
       ]
     },
@@ -2384,32 +2412,6 @@
       "evidence": "리뷰",
       "is_clinical": false,
       "categories": [
-        "회복·운동"
-      ]
-    },
-    {
-      "pmid": "40511315",
-      "title": "A controlled clinical trial of leg thermal therapy in conjunction with standard cardiac rehabilitation in patients with decompensated heart failure.",
-      "title_ko": "보상되지 않은 심부전 환자를 대상으로 표준 심장 재활과 함께 다리 온열 요법을 실시하는 통제된 임상 시험입니다.",
-      "abstract": "[Purpose] Leg thermal therapy (LTT) using far-infrared-ray dry sauna stimulation improves hemodynamics in patients with heart failure (HF); however, its additive effect when combined with cardiac rehabilitation (CR) remains unknown. This study aimed to investigate whether incorporating LTT into acute-phase CR confers exercise capacity in hospitalized patients with HF. [Participants and Methods] Seventeen patients with decompensated HF (median age 75 years) admitted between June 2018 and November 2019 were prospectively assigned to the CR plus LTT (11 participants) or the CR group (6 participants). Both groups performed structured exercise sessions for 40 min, five times a week. The LTT group received additional leg heating at 45°C for 20 min. Cardiopulmonary function and blood tests were performed before and after the intervention. [Results] At one month, peak oxygen uptake was equal between groups. However, anaerobic threshold oxygen uptake increased in the CR plus LTT group, noradrenaline levels decreased, and no complications were observed. [Conclusion] The addition of LTT to CR did not improve overall exercise capacity in hospitalized patients with HF, but it contributes to specific physiological improvements. Hence, this could be a potential approach to optimize cardiac rehabilitation for patients with decompensated HF.",
-      "abstract_ko": "[목적] 원적외선 건식 사우나 자극을 이용한 하지 온열요법(LTT)은 심부전(HF) 환자의 혈역학을 개선시킨다. 그러나 심장 재활(CR)과 결합했을 때의 추가 효과는 아직 알려지지 않았습니다. 이 연구의 목적은 급성기 CR에 LTT를 통합하는 것이 심부전으로 입원한 환자에게 운동 능력을 부여하는지 여부를 조사하는 것입니다. [대상 및 방법] 2018년 6월부터 2019년 11월까지 입원한 비대상성 심부전 환자(평균연령 75세) 17명을 전향적으로 CR+LTT군(11명) 또는 CR군(6명)으로 배정하였다. 두 그룹 모두 일주일에 5번, 40분 동안 구조화된 운동 세션을 수행했습니다. LTT 그룹은 45°C에서 20 분 동안 추가 다리 가열을 받았습니다. 중재 전과 후에 심폐 기능 및 혈액 검사를 실시했습니다. [결과] 1개월째 최대 산소 섭취량은 그룹 간 동일했습니다. 그러나 CR + LTT 그룹에서는 무산소 역치산소 섭취량이 증가했고, 노르아드레날린 수치는 감소했으며, 합병증은 관찰되지 않았습니다. [결론] CR에 LTT를 추가하는 것은 입원한 심부전 환자의 전반적인 운동능력을 향상시키지는 못하였지만, 구체적인 생리학적 개선에는 기여하였다. 따라서 이는 보상되지 않은 심부전 환자의 심장 재활을 최적화하기 위한 잠재적인 접근 방식이 될 수 있습니다.",
-      "journal": "Journal of physical therapy science",
-      "year": "2025",
-      "volume": "37",
-      "issue": "6",
-      "pages": "262-269",
-      "authors": [
-        "Ogino Tomoyuki",
-        "Kondo Hideyuki",
-        "Okada Makoto",
-        "Tanaka Hiroyuki"
-      ],
-      "doi": "10.1589/jpts.37.262",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/40511315/",
-      "evidence": "기타",
-      "is_clinical": false,
-      "categories": [
-        "심혈관",
         "회복·운동"
       ]
     }
