@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-20",
+  "updated": "2026-07-21",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 8,
@@ -215,6 +215,34 @@
       "categories": [
         "심혈관",
         "회복·운동"
+      ]
+    },
+    {
+      "pmid": "42474767",
+      "title": "Effects of a Balneotherapy Cycle on Health-Related Quality of Life in Patients with Osteoarthritis: An Observational Multicenter Study in Medical Spa Centers in Trentino, Italy.",
+      "title_ko": "골관절염 환자의 건강 관련 삶의 질에 대한 온천 요법 주기의 효과: 이탈리아 트렌티노의 의료 스파 센터를 대상으로 한 관찰 다기관 연구.",
+      "abstract": "This observational pre-post study included 316 osteoarthritis (OA) patients (229 females, 87 males) attending five certified medical spa (\"salus per aquam\") centers in Trentino, Italy. Participants underwent 12 daily sessions over two weeks, consisting of hot balneotherapy, including 20-minute thermal baths at 37 °C. Health-related quality of life (HRQL) was assessed using the SF-12 survey, generating Physical Component Summary (PCS) and Mental Component Summary (MCS) scores, measured at baseline (T0), immediately post-treatment (T1), and at three months after treatment (T2). Pain and joint stiffness were assessed using the Visual Analogue Scale (VAS), and changes in symptomatic medication use were also recorded. Changes over time were analyzed using repeated-measures ANOVA, with gender-based comparisons and Bonferroni post-hoc tests. Both PCS and MCS scores improved significantly following balneotherapy (p < 0.05) and were largely maintained at three months (Δ(PCS) = + 3.98; Δ(MCS) = + 4.30). Pain and stiffness decreased by 43% and 42%, respectively, with sustained effects at T2. Improvements were consistent across genders, with no significant time × gender interaction. A reduction in symptomatic medication use was observed, with 58.6% of patients decreasing intake to less than once per week at three months. The treatment was well tolerated, with no meaningful gender differences. In conclusion, balneotherapy appears to be a well-tolerated intervention associated with improvements in HRQL and symptom reduction in OA, with a potential role in reducing reliance on symptomatic pharmacological therapies.",
+      "abstract_ko": "이 관찰 전후 연구에는 이탈리아 트렌티노에 있는 5개의 인증된 의료 스파(\"salus per aquam\") 센터에 다니는 316명의 골관절염(OA) 환자(여성 229명, 남성 87명)가 포함되었습니다. 참가자들은 2주에 걸쳐 37°C에서 20분간의 온천욕을 포함하여 뜨거운 온천 요법으로 구성된 일일 12회의 세션을 받았습니다. 건강 관련 삶의 질(HRQL)은 기준선(T0), 치료 직후(T1), 치료 후 3개월(T2)에 측정된 물리적 구성요소 요약(PCS) 및 정신 구성요소 요약(MCS) 점수를 생성하는 SF-12 설문조사를 사용하여 평가되었습니다. 통증과 관절 경직은 VAS(Visual Analogue Scale)를 사용하여 평가하였고, 대증 약물 사용의 변화도 기록했습니다. 시간에 따른 변화는 반복 측정 ANOVA, 성별 기반 비교 및 ​​Bonferroni 사후 테스트를 사용하여 분석되었습니다. PCS와 MCS 점수 모두 온천요법 후 유의하게 개선되었으며(p < 0.05) 3개월 후에도 대체로 유지되었습니다(Δ(PCS) = + 3.98; Δ(MCS) = + 4.30). 통증과 경직은 각각 43%와 42% 감소했으며 T2에서는 효과가 지속되었습니다. 개선은 성별에 걸쳐 일관되게 이루어졌으며 중요한 시간 × 성별 상호 작용은 없었습니다. 대증 약물 사용의 감소가 관찰되었으며, 환자의 58.6%가 3개월에 섭취량을 주 1회 미만으로 줄였습니다. 치료는 내약성이 좋았으며 의미 있는 성별 차이는 없었습니다. 결론적으로, 광천요법은 HRQL의 개선 및 OA의 증상 감소와 관련하여 내약성이 좋은 중재인 것으로 보이며, 증상이 있는 약리 요법에 대한 의존도를 줄이는 데 잠재적인 역할을 합니다.",
+      "journal": "International journal of biometeorology",
+      "year": "2026",
+      "volume": "70",
+      "issue": "8",
+      "pages": "",
+      "authors": [
+        "Manica Patrizia",
+        "Antonelli Michele",
+        "Zatelli Filiberto",
+        "Migazzi Marino",
+        "Russo Francesco",
+        "Flamigni Andrea"
+      ],
+      "doi": "10.1016/j.joca.2024.04.002",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42474767/",
+      "evidence": "관찰 연구",
+      "is_clinical": false,
+      "categories": [
+        "인지·뇌",
+        "통증·염증"
       ]
     },
     {
@@ -2387,32 +2415,6 @@
         "회복·운동",
         "정신건강",
         "통증·염증"
-      ]
-    },
-    {
-      "pmid": "40538474",
-      "title": "Differences in the Effectiveness of Different Physical Therapy Modalities in the Treatment of Delayed-Onset Muscle Soreness: A Systematic Review and Bayesian Network Meta-Analysis.",
-      "title_ko": "지연 발병 근육통 치료에서 다양한 물리 치료 방식의 효과 차이: 체계적 검토 및 베이지안 네트워크 메타 분석.",
-      "abstract": "Delayed-onset muscle soreness (DOMS) is a common clinical condition that frequently affects various populations. Physical therapy offers distinct advantages in managing this condition. However, many recently published studies have produced conflicting results and lack compelling evidence, complicating clinicians' decision making. We employed a Bayesian meta-analysis to assess the efficacy and safety of physical therapy modalities (PTMs) for DOMS, aiming to provide robust, evidence-based medical insights for clinical application.",
-      "abstract_ko": "지연 발병 근육통(DOMS)은 다양한 집단에 자주 영향을 미치는 일반적인 임상 질환입니다. 물리 치료는 이 상태를 관리하는 데 뚜렷한 이점을 제공합니다. 그러나 최근 발표된 많은 연구에서는 상충되는 결과가 나왔고 설득력 있는 증거가 부족하여 임상의의 의사 결정이 복잡해졌습니다. 우리는 임상 적용을 위한 강력하고 증거 기반의 의학적 통찰력을 제공하는 것을 목표로 DOMS에 대한 물리 치료 양식(PTM)의 효능과 안전성을 평가하기 위해 베이지안 메타 분석을 사용했습니다.",
-      "journal": "Journal of pain research",
-      "year": "2025",
-      "volume": "18",
-      "issue": "",
-      "pages": "2993-3008",
-      "authors": [
-        "Chen Jing",
-        "Hu Qing",
-        "Hu Jiajie",
-        "Liu Songtao",
-        "Yin Linyu"
-      ],
-      "doi": "10.1007/s10103-015-1832-4",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/40538474/",
-      "evidence": "리뷰",
-      "is_clinical": false,
-      "categories": [
-        "회복·운동"
       ]
     }
   ]
