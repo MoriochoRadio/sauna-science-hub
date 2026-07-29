@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-28",
+  "updated": "2026-07-29",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 8,
@@ -331,13 +331,13 @@
       "pmid": "42461754",
       "title": "Paper-Based Chip Platform: PCR-SERS-LFA Integration for On-Site Coastal Harmful Microorganism Detection.",
       "title_ko": "종이 기반 칩 플랫폼: 현장 해안 유해 미생물 탐지를 위한 PCR-SERS-LFA 통합.",
-      "abstract": "Harmful algal blooms (HABs) and pathogenic microorganisms threaten coastal ecosystems and public health, requiring rapid field-deployable detection. Herein, we present an integrated paper-based platform combining polymerase chain reaction (PCR), surface-enhanced Raman scattering (SERS), and lateral flow assay (LFA) for on-site nucleic acid detection. The platform integrates a miniature thermal cycler, lyophilized paper-based reaction chambers, and a capillary-driven detection pen for contamination-free transfer and dual-mode readout. The platform achieved limits of detection of 10",
+      "abstract": "Harmful algal blooms (HABs) and pathogenic microorganisms threaten coastal ecosystems and public health, requiring rapid field-deployable detection. Herein, we present an integrated paper-based platform combining polymerase chain reaction (PCR), surface-enhanced Raman scattering (SERS), and lateral flow assay (LFA) for on-site nucleic acid detection. The platform integrates a miniature thermal cycler, lyophilized paper-based reaction chambers, and a capillary-driven detection pen for contamination-free transfer and dual-mode readout. The platform achieved limits of detection of 101-102 copies μL-1 by SERS and 103-104 copies μL-1 by visualization for Enterococcus spp., Escherichia coli, Alexandrium tamarense, and Noctiluca scintillans, with complete amplification and detection within 30 min. Field validation at a coastal bathing beach showed agreement with laboratory-based quantitative PCR (qPCR), with only one discordant result out of 36 environmental samples, demonstrating comparable performance to the current gold-standard method while offering portability and rapid on-site response. Furthermore, the platform identified Ulva prolifera (a key driver of green tide) micropropagules as small as 600 μm and enabled large-scale mapping of overwintering zones across the Yellow-Bohai Sea. This platform supports rapid environmental monitoring and public health surveillance.",
       "abstract_ko": "유해 녹조(HAB)와 병원성 미생물은 해안 생태계와 공중 보건을 위협하므로 신속한 현장 배포 감지가 필요합니다. 본 명세서에서는 현장 핵산 검출을 위해 중합효소 연쇄 반응(PCR), 표면 강화 라만 산란(SERS) 및 측면 흐름 분석(LFA)을 결합한 통합 종이 기반 플랫폼을 제시합니다. 이 플랫폼에는 소형 열순환기, 동결건조된 종이 기반 반응 챔버, 오염 없는 전송 및 이중 모드 판독을 위한 모세관 구동 감지 펜이 통합되어 있습니다. 플랫폼은 10개의 탐지 한계를 달성했습니다.",
       "journal": "Environmental science & technology",
       "year": "2026",
-      "volume": "",
-      "issue": "",
-      "pages": "",
+      "volume": "60",
+      "issue": "29",
+      "pages": "20622-20636",
       "authors": [
         "Wang Qishuo",
         "Wang Yunqing",
@@ -351,7 +351,8 @@
       "evidence": "기타",
       "is_clinical": false,
       "categories": [
-        "기타"
+        "인지·뇌",
+        "회복·운동"
       ]
     },
     {
