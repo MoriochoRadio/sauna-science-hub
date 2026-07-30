@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-29",
+  "updated": "2026-07-30",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 8,
@@ -234,7 +234,7 @@
         "Hägglund Hans",
         "Lennkvist Maria"
       ],
-      "doi": "10.1080/22423982.2026.2710003",
+      "doi": "10.1007/s00296-025-05852-0",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42507891/",
       "evidence": "기타",
       "is_clinical": false,
