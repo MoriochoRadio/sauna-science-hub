@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-01",
+  "updated": "2026-08-02",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 6,
@@ -206,7 +206,7 @@
         "Benson Jemima A",
         "Tremblay Joshua C"
       ],
-      "doi": "10.1113/EP094028",
+      "doi": "10.1016/B978-008042030-1/50095-0",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42533687/",
       "evidence": "기타",
       "is_clinical": false,
