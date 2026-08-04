@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-03",
+  "updated": "2026-08-04",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 6,
@@ -881,7 +881,7 @@
       ],
       "doi": "10.1177/13872877261433226",
       "url": "https://pubmed.ncbi.nlm.nih.gov/41848374/",
-      "evidence": "리뷰",
+      "evidence": "기타",
       "is_clinical": false,
       "categories": [
         "인지·뇌"
