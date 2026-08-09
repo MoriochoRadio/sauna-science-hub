@@ -1,5 +1,7 @@
 # 🧖 사우나 사이언스 허브 (Sauna Science Hub)
 
+🇰🇷 한국어 · 🇬🇧 [English](README.en.md)
+
 **PubMed의 사우나·온열요법 연구를 매일 자동 수집·한국어 번역·근거 등급화해 보여주는 서버리스 정적 아카이브.**
 GitHub Actions가 수집→번역→빌드→배포를 전부 수행하며, 운영 비용과 API 키가 전혀 없다.
 
