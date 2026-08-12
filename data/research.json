@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-11",
+  "updated": "2026-08-12",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 6,
@@ -387,8 +387,8 @@
       "abstract_ko": "Cas9 단백질은 인간 병원체에서 유래하고 면역원성이 있으므로 Cas9를 유전자 편집 도구로 사용할 때 잠재적인 안전성 문제를 제기하고 임상 효과를 제한합니다. 따라서 인간 감염과 직접적으로 관련되지 않은 유기체에서 개발된 Cas 오솔로그가 더 안전할 수 있습니다. 여기에서는 SaCas9(인간 병원체인 황색포도상구균에서 유래), AsCas12a(인간 공생균인 Acidaminococcus sp.에서 유래) 및 CasΦ(박테리아 파지, Biggiephage에서 유래)의 면역원성 위험을 비교합니다. 생체 외 및 시험 관내 분석에 따르면 SaCas9, AsCas12a 및 CasΦ는 면역되지 않은 개인의 항체 및 T 세포에 의해 유사하게 인식됩니다. MHC-I 결합 펩티드를 식별하기 위해 질량 분석기를 사용하여 우리는 북미 인구에서 흔히 발견되는 9개의 MHC-I 단백질에 제시된 SaCas9, AsCas12a 및 CasΦ 펩티드를 발견했습니다. 따라서 우리의 결과는 AsCas12a와 CasΦ가 Cas9에 비해 면역원성이 떨어지는 대안을 제시하지 않으며 임상 용도로 사용되는 모든 Cas 단백질의 체계적인 면역원성 평가의 필요성을 강조합니다.",
       "journal": "Nature communications",
       "year": "2026",
-      "volume": "",
-      "issue": "",
+      "volume": "17",
+      "issue": "1",
       "pages": "",
       "authors": [
         "Simhadri Vijaya L",
@@ -398,7 +398,7 @@
         "Rawal Atul",
         "Thijs Lauren"
       ],
-      "doi": "10.1038/s41467-026-75015-7",
+      "doi": "10.1101/gr.171322.113",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42386761/",
       "evidence": "기타",
       "is_clinical": false,
