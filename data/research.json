@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-21",
+  "updated": "2026-08-22",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 6,
@@ -159,6 +159,32 @@
       "categories": [
         "심혈관",
         "회복·운동"
+      ]
+    },
+    {
+      "pmid": "42624863",
+      "title": "A systematic review and meta-analysis on heat thresholds for maternal health and birth outcomes.",
+      "title_ko": "산모의 건강 및 출산 결과에 대한 열 역치에 대한 체계적인 검토 및 메타 분석.",
+      "abstract": "Global warming poses major public health challenges, with pregnant individuals particularly vulnerable to heat. We aim to synthesise evidence on the effects of ambient heat on pregnancy and birth outcomes and identify heat thresholds associated with increased risk of these adverse outcomes. We searched Medline, Web of Science, Scopus, GreenFile and Cinahl (June 2024) for peer-reviewed studies reporting thresholds for ambient heat; heat from medical devices, saunas, pools or studies on conception, IVF, postnatal health were excluded. Participants within studies are limited to individuals capable of becoming pregnant, including women and those identifying differently. Risk of bias is assessed using the Office of Health Assessment and Translation tool. Findings are narratively synthesised according to outcome and exposure metric, and a random effects meta-regression is used to estimate heat thresholds for acute heat effects on adverse outcomes. Evidence is limited by heterogeneity and methodological variability among studies included, and through review process limitations, including no independent dual data extraction and single person performing quality assessment. Meta-analyses determine Tmax thresholds 30.55  °C, 34.11  °C and 39.07  °C for 5%, 10% and 20% risk increase (21 studies, sample=5,589,862), suggesting increasing risk of adverse pregnancy and birth outcomes with increasing heat. The narrative syntheses (103 studies, sample=41,951,950) identifies heterogeneous indicators and a lack of comprehensive heat stress indices. Funding was received through the European Union's Horizon Framework Programme and UKRI Innovate. PROSPERO registration: CRD42024610438.",
+      "abstract_ko": "지구 온난화는 공중 보건에 큰 문제를 야기하며, 특히 임산부는 더위에 취약합니다. 우리는 주변 열이 임신 및 출산 결과에 미치는 영향에 대한 증거를 종합하고 이러한 불리한 결과의 위험 증가와 관련된 열 역치를 식별하는 것을 목표로 합니다. 주변 열에 대한 임계값을 보고하는 동료 검토 연구를 찾기 위해 Medline, Web of Science, Scopus, GreenFile 및 Cinahl(2024년 6월)을 검색했습니다. 의료 기기, 사우나, 수영장 또는 임신, IVF, 산후 건강에 관한 연구에서 나오는 열은 제외되었습니다. 연구 참여자는 여성과 신분이 다른 사람들을 포함하여 임신할 수 있는 개인으로 제한됩니다. 편견 위험은 Office of Health Assessment and Translation 도구를 사용하여 평가됩니다. 결과는 결과 및 노출 지표에 따라 서술적으로 종합되며 무작위 효과 메타 회귀를 사용하여 부작용에 대한 급성 열 영향에 대한 열 임계값을 추정합니다. 포함된 연구 간의 이질성과 방법론적 다양성, 그리고 독립적인 이중 데이터 추출이 없고 품질 평가를 수행하는 한 사람을 포함하는 검토 프로세스 제한으로 인해 증거가 제한됩니다. 메타 분석에서는 5%, 10% 및 20% 위험 증가에 대한 Tmax 임계값을 30.55  °C, 34.11  °C 및 39.07  °C로 결정했으며(21개 연구, 샘플=5,589,862), 이는 열이 증가함에 따라 불리한 임신 및 출산 위험이 증가함을 시사합니다. 서술적 종합(103개 연구, 표본=41,951,950)은 이질적인 지표와 포괄적인 열 스트레스 지수의 부족을 식별합니다. 유럽연합의 Horizon Framework Program과 UKRI Innovate를 통해 자금이 지원되었습니다. PROSPERO 등록: CRD42024610438.",
+      "journal": "Nature communications",
+      "year": "2026",
+      "volume": "17",
+      "issue": "1",
+      "pages": "",
+      "authors": [
+        "Heil Clara S",
+        "Ioannou Leonidas G",
+        "Alce Günter",
+        "Frennert Susanne",
+        "Gao Chuansi"
+      ],
+      "doi": "10.18637/jss.v036.i03",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42624863/",
+      "evidence": "체계적 문헌고찰",
+      "is_clinical": false,
+      "categories": [
+        "정신건강"
       ]
     },
     {
@@ -2383,34 +2409,6 @@
       "is_clinical": false,
       "categories": [
         "회복·운동"
-      ]
-    },
-    {
-      "pmid": "40617059",
-      "title": "Acute effects of heat intervention and hybrid exercise on protein synthesis, ribosome biogenesis and autophagy.",
-      "title_ko": "단백질 합성, 리보솜 생물 발생 및 자가포식에 대한 열 개입 및 하이브리드 운동의 급성 효과.",
-      "abstract": "The use of kaumatherapy (i.e. heat exposure like sauna-bathing) as passive intervention has become of growing interest to promote skeletal muscle adaptations such as strength gains and preservation of muscle mass. Importantly, the effects of a single exposure to heat (HE) in combination with hybrid exercises, designed to induce both aerobic and resistance adaptations (EX), on protein turnover remains unclear. The objective of this investigation was to evaluate the responses to HE, EX and their combination (EX + HE) on the expression of mRNA and protein related to proteosynthesis, ribosome biogenesis and content, as well as autophagy and cellular stress pathways. Eight-week-old male mice C57BL/6 J mice (n = 8 per condition) underwent acute HE (45min, 40 °C), EX (high-intensity inclined treadmill running) or EX + HE immediately after exercise. Mice were euthanized 240 min post-interventions and quadriceps muscles were harvested for analysis. Acute HE increased the mRNA expression of markers of ribosome biogenesis (POL1RA, UBF), but did not enhance ribosomal content (rRNA 18 S and 28 S) nor ribosomal transcription (pre-rRNA 45 S). Concerning the modulation of protein synthesis, EX induced an increase of MTORC1 downstream targets (P-S6K1, P-RPS6) and protein synthesis flux (assessed by puromycin incorporation) while HE alone did not and post-exercise HE had no additional effects. EX + HE also led to enhanced protein synthesis rates, but did not confer any additional benefit compared to EX alone. Finally, only EX + HE increased the autophagy flux marker LC3-B II/I, the microautophagy marker LAMP2A and phosphorylation level of P-NFκB Ser536. However, no changes in protein carbonylation were detected at this time point. These results suggest that acute post-exercise HE has no additional effects on protein synthesis at 4 h post-exercise but, when combined with EX, increases autophagy and P-NFκB Ser536, suggesting a heightened cellular stress response.",
-      "abstract_ko": "근력 증가 및 근육량 보존과 같은 골격근 적응을 촉진하기 위해 수동적 개입으로 카우마테라피(예: 사우나 목욕과 같은 열 노출)를 사용하는 것이 점점 더 관심을 받고 있습니다. 중요한 것은 유산소 적응과 저항 적응(EX)을 모두 유도하도록 설계된 하이브리드 운동과 열(HE)에 대한 단일 노출이 단백질 전환에 미치는 영향이 불분명하다는 것입니다. 이 조사의 목적은 단백질 합성, 리보솜 생합성 및 함량뿐만 아니라 자가포식 및 세포 스트레스 경로와 관련된 mRNA 및 단백질의 발현에 대한 HE, EX 및 이들의 조합(EX+HE)에 대한 반응을 평가하는 것이었습니다. 8주령 수컷 마우스 C57BL/6 J 마우스(조건당 n = 8)는 운동 직후 급성 HE(45분, 40°C), EX(고강도 경사 런닝머신 달리기) 또는 EX + HE를 겪었습니다. 마우스는 개입 후 240분 후에 안락사되었고 분석을 위해 대퇴사두근을 채취했습니다. 급성 HE는 리보솜 생합성 마커(POL1RA, UBF)의 mRNA 발현을 증가시켰지만, 리보솜 함량(rRNA 18 S 및 28 S)이나 리보솜 전사(pre-rRNA 45 S)를 향상시키지 못했습니다. 단백질 합성 조절과 관련하여 EX는 MTORC1 하류 표적(P-S6K1, P-RPS6) 및 단백질 합성 플럭스(퓨로마이신 통합으로 평가)의 증가를 유도한 반면 HE 단독으로는 그렇지 않았고 운동 후 HE에는 추가 효과가 없었습니다. EX + HE는 또한 단백질 합성 속도를 향상시켰지만 EX 단독에 비해 추가적인 이점을 제공하지는 않았습니다. 마지막으로, EX + HE만이 자가포식 플럭스 마커 LC3-B II/I, 미세자가포식 마커 LAMP2A 및 P-NFκB Ser536의 인산화 수준을 증가시켰습니다. 그러나 이 시점에서는 단백질 카르보닐화의 변화가 감지되지 않았습니다. 이러한 결과는 운동 후 급성 HE가 운동 후 4시간에 단백질 합성에 추가 효과가 없지만 EX와 결합하면 자가포식과 P-NFκB Ser536을 증가시켜 세포 스트레스 반응이 높아진다는 것을 시사합니다.",
-      "journal": "Journal of thermal biology",
-      "year": "2025",
-      "volume": "131",
-      "issue": "",
-      "pages": "104169",
-      "authors": [
-        "Normand-Gravier Tom",
-        "Solsona Robert",
-        "Arnould Flavie",
-        "Deriaz Roméo",
-        "Bertrand-Gaday Christelle",
-        "Borrani Fabio"
-      ],
-      "doi": "10.1016/j.jtherbio.2025.104169",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/40617059/",
-      "evidence": "기타",
-      "is_clinical": false,
-      "categories": [
-        "회복·운동",
-        "정신건강"
       ]
     }
   ]
