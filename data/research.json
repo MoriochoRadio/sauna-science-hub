@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-29",
+  "updated": "2026-08-30",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 6,
@@ -159,6 +159,31 @@
       "categories": [
         "심혈관",
         "회복·운동"
+      ]
+    },
+    {
+      "pmid": "42667694",
+      "title": "Cardiometabolic effects of contrast therapy: A systematic review.",
+      "title_ko": "조영제 요법의 심장 대사 효과: 체계적인 검토.",
+      "abstract": "The rising prevalence of overweight and obesity, together with associated cardiometabolic disorders, underscores the need for additional strategies alongside established interventions. The growing popularity of contrast therapy - alternating exposure to heat and cold, a practice common in traditional Finnish sauna bathing - has prompted interest in its potential cardiovascular and metabolic health benefits. This systematic review outlines the acute and chronic effects of contrast therapy on cardiometabolic outcomes. The review followed PRISMA guidelines and searched three databases (PubMed, Scopus, Web of Science) until 17 June 2025. Interventional studies reporting cardiovascular and/or metabolic outcomes were included; 21 studies were identified, of which 19 contributed to data synthesis. Continuous outcomes were converted to standardised mean differences to enable comparison. Little evidence for effects of contrast therapy was found on resting heart rate, blood pressure or vascular health, all indicators of cardiovascular risk, and metabolic outcomes, including glucose and lipid metabolism. Some evidence of heat adaptation was observed, indicated by attenuated acute heart rate and core temperature responses, and decreased resting core temperature upon contrasting thermal exposure. However, the evidence base is limited, restricting the ability to draw firm conclusions or provide clear recommendations. Well-designed, controlled studies, with systematic assessment of vascular and metabolic outcomes, are needed to further clarify the acute and long-term effects of contrast therapy on cardiometabolic health.",
+      "abstract_ko": "과체중 및 비만의 증가하는 유병률과 관련 심장대사 장애는 확립된 개입과 함께 추가적인 전략의 필요성을 강조합니다. 전통적인 핀란드식 사우나 목욕에서 흔히 볼 수 있는 방식인 열과 냉기에 번갈아 노출되는 조영제 요법의 인기가 높아짐에 따라 잠재적인 심혈관 및 대사 건강상의 이점에 대한 관심이 촉발되었습니다. 이 체계적 검토에서는 조영제 요법이 심장 대사 결과에 미치는 급성 및 만성 효과를 개괄적으로 설명합니다. 검토는 PRISMA 지침을 따르고 2025년 6월 17일까지 3개의 데이터베이스(PubMed, Scopus, Web of Science)를 검색했습니다. 심혈관 및/또는 대사 결과를 보고하는 중재 연구가 포함되었습니다. 21개의 연구가 확인되었으며, 그 중 19개가 데이터 합성에 기여했습니다. 지속적인 결과는 비교가 가능하도록 표준화된 평균 차이로 변환되었습니다. 안정시 심박수, 혈압 또는 혈관 건강, 심혈관 위험의 모든 지표, 포도당 및 지질 대사를 포함한 대사 결과에 대한 조영제 효과에 대한 증거는 거의 발견되지 않았습니다. 열 적응의 일부 증거가 관찰되었으며, 이는 급성 심박수 및 심부 온도 반응의 약화 및 열 노출과 대조적으로 휴식 시 심부 온도의 감소로 나타납니다. 그러나 증거 기반이 제한되어 확고한 결론을 도출하거나 명확한 권장 사항을 제공하는 능력이 제한됩니다. 심혈관 대사 건강에 대한 조영제 치료의 급성 및 장기적 영향을 더욱 명확히 하기 위해서는 혈관 및 대사 결과에 대한 체계적인 평가를 통해 잘 설계되고 통제된 연구가 필요합니다.",
+      "journal": "Experimental physiology",
+      "year": "2026",
+      "volume": "",
+      "issue": "",
+      "pages": "",
+      "authors": [
+        "de Haan Veerle",
+        "Plasqui Guy",
+        "Pallubinsky Hannah"
+      ],
+      "doi": "10.1113/EP093612",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42667694/",
+      "evidence": "기타",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "대사·체중"
       ]
     },
     {
@@ -2382,33 +2407,6 @@
       "is_clinical": false,
       "categories": [
         "대사·체중"
-      ]
-    },
-    {
-      "pmid": "40643207",
-      "title": "Sexually Transmitted Dermatophyte Infections-A Scoping Review.",
-      "title_ko": "성적으로 전염된 피부사상균 감염 - 범위 지정 검토.",
-      "abstract": "Sexually transmitted dermatophyte infections are an emerging public health concern, with increasing incidence reported across multiple countries. These infections are mainly spread through direct skin-to-skin contact during sexual activity and are more commonly found in individuals with high-risk sexual practices. The likelihood of infection is heightened by frequent pubic hair grooming or regular use of shared spaces like gyms and saunas. Clinically, presentations are often severe, widespread and atypical, which may delay diagnosis or lead to misidentification. Accurate species-level identification is critical and increasingly reliant on molecular sequencing techniques, including ITS and tef1α regions, which are also valuable for strain surveillance and contact tracing. Management strategies should emphasise systemic antifungal therapy, with consideration for adjunctive topical agents or antibiotics in cases of secondary infection. Individualised treatment plans may require extended therapy durations or combination regimens to ensure clinical resolution. In addition to pharmacologic intervention, education on hygiene practices, risk of reinfection and the importance of environmental decontamination and follow-up care is essential for preventing recurrence and curbing transmission.",
-      "abstract_ko": "성병에 의한 피부사상균 감염은 새로운 공중 보건 문제로 떠오르고 있으며 여러 국가에서 발생률이 증가하고 있습니다. 이러한 감염은 주로 성행위 중 직접적인 피부 대 피부 접촉을 통해 전파되며 고위험 성행위를 하는 개인에게서 더 흔하게 발견됩니다. 음모를 자주 손질하거나 체육관, 사우나와 같은 공용 공간을 정기적으로 사용하면 감염 가능성이 높아집니다. 임상적으로 증상은 심각하고 광범위하며 비정형적인 경우가 많아 진단이 지연되거나 오인될 수 있습니다. 정확한 종 수준 식별은 중요하며 균주 감시 및 접촉 추적에도 유용한 ITS 및 tef1α 영역을 포함한 분자 서열 분석 기술에 점점 더 의존하고 있습니다. 관리 전략은 2차 감염의 경우 보조 국소제나 항생제를 고려하여 전신 항진균 치료를 강조해야 합니다. 개별화된 치료 계획에는 임상적 해결을 보장하기 위해 연장된 치료 기간이나 병용 요법이 필요할 수 있습니다. 재발 방지 및 전파 억제를 위해서는 약물학적 개입 외에도 위생 관행, 재감염 위험, 환경 오염 제거 및 후속 관리의 중요성에 대한 교육이 필수적입니다.",
-      "journal": "Mycoses",
-      "year": "2025",
-      "volume": "68",
-      "issue": "7",
-      "pages": "e70088",
-      "authors": [
-        "Gupta Aditya K",
-        "Liddy Amanda",
-        "Megal Lee",
-        "Kaplan Baruch",
-        "Shemer Avner",
-        "Saunte Ditte Marie L"
-      ],
-      "doi": "10.1111/j.1365-2133.2009.09494.x",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/40643207/",
-      "evidence": "기타",
-      "is_clinical": false,
-      "categories": [
-        "인지·뇌"
       ]
     }
   ]
