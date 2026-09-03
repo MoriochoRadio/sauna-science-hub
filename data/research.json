@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-02",
+  "updated": "2026-09-03",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 6,
@@ -159,6 +159,34 @@
       "categories": [
         "심혈관",
         "회복·운동"
+      ]
+    },
+    {
+      "pmid": "42682806",
+      "title": "Assessing left atrial systolic contribution via pressure-volume loops in murine HFpEF.",
+      "title_ko": "쥐 HFpEF의 압력-볼륨 루프를 통해 좌심방 수축기 기여도를 평가합니다.",
+      "abstract": "Left atrial (LA) myopathy plays a critical role in the pathophysiology of heart failure with preserved ejection fraction (HFpEF). This study aimed to evaluate LA function in a murine model of hypertension-induced HFpEF, with and without obesity, by analyzing left ventricular (LV) pressure signals to quantify the contribution of LA systole to total LV volume. HFpEF was induced in C57BL/6J mice using the SAUNA model, which involves uninephrectomy, chronic aldosterone infusion, and high-salt drinking water for four weeks. To model obesity-associated HFpEF, a high-fat diet (HFD) was added to the SAUNA protocol. Invasive hemodynamic measurements were obtained, and a novel method was developed to assess atrial systole using the second-order derivative of the LV pressure signal during diastolic filling. SAUNA HFpEF mice exhibited preserved LVEF, moderate hypertension, pulmonary congestion, and diastolic dysfunction as evidenced by a prolonged time constant of relaxation (Tau). In sham control mice, atrial systole accounted for 23.0 ± 2.4% of LV volume, whereas this contribution was significantly reduced to 13.9 ± 2.3% in SAUNA HFpEF mice (",
+      "abstract_ko": "좌심방(LA) 근육병증은 박출률 보존(HFpEF) 심부전의 병태생리학에서 중요한 역할을 합니다. 이 연구는 좌심실(LV) 압력 신호를 분석하여 전체 LV 부피에 대한 LA 수축기의 기여도를 정량화함으로써 비만 유무에 관계없이 고혈압 유발 HFpEF의 쥐 모델에서 LA 기능을 평가하는 것을 목표로 했습니다. HFpEF는 4주 동안 비신절제술, 만성 알도스테론 주입 및 고염 식수를 포함하는 SAUNA 모델을 사용하여 C57BL/6J 마우스에서 유도되었습니다. 비만 관련 HFpEF를 모델링하기 위해 SAUNA 프로토콜에 고지 방식(HFD)이 추가되었습니다. 침습적인 혈역학적 측정이 이루어졌으며 확장기 충전 중 좌심실 압력 신호의 2차 미분을 사용하여 심방 수축기를 평가하는 새로운 방법이 개발되었습니다. SAUNA HFpEF 마우스는 장기간의 이완 시간 상수(Tau)에 의해 입증된 바와 같이 보존된 LVEF, 중등도 고혈압, 폐 울혈 및 확장기 기능 장애를 나타냈습니다. 가짜 대조군 쥐에서 심방 수축기는 좌심실 부피의 23.0±2.4%를 차지한 반면, SAUNA HFpEF 쥐에서는 이 기여도가 13.9±2.3%로 크게 감소했습니다.",
+      "journal": "Frontiers in cardiovascular medicine",
+      "year": "2026",
+      "volume": "13",
+      "issue": "",
+      "pages": "1919465",
+      "authors": [
+        "Baker Hana E",
+        "Belle-Oladeji Tatyana",
+        "Andreasson Marialuisa",
+        "Christie Robert M",
+        "Hyatt Karissa J",
+        "Wang Xiaojun"
+      ],
+      "doi": "10.1097/HJH.0000000000000971",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42682806/",
+      "evidence": "기타",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "대사·체중"
       ]
     },
     {
@@ -2384,29 +2412,6 @@
       "is_clinical": false,
       "categories": [
         "사망률·수명"
-      ]
-    },
-    {
-      "pmid": "40693611",
-      "title": "Energy transduction in complex networks with multiple resources: The chemistry paradigm.",
-      "title_ko": "여러 자원이 포함된 복잡한 네트워크의 에너지 변환: 화학 패러다임.",
-      "abstract": "We extend the traditional framework of steady state energy transduction-typically characterized by a single input and output-to multi-resource transduction in open chemical reaction networks (CRNs). Transduction occurs when stoichiometrically balanced processes are driven against their spontaneous directions by coupling them with thermodynamically favorable ones. However, when multiple processes (resources) interact through a shared CRN, identifying the relevant set of processes for analyzing transduction becomes a critical and complex challenge. To address this, we introduce a systematic procedure based on elementary processes, which cannot be further decomposed into subprocesses. Our theory generalizes the methodology used to define transduction efficiency in thermal engines operating between multiple heat baths. By selecting a reference equilibrium environment, it explicitly reveals the inherently relative nature of transduction efficiency and ties its definition to exergy. This framework also allows one to exclude unusable outputs from efficiency calculations. We further extend the concept of chemical gears to multi-process transduction, demonstrating their versatility as an analytical tool in complex settings. Finally, we apply our framework to central metabolic pathways, uncovering deep insights into their operation and highlighting the crucial difference between thermodynamic efficiencies and stoichiometric yields.",
-      "abstract_ko": "우리는 일반적으로 단일 입력 및 출력을 특징으로 하는 정상 상태 에너지 변환의 전통적인 프레임워크를 개방형 화학 반응 네트워크(CRN)의 다중 자원 변환으로 확장합니다. 화학양론적으로 균형 잡힌 공정이 열역학적으로 유리한 공정과 결합되어 자발적인 방향에 반대되는 방향으로 추진될 때 변환이 발생합니다. 그러나 여러 프로세스(리소스)가 공유 CRN을 통해 상호 작용하는 경우 변환 분석을 위한 관련 프로세스 세트를 식별하는 것이 중요하고 복잡한 과제가 됩니다. 이 문제를 해결하기 위해 우리는 더 이상 하위 프로세스로 분해할 수 없는 기본 프로세스를 기반으로 하는 체계적인 절차를 도입합니다. 우리의 이론은 여러 열탕 사이에서 작동하는 열 엔진의 변환 효율을 정의하는 데 사용되는 방법론을 일반화합니다. 기준 평형 환경을 선택함으로써 변환 효율의 본질적인 상대적 특성을 명시적으로 드러내고 그 정의를 엑서지와 연결합니다. 또한 이 프레임워크를 사용하면 효율성 계산에서 사용할 수 없는 출력을 제외할 수 있습니다. 우리는 화학 기어의 개념을 다중 공정 변환으로 확장하여 복잡한 환경에서 분석 도구로서의 다양성을 보여줍니다. 마지막으로, 우리는 우리의 프레임워크를 중심 대사 경로에 적용하여 그 작동에 대한 깊은 통찰력을 밝히고 열역학적 효율성과 화학양론적 수율 간의 중요한 차이를 강조합니다.",
-      "journal": "The Journal of chemical physics",
-      "year": "2025",
-      "volume": "163",
-      "issue": "4",
-      "pages": "",
-      "authors": [
-        "Bilancioni Massimo",
-        "Esposito Massimiliano"
-      ],
-      "doi": "10.1063/5.0280649",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/40693611/",
-      "evidence": "기타",
-      "is_clinical": false,
-      "categories": [
-        "대사·체중"
       ]
     }
   ]
