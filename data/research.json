@@ -1,8 +1,8 @@
 {
-  "updated": "2026-09-04",
+  "updated": "2026-09-05",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
-  "clinical_count": 6,
+  "clinical_count": 5,
   "articles": [
     {
       "pmid": "42340428",
@@ -134,31 +134,28 @@
       ]
     },
     {
-      "pmid": "40748694",
-      "title": "Feasibility of unsupervised, home-based leg heat therapy in older adults: a pilot, sham-controlled trial.",
-      "title_ko": "노인의 감독되지 않은 가정 기반 다리 온열 요법의 타당성: 예비, 가짜 대조 시험.",
-      "abstract": "Heat therapy (HT) using sauna or hot water immersion can improve cardiovascular and physical function, but these approaches are often impractical for older adults. This pilot, randomized, sham-controlled trial evaluated the feasibility of unsupervised, home-based leg HT using water-circulating trousers in sedentary older adults. Twenty-four participants (mean age: 70 ± 3 yr; 15 women) were randomized to HT (42°C) or sham (33°C) for 90 min daily over 12 wk. Feasibility outcomes included adherence, retention, and safety. Secondary outcomes included 6-min walk distance, sit-to-stand time, plantar flexor strength, MRI-derived muscle morphology, quality of life, and blood pressure. Four participants (two per group) withdrew early due to health status changes or scheduling conflicts. Among those who completed the study, adherence was high (HT: 93 ± 11% and sham: 92 ± 35%). Four HT participants reported minor thermal injuries at the knees, which did not hinder adherence or study participation. There were no significant differences between groups for the secondary outcomes. At 12 wk, the HT group increased their 6-min walk distance by 37.6 m (95% CI: 14.3 to 60.8), compared with 11.5 m (-12.2 to 35.1) in the sham group (group-by-time interaction,",
-      "abstract_ko": "사우나나 온수 침수를 이용한 온열 요법(HT)은 심혈관 및 신체 기능을 향상시킬 수 있지만 이러한 접근법은 노인에게는 비현실적인 경우가 많습니다. 이 파일럿, 무작위, 가짜 대조 시험은 앉아서 생활하는 노인을 대상으로 물 순환 바지를 사용하여 감독 없이 집에서 다리 HT의 타당성을 평가했습니다. 24명의 참가자(평균 연령: 70±3세, 여성 15명)를 12주에 걸쳐 매일 90분 동안 HT(42°C) 또는 가짜(33°C) 그룹에 무작위로 배정했습니다. 타당성 결과에는 준수, 유지 및 안전성이 포함되었습니다. 이차 결과에는 6분 도보 거리, 앉았다 일어서기 시간, 발바닥 굴근 근력, MRI에서 추출한 근육 형태, 삶의 질 및 혈압이 포함되었습니다. 참가자 4명(그룹당 2명)이 건강 상태 변화나 일정 충돌로 인해 조기 탈퇴했습니다. 연구를 완료한 사람들 중 준수율은 높았습니다(HT: 93 ± 11% 및 가짜: 92 ± 35%). 4명의 HT 참가자는 무릎에 경미한 열 부상을 보고했지만 이는 준수나 연구 참여를 방해하지 않았습니다. 2차 결과에 대해서는 그룹 간에 유의미한 차이가 없었습니다. 12주차에 HT 그룹은 6분 걷기 거리를 37.6m(95% CI: 14.3~60.8) 늘렸는데 비해 가짜 그룹은 11.5m(-12.2~35.1) 증가했습니다(그룹별 상호작용,",
-      "journal": "Journal of applied physiology (Bethesda, Md. : 1985)",
-      "year": "2025",
-      "volume": "139",
+      "pmid": "42694940",
+      "title": "Temperature and humidity independently influence thermoregulatory responses during Finnish sauna bathing.",
+      "title_ko": "온도와 습도는 핀란드식 사우나 목욕 중 체온 조절 반응에 독립적으로 영향을 미칩니다.",
+      "abstract": "This study examined the effects of sauna air temperature and relative humidity (RH) on acute cardiovascular and thermoregulatory responses under typical Finnish sauna conditions, where participants were free to throw water onto the heated stones (",
+      "abstract_ko": "이 연구에서는 참가자들이 가열된 돌 위에 물을 자유롭게 던질 수 있는 전형적인 핀란드 사우나 조건에서 사우나 공기 온도와 상대 습도(RH)가 급성 심혈관 및 체온 조절 반응에 미치는 영향을 조사했습니다.",
+      "journal": "Temperature (Austin, Tex.)",
+      "year": "2026",
+      "volume": "13",
       "issue": "3",
-      "pages": "668-684",
+      "pages": "289-299",
       "authors": [
-        "Ro Bohyun",
-        "Castanhas Luiza G",
-        "Crenshaw Fiona",
-        "Janczy Anna M",
-        "Swift Paul",
-        "Song Qifan"
+        "Laatikainen-Raussi Iida",
+        "Mikkola Tom",
+        "Ihalainen Johanna K",
+        "Ahokas Essi"
       ],
-      "doi": "10.1152/japplphysiol.00285.2025",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/40748694/",
-      "evidence": "무작위 대조 시험(RCT)",
-      "is_clinical": true,
+      "doi": "10.1080/23328940.2025.2493460",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42694940/",
+      "evidence": "기타",
+      "is_clinical": false,
       "categories": [
-        "심혈관",
-        "회복·운동"
+        "심혈관"
       ]
     },
     {
