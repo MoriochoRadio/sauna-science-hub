@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-13",
+  "updated": "2026-09-14",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 5,
@@ -149,7 +149,7 @@
         "Seif Saada A",
         "Millanzi Walter C"
       ],
-      "doi": "10.1371/journal.pone.0357756",
+      "doi": "10.1371/journal.pgph.0001708",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42721181/",
       "evidence": "기타",
       "is_clinical": false,
