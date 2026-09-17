@@ -1,9 +1,36 @@
 {
-  "updated": "2026-09-16",
+  "updated": "2026-09-17",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
-  "clinical_count": 5,
+  "clinical_count": 6,
   "articles": [
+    {
+      "pmid": "42747539",
+      "title": "The effects of balneotherapy on chronic low back pain, functional status, and rowing performance in athletes.",
+      "title_ko": "온천요법이 운동선수의 만성요통, 기능상태 및 조정능력에 미치는 영향.",
+      "abstract": "This randomized controlled clinical study investigated the therapeutic effects of balneotherapy utilizing thermal-mineral water from the Margaret Island. Northern Thermal Well III B-18. The study assessed low back pain (LBP), functional status, quality of life, lumbar mobility, and specific rowing performance parameters in competitive and recreational rowers. Prospective, randomized, controlled clinical trial. Forty-two athletes with chronic or recurrent load-induced LBP were enrolled and randomized into an intervention group (balneotherapy) or a non-treated control group. The intervention consisted of 15 sessions of 20-min baths over a ca. 3-week period. Measurements were taken at baseline, post-intervention (3 weeks), and at follow-up (12 weeks). Outcome measures included the Visual Analog Scale (VAS) for pain, Oswestry Disability Index (ODI), EQ-5D-5L, lumbar mobility tests, and rowing ergometer performance metrics. Balneotherapy resulted in statistically significant short- and long-term reductions in both resting and load-induced pain. The intervention group demonstrated superior improvements in disability indices (ODI) and quality of life compared to controls. Furthermore, the balneotherapy group exhibited significant increases in lumbar lateral flexion and meaningful improvements in rowing performance, characterized by increased average watt output and improved heart rate recovery. Thermal-mineral water therapy provides clinically relevant functional and physiological benefits for rowers suffering from LBP. These findings support balneotherapy as an effective, non-pharmacological complementary modality in sports rehabilitation and performance preservation.",
+      "abstract_ko": "본 무작위 대조 임상 연구는 마가렛 섬의 온천수를 활용한 온천 요법의 치료 효과를 조사했습니다. 북부 온천 우물 III B-18. 이 연구에서는 경기 및 레크리에이션 조정 선수의 요통(LBP), 기능 상태, 삶의 질, 요추 이동성 및 특정 조정 성능 매개변수를 평가했습니다. 전향적, 무작위, 대조 임상 시험. 만성 또는 재발성 부하 유발 요통을 앓고 있는 42명의 운동선수를 등록하여 중재 그룹(광천요법) 또는 치료받지 않은 대조군으로 무작위 배정했습니다. 개입은 약 20분 동안 목욕하는 15회의 세션으로 구성되었습니다. 3주 기간. 측정은 기준 시점, 개입 후(3주), 후속 조치(12주)에서 이루어졌습니다. 결과 측정에는 통증에 대한 시각적 아날로그 척도(VAS), ODI(Oswestry Disability Index), EQ-5D-5L, 요추 이동성 테스트 및 조정 인체공학적 성능 지표가 포함되었습니다. 광천요법은 휴식 및 부하로 인한 통증 모두에서 통계적으로 유의미한 단기 및 장기 감소를 가져왔습니다. 중재 그룹은 대조군에 비해 장애 지수(ODI)와 삶의 질이 크게 향상되었음을 보여주었습니다. 또한, 온천 요법 그룹은 평균 와트 출력 증가와 심박수 회복 개선을 특징으로 하는 요추 측면 굴곡의 상당한 증가와 조정 성능의 의미 있는 개선을 나타냈습니다. 미네랄 온천수 요법은 LBP로 고통받는 노젓는 사람에게 임상적으로 관련된 기능적, 생리학적 이점을 제공합니다. 이러한 발견은 스포츠 재활 및 경기력 보존에 있어서 효과적이고 비약리학적 보완 양식으로서 온천요법을 뒷받침합니다.",
+      "journal": "International journal of biometeorology",
+      "year": "2026",
+      "volume": "70",
+      "issue": "10",
+      "pages": "",
+      "authors": [
+        "Gáti Tamás",
+        "Tefner Ildikó Katalin",
+        "Hodosi Katalin",
+        "Bender Tamás"
+      ],
+      "doi": "10.1186/s13102-025-01153-y",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42747539/",
+      "evidence": "무작위 대조 시험(RCT)",
+      "is_clinical": true,
+      "categories": [
+        "심혈관",
+        "회복·운동",
+        "통증·염증"
+      ]
+    },
     {
       "pmid": "42340428",
       "title": "Low-temperature sulphurous peloids and sulphurous mineral water in active rheumatoid arthritis at the Banja Koviljača Spa (Serbia): a prospective controlled clinical study.",
@@ -2375,33 +2402,6 @@
       "categories": [
         "대사·체중",
         "회복·운동"
-      ]
-    },
-    {
-      "pmid": "40844961",
-      "title": "Advanced Mist Bath Wheelchair with integrated automatic body drying and sanitization system for enhanced patient care.",
-      "title_ko": "향상된 환자 관리를 위해 통합된 자동 신체 건조 및 소독 시스템을 갖춘 고급 미스트 목욕 휠체어입니다.",
-      "abstract": "As global populations age, a growing segment of older adults faces challenges with personal hygiene and reduced caregiver availability. This study presents the design and evaluation of a novel Mist Bath Wheelchair (MBWC) that integrates bathing, sanitization, and drying functionalities to enhance autonomy and hygiene for users with mobility impairments. The MBWC includes a servo-controlled posture adjustment system, an ultrasonic misting unit for bathing, foam-based moisture absorption, heated drying, and joystick-based mobility-all within a single framework. The system aims to address limitations in existing assistive bathing devices, such as high cost, lack of automation, and limited integration. A prototype was developed and tested through lab simulations and user trials involving four aging individuals and four caregivers. Key metrics included thermal comfort, time to achieve warmth, drying duration, and user satisfaction. Results showed reliable temperature maintenance (232 s in rainy conditions; 208 s in winter) and high usability ratings. This integrated solution demonstrates the feasibility of improving assisted bathing through a multifunctional and user-centric design.IMPLICATIONS FOR REHABILITATIONThe Advanced Mist Bath Wheelchair with an Integrated Automatic Body Drying and Sanitization System enhances hygiene management for individuals with mobility impairments by providing an efficient, touch-free bathing solution, reducing dependency on caregivers.This innovation promotes dignity and independence for users, especially those with severe disabilities, by enabling self-care in daily hygiene routines, thereby improving their quality of life and psychological well-being.The system's automated sanitization feature minimizes the risk of infections in rehabilitation and long-term care settings, contributing to a safer and more hygienic environment for both users and healthcare providers.By integrating assistive technology with rehabilitation care, the wheelchair supports faster recovery and improved mobility outcomes, particularly for patients undergoing post-surgical rehabilitation or those with chronic conditions requiring long-term assistance.",
-      "abstract_ko": "전 세계적으로 인구가 노령화됨에 따라 점점 더 많은 노인들이 개인 위생 문제와 간병인 가용성 감소 문제에 직면하고 있습니다. 본 연구에서는 이동 장애가 있는 사용자의 자율성과 위생을 강화하기 위해 목욕, 살균, 건조 기능을 통합한 새로운 미스트 목욕 휠체어(MBWC)의 설계 및 평가를 제시합니다. MBWC에는 서보 제어 자세 조정 ​​시스템, 목욕용 초음파 미스트 장치, 폼 기반 수분 흡수, 가열 건조 및 조이스틱 기반 이동성이 모두 단일 프레임워크 내에 포함되어 있습니다. 이 시스템은 높은 비용, 자동화 부족, 제한된 통합 등 기존 보조 목욕 장치의 한계를 해결하는 것을 목표로 합니다. 4명의 노인과 4명의 간병인이 참여하는 실험실 시뮬레이션과 사용자 시험을 통해 프로토타입을 개발하고 테스트했습니다. 주요 지표에는 열적 쾌적성, 따뜻함을 얻는 데 걸리는 시간, 건조 기간 및 사용자 만족도가 포함되었습니다. 결과는 안정적인 온도 유지(우천 시 232°C, 겨울철 208°C)와 높은 사용성 등급을 보여주었습니다. 이 통합 솔루션은 다기능 및 사용자 중심 설계를 통해 보조 목욕 개선의 타당성을 보여줍니다. 재활에 대한 영향 통합 자동 신체 건조 및 위생 시스템을 갖춘 고급 미스트 목욕 휠체어는 효율적인 터치 프리 목욕 솔루션을 제공하고 간병인에 대한 의존도를 줄여 이동 장애가 있는 개인의 위생 관리를 향상시킵니다. 이 혁신은 일상 위생 루틴에서 자가 관리를 가능하게 함으로써 사용자, 특히 중증 장애가 있는 사람들의 존엄성과 독립성을 향상시킵니다. 생명과 심리적 웰빙. 시스템의 자동화된 위생 처리 기능은 재활 및 장기 치료 환경에서 감염 위험을 최소화하여 사용자와 의료 서비스 제공자 모두에게 보다 안전하고 위생적인 환경을 조성하는 데 기여합니다. 보조 기술과 재활 치료를 통합함으로써 휠체어는 특히 수술 후 재활을 받는 환자나 장기 지원이 필요한 만성 질환이 있는 환자의 빠른 회복과 향상된 이동성 결과를 지원합니다.",
-      "journal": "Disability and rehabilitation. Assistive technology",
-      "year": "2025",
-      "volume": "20",
-      "issue": "7",
-      "pages": "2375-2391",
-      "authors": [
-        "Mane Vijay Mahadeo",
-        "Durge Harshal",
-        "Shieh Chin-Shiuh",
-        "Dey Rajesh",
-        "Mahajan Rupali"
-      ],
-      "doi": "10.1080/17483107.2025.2549899",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/40844961/",
-      "evidence": "기타",
-      "is_clinical": false,
-      "categories": [
-        "회복·운동",
-        "정신건강"
       ]
     }
   ]
