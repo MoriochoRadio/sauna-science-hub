@@ -1,8 +1,8 @@
 {
-  "updated": "2026-09-22",
+  "updated": "2026-09-23",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
-  "clinical_count": 6,
+  "clinical_count": 7,
   "articles": [
     {
       "pmid": "42747539",
@@ -56,6 +56,32 @@
       "is_clinical": true,
       "categories": [
         "통증·염증"
+      ]
+    },
+    {
+      "pmid": "42213968",
+      "title": "Passive Heating Via Heating Pads Improves Vertical Jump and Agility Performance in NCAA Division III Soccer Players.",
+      "title_ko": "가열 패드를 통한 수동 가열은 NCAA Division III 축구 선수의 수직 점프 및 민첩성 성능을 향상시킵니다.",
+      "abstract": "Jiwan, NC, DeKuiper, KJ, Sysol, LA, Chabala, GE, and Costa, PA. Passive heating via heating pads improves vertical jump and agility performance in NCAA Division III soccer players. J Strength Cond Res 40(10): e1087-e1093, 2026-Passive heating may enhance performance by increasing blood flow, improving nerve conduction, and stimulating calcium release. Although most studies focus on saunas or hot water immersion, research on heating pads (HP) remains limited. Thus, this study aims to investigate the effect of HP on athletic performance in soccer players. Nineteen male ( n = 10) and female ( n = 9) soccer players completed 2 identical testing sessions in a randomized, counterbalanced design. HP was applied to both thighs and set to 66°C in the passive heat treatment (PHT) and maintained at body temperature in the sham condition. Skin temperature was taken before (Pre) and after (Post) HP application. After heating, subjects completed 3 performance tests: passing accuracy, vertical jump, and agility t test. Peak power was derived from vertical jump height (VJH). The alpha level was set at p ≤ 0.05. PHT significantly increased thigh skin temperature, improved VJH, peak power, and agility times, while no differences were observed for passing accuracy. PHT improved VJH and agility times in soccer players, supporting HP as an accessible and effective preactivity strategy to enhance performance.",
+      "abstract_ko": "NC Jiwan, DeKuiper, KJ, Sysol, LA, Chabala, GE 및 Costa, PA. 가열 패드를 통한 수동적 가열은 NCAA Division III 축구 선수의 수직 점프 및 민첩성 성능을 향상시킵니다. J Strength Cond Res XX(X): 000-000, 2026 - 수동 가열은 혈류를 증가시키고 신경 전도를 개선하며 칼슘 방출을 자극하여 성능을 향상시킬 수 있습니다. 대부분의 연구는 사우나 또는 온수 침지에 초점을 맞추고 있지만 가열 패드(HP)에 대한 연구는 여전히 제한적입니다. 따라서 본 연구에서는 축구 선수의 운동 능력에 HP가 미치는 영향을 조사하는 것을 목표로 합니다. 19명의 남성(n = 10) 및 여성(n = 9) 축구 선수가 무작위 균형 설계에서 2개의 동일한 테스트 세션을 완료했습니다. 양쪽 허벅지에 HP를 도포하고 수동열처리(PHT)에서 66°C로 설정하고 sham 상태에서 체온을 유지했습니다. HP 도포 전(Pre)과 후(Post) 피부 온도를 측정했습니다. 가열 후 피험자는 통과 정확도, 수직 점프 및 민첩성 t 테스트의 3가지 성능 테스트를 완료했습니다. 최대 전력은 수직 점프 높이(VJH)에서 파생되었습니다. 알파 수준은 p ≤ 0.05로 설정되었습니다. PHT는 허벅지 피부 온도를 크게 증가시켰고, VJH, 최대 파워 및 민첩성 시간을 향상시켰으며, 패스 정확도에서는 차이가 관찰되지 않았습니다. PHT는 축구 선수의 VJH 및 민첩성 시간을 개선하여 성능 향상을 위한 접근 가능하고 효과적인 사전 활동 전략으로 HP를 지원합니다.",
+      "journal": "Journal of strength and conditioning research",
+      "year": "2026",
+      "volume": "40",
+      "issue": "10",
+      "pages": "e1087-e1093",
+      "authors": [
+        "Jiwan Nigel C",
+        "DeKuiper Keegan J",
+        "Sysol Lauren A",
+        "Chabala Gabrielle E",
+        "Costa Pietro A"
+      ],
+      "doi": "10.1519/JSC.0000000000005502",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42213968/",
+      "evidence": "무작위 대조 시험(RCT)",
+      "is_clinical": true,
+      "categories": [
+        "회복·운동"
       ]
     },
     {
@@ -663,32 +689,6 @@
       "is_clinical": false,
       "categories": [
         "사망률·수명"
-      ]
-    },
-    {
-      "pmid": "42213968",
-      "title": "Passive Heating Via Heating Pads Improves Vertical Jump and Agility Performance in NCAA Division III Soccer Players.",
-      "title_ko": "가열 패드를 통한 수동 가열은 NCAA Division III 축구 선수의 수직 점프 및 민첩성 성능을 향상시킵니다.",
-      "abstract": "Jiwan, NC, DeKuiper, KJ, Sysol, LA, Chabala, GE, and Costa, PA. Passive heating via heating pads improves vertical jump and agility performance in NCAA Division III soccer players. J Strength Cond Res XX(X): 000-000, 2026-Passive heating may enhance performance by increasing blood flow, improving nerve conduction, and stimulating calcium release. Although most studies focus on saunas or hot water immersion, research on heating pads (HP) remains limited. Thus, this study aims to investigate the effect of HP on athletic performance in soccer players. Nineteen male (n = 10) and female (n = 9) soccer players completed 2 identical testing sessions in a randomized, counterbalanced design. HP was applied to both thighs and set to 66°C in the passive heat treatment (PHT) and maintained at body temperature in the sham condition. Skin temperature was taken before (Pre) and after (Post) HP application. After heating, subjects completed 3 performance tests: passing accuracy, vertical jump, and agility t test. Peak power was derived from vertical jump height (VJH). The alpha level was set at p ≤ 0.05. PHT significantly increased thigh skin temperature, improved VJH, peak power, and agility times, while no differences were observed for passing accuracy. PHT improved VJH and agility times in soccer players, supporting HP as an accessible and effective preactivity strategy to enhance performance.",
-      "abstract_ko": "NC Jiwan, DeKuiper, KJ, Sysol, LA, Chabala, GE 및 Costa, PA. 가열 패드를 통한 수동적 가열은 NCAA Division III 축구 선수의 수직 점프 및 민첩성 성능을 향상시킵니다. J Strength Cond Res XX(X): 000-000, 2026 - 수동 가열은 혈류를 증가시키고 신경 전도를 개선하며 칼슘 방출을 자극하여 성능을 향상시킬 수 있습니다. 대부분의 연구는 사우나 또는 온수 침지에 초점을 맞추고 있지만 가열 패드(HP)에 대한 연구는 여전히 제한적입니다. 따라서 본 연구에서는 축구 선수의 운동 능력에 HP가 미치는 영향을 조사하는 것을 목표로 합니다. 19명의 남성(n = 10) 및 여성(n = 9) 축구 선수가 무작위 균형 설계에서 2개의 동일한 테스트 세션을 완료했습니다. 양쪽 허벅지에 HP를 도포하고 수동열처리(PHT)에서 66°C로 설정하고 sham 상태에서 체온을 유지했습니다. HP 도포 전(Pre)과 후(Post) 피부 온도를 측정했습니다. 가열 후 피험자는 통과 정확도, 수직 점프 및 민첩성 t 테스트의 3가지 성능 테스트를 완료했습니다. 최대 전력은 수직 점프 높이(VJH)에서 파생되었습니다. 알파 수준은 p ≤ 0.05로 설정되었습니다. PHT는 허벅지 피부 온도를 크게 증가시켰고, VJH, 최대 파워 및 민첩성 시간을 향상시켰으며, 패스 정확도에서는 차이가 관찰되지 않았습니다. PHT는 축구 선수의 VJH 및 민첩성 시간을 개선하여 성능 향상을 위한 접근 가능하고 효과적인 사전 활동 전략으로 HP를 지원합니다.",
-      "journal": "Journal of strength and conditioning research",
-      "year": "2026",
-      "volume": "",
-      "issue": "",
-      "pages": "",
-      "authors": [
-        "Jiwan Nigel C",
-        "DeKuiper Keegan J",
-        "Sysol Lauren A",
-        "Chabala Gabrielle E",
-        "Costa Pietro A"
-      ],
-      "doi": "10.1519/JSC.0000000000005502",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/42213968/",
-      "evidence": "기타",
-      "is_clinical": false,
-      "categories": [
-        "회복·운동"
       ]
     },
     {
