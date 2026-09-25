@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-24",
+  "updated": "2026-09-25",
   "query": "(sauna OR \"sauna bathing\" OR \"thermal bathing\") AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 7,
@@ -62,7 +62,7 @@
       "pmid": "42213968",
       "title": "Passive Heating Via Heating Pads Improves Vertical Jump and Agility Performance in NCAA Division III Soccer Players.",
       "title_ko": "가열 패드를 통한 수동 가열은 NCAA Division III 축구 선수의 수직 점프 및 민첩성 성능을 향상시킵니다.",
-      "abstract": "Jiwan, NC, DeKuiper, KJ, Sysol, LA, Chabala, GE, and Costa, PA. Passive heating via heating pads improves vertical jump and agility performance in NCAA Division III soccer players. J Strength Cond Res 40(10): e1087-e1093, 2026-Passive heating may enhance performance by increasing blood flow, improving nerve conduction, and stimulating calcium release. Although most studies focus on saunas or hot water immersion, research on heating pads (HP) remains limited. Thus, this study aims to investigate the effect of HP on athletic performance in soccer players. Nineteen male ( n = 10) and female ( n = 9) soccer players completed 2 identical testing sessions in a randomized, counterbalanced design. HP was applied to both thighs and set to 66°C in the passive heat treatment (PHT) and maintained at body temperature in the sham condition. Skin temperature was taken before (Pre) and after (Post) HP application. After heating, subjects completed 3 performance tests: passing accuracy, vertical jump, and agility t test. Peak power was derived from vertical jump height (VJH). The alpha level was set at p ≤ 0.05. PHT significantly increased thigh skin temperature, improved VJH, peak power, and agility times, while no differences were observed for passing accuracy. PHT improved VJH and agility times in soccer players, supporting HP as an accessible and effective preactivity strategy to enhance performance.",
+      "abstract": "Passive heating may enhance performance by increasing blood flow, improving nerve conduction, and stimulating calcium release. Although most studies focus on saunas or hot water immersion, research on heating pads (HP) remains limited. Thus, this study aims to investigate the effect of HP on athletic performance in soccer players. Nineteen male ( n = 10) and female ( n = 9) soccer players completed 2 identical testing sessions in a randomized, counterbalanced design. HP was applied to both thighs and set to 66°C in the passive heat treatment (PHT) and maintained at body temperature in the sham condition. Skin temperature was taken before (Pre) and after (Post) HP application. After heating, subjects completed 3 performance tests: passing accuracy, vertical jump, and agility t test. Peak power was derived from vertical jump height (VJH). The alpha level was set at p ≤ 0.05. PHT significantly increased thigh skin temperature, improved VJH, peak power, and agility times, while no differences were observed for passing accuracy. PHT improved VJH and agility times in soccer players, supporting HP as an accessible and effective preactivity strategy to enhance performance.",
       "abstract_ko": "NC Jiwan, DeKuiper, KJ, Sysol, LA, Chabala, GE 및 Costa, PA. 가열 패드를 통한 수동적 가열은 NCAA Division III 축구 선수의 수직 점프 및 민첩성 성능을 향상시킵니다. J Strength Cond Res XX(X): 000-000, 2026 - 수동 가열은 혈류를 증가시키고 신경 전도를 개선하며 칼슘 방출을 자극하여 성능을 향상시킬 수 있습니다. 대부분의 연구는 사우나 또는 온수 침지에 초점을 맞추고 있지만 가열 패드(HP)에 대한 연구는 여전히 제한적입니다. 따라서 본 연구에서는 축구 선수의 운동 능력에 HP가 미치는 영향을 조사하는 것을 목표로 합니다. 19명의 남성(n = 10) 및 여성(n = 9) 축구 선수가 무작위 균형 설계에서 2개의 동일한 테스트 세션을 완료했습니다. 양쪽 허벅지에 HP를 도포하고 수동열처리(PHT)에서 66°C로 설정하고 sham 상태에서 체온을 유지했습니다. HP 도포 전(Pre)과 후(Post) 피부 온도를 측정했습니다. 가열 후 피험자는 통과 정확도, 수직 점프 및 민첩성 t 테스트의 3가지 성능 테스트를 완료했습니다. 최대 전력은 수직 점프 높이(VJH)에서 파생되었습니다. 알파 수준은 p ≤ 0.05로 설정되었습니다. PHT는 허벅지 피부 온도를 크게 증가시켰고, VJH, 최대 파워 및 민첩성 시간을 향상시켰으며, 패스 정확도에서는 차이가 관찰되지 않았습니다. PHT는 축구 선수의 VJH 및 민첩성 시간을 개선하여 성능 향상을 위한 접근 가능하고 효과적인 사전 활동 전략으로 HP를 지원합니다.",
       "journal": "Journal of strength and conditioning research",
       "year": "2026",
@@ -184,6 +184,34 @@
       "categories": [
         "심혈관",
         "호흡기"
+      ]
+    },
+    {
+      "pmid": "42781584",
+      "title": "Hydrotherapy for Overweight and Obesity: A Systematic Review of Anthropometric and Lipid Outcomes.",
+      "title_ko": "과체중 및 비만에 대한 수치료: 인체 측정 및 지질 결과에 대한 체계적인 검토.",
+      "abstract": "Overweight and obesity are chronic metabolic conditions associated with excess adiposity, impaired physical function, dyslipidemia, and increased cardiometabolic risk. Among hydrotherapy-based modalities, structured aquatic exercise may provide a low-impact exercise option by reducing weight-bearing joint loading, providing water resistance, and facilitating exercise participation, whereas passive hydrothermal interventions and hydrogen-rich water involve different therapeutic mechanisms. This systematic review evaluated the effects of hydrotherapy-based and water-based interventions on anthropometric and lipid profile outcomes in individuals with overweight or obesity. A systematic search was conducted in the Cochrane Central Register of Controlled Trials (CENTRAL), Google Scholar, MEDLINE, PubMed, and Scopus as the main sources, with Web of Science and ScienceDirect as additional sources. MEDLINE and PubMed were retained as separately named prespecified search sources despite their substantial overlap. Searches were conducted without time limits during the registered review period from June 23 to July 31, 2026. Published English-language human intervention studies were eligible if they evaluated hydrotherapy, aquatic exercise, aqua aerobics, water-based aerobic training, aquatic high-intensity interval training, balneotherapy, sauna-based therapy, steam bath, dry sauna, immersion-based therapy, or hydrogen-rich water and reported at least one extractable anthropometric or lipid outcome. Ten studies were included in the qualitative synthesis. Active water-based exercise interventions showed the most consistent pattern of improvement in body weight, body mass index, waist-related measures, body fat percentage, and fat mass. In one randomized double-blind placebo-controlled study, hydrogen-rich water was associated with reductions in body mass index, waist-to-hip ratio, total cholesterol, and triglycerides. Passive hydrothermal interventions showed more variable anthropometric and lipid findings. Reported safety findings were generally reassuring, although adverse-event, adherence, and withdrawal reporting was inconsistent. Hydrotherapy-based interventions may have a complementary role in obesity management. Within the available evidence, structured active aquatic exercise demonstrated the most consistent pattern of anthropometric improvement; however, the certainty of evidence across most outcome domains was low to low-to-moderate, warranting cautious interpretation.",
+      "abstract_ko": "과체중과 비만은 과도한 지방과다, 신체 기능 손상, 이상지질혈증 및 심장 대사 위험 증가와 관련된 만성 대사 질환입니다. 수치료 기반 양식 중에서 구조화된 수중 운동은 체중 부하 관절 부하를 줄이고, 방수 기능을 제공하고, 운동 참여를 촉진함으로써 충격이 적은 운동 옵션을 제공할 수 있는 반면, 수동적인 열수 중재와 수소가 풍부한 물은 다른 치료 메커니즘을 포함합니다. 이 체계적인 검토에서는 과체중 또는 비만이 있는 개인의 인체 측정 및 지질 프로필 결과에 대한 수치료 기반 및 물 기반 중재의 효과를 평가했습니다. Cochrane Central Register of Controlled Trials(CENTRAL), Google Scholar, MEDLINE, PubMed 및 Scopus를 주요 소스로 하고 Web of Science 및 ScienceDirect를 추가 소스로 하여 체계적인 검색을 수행했습니다. MEDLINE과 PubMed는 상당한 중복에도 불구하고 별도로 명명된 사전 지정된 검색 소스로 유지되었습니다. 검색은 등록된 검토 기간인 2026년 6월 23일부터 7월 31일까지 시간 제한 없이 수행되었습니다. 출판된 영어 인간 개입 연구는 수치료, 수중 운동, 수중 에어로빅, 수중 에어로빅 훈련, 수중 고강도 인터벌 트레이닝, 온천 요법, 사우나 기반 요법, 한증탕, 건식 사우나, 침수 기반 요법 또는 수소가 풍부한 물을 평가하고 추출 가능한 인체 측정 또는 추출 가능한 인체 측정 또는 수소가 풍부한 물을 하나 이상 보고한 경우 적격했습니다. 지질 결과. 10개의 연구가 정성적 합성에 포함되었습니다. 적극적인 수중 운동 중재는 체중, 체질량 지수, 허리 관련 측정치, 체지방 비율 및 체지방량에서 가장 일관된 개선 패턴을 보여주었습니다. 무작위 이중 맹검 위약 대조 연구에서 수소가 풍부한 물은 체질량 지수, 허리-엉덩이 비율, 총 콜레스테롤 및 중성지방 감소와 관련이 있었습니다. 수동적 열수 개입은 더 다양한 인체 측정 및 지질 소견을 보여주었습니다. 보고된 안전성 결과는 일반적으로 안심할 수 있었지만 부작용, 순응도 및 중단 보고는 일관성이 없었습니다. 수치료 기반 중재는 비만 관리에 보완적인 역할을 할 수 있습니다. 이용 가능한 증거 내에서 구조화된 활동적인 수중 운동은 인체측정학적 개선의 가장 일관된 패턴을 보여주었습니다. 그러나 대부분의 결과 영역에 대한 증거의 확실성은 낮음에서 중간 수준으로 신중한 해석이 필요했습니다.",
+      "journal": "Cureus",
+      "year": "2026",
+      "volume": "18",
+      "issue": "8",
+      "pages": "e115048",
+      "authors": [
+        "B Mohanakrishnan",
+        "Barakoti Anvesh",
+        "Prasad Ananya",
+        "Arora Reet",
+        "Narayanan Rithik",
+        "Das Adhikary Arkaprava"
+      ],
+      "doi": "10.7759/cureus.115048",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42781584/",
+      "evidence": "리뷰",
+      "is_clinical": false,
+      "categories": [
+        "대사·체중",
+        "회복·운동"
       ]
     },
     {
@@ -2373,34 +2401,6 @@
       "is_clinical": false,
       "categories": [
         "심혈관",
-        "회복·운동"
-      ]
-    },
-    {
-      "pmid": "40843850",
-      "title": "Effects of Weight-Cutting Practices on Sleep, Recovery, and Injury in Combat Sports: A Scoping Review.",
-      "title_ko": "전투 스포츠에서 체중 감량 실천이 수면, 회복 및 부상에 미치는 영향: 범위 검토.",
-      "abstract": "",
-      "abstract_ko": "",
-      "journal": "Journal of functional morphology and kinesiology",
-      "year": "2025",
-      "volume": "10",
-      "issue": "3",
-      "pages": "",
-      "authors": [
-        "Kużdżał Adrian",
-        "Bilianskyi Oleg",
-        "Wroński Zbigniew",
-        "Magoń Grzegorz",
-        "Olaniszyn Gracjan",
-        "Hagner-Derengowska Magdalena"
-      ],
-      "doi": "10.1016/j.jsmc.2019.11.005",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/40843850/",
-      "evidence": "리뷰",
-      "is_clinical": false,
-      "categories": [
-        "대사·체중",
         "회복·운동"
       ]
     }
