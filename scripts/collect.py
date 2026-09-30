@@ -137,6 +137,10 @@ def src_fp(text):
     return hashlib.sha1(" ".join(text.split()).encode("utf-8")).hexdigest()[:12]
 
 
+# 번역 집계 — 캐시 재사용 / 새 번역 / 실패(빈 값). 실패 건은 원문만 표시되고 다음 실행에서 재시도된다.
+TR_STATS = {"cached": 0, "translated": 0, "failed": 0}
+
+
 def translate_cached(cache, text, sl="en", tl="ko", key=None):
     """캐시 우선 번역. key 는 캐시 구분용(PMID+필드). 원문 지문이 같을 때만 캐시를 쓴다."""
     if not text or not text.strip():
@@ -145,8 +149,10 @@ def translate_cached(cache, text, sl="en", tl="ko", key=None):
         ck = f"{sl}>{tl}:{key}"
         fp = src_fp(text)
         if cache.get(ck) and cache.get(ck + "#src") == fp:
+            TR_STATS["cached"] += 1
             return cache[ck]
     tr = translate(text, sl, tl)
+    TR_STATS["translated" if tr else "failed"] += 1
     if key and tr:
         cache[ck] = tr
         cache[ck + "#src"] = fp
@@ -215,23 +221,25 @@ def fetch_details(pmids):
         print(f"[collect] 사우나 어휘 없는 {len(dropped)}편 제외: {', '.join(dropped)}", file=sys.stderr)
     # 한국어 번역 (제목 + 초록). 캐시 우선 — 재번역·rate-limit 방지.
     cache = load_cache()
-    cache_hit = 0
     print(f"[collect] 한국어 번역 시작 ({len(out)}편)...", file=sys.stderr)
     done = 0
     for a in out:
         pid = a.get("pmid", "")
         if a.get("title"):
-            ko = translate_cached(cache, a["title"], key=f"{pid}:title")
-            a["title_ko"] = ko
-            if ko and ko == cache.get(f"en>ko:{pid}:title"):
-                cache_hit += 1
+            a["title_ko"] = translate_cached(cache, a["title"], key=f"{pid}:title")
         if a.get("abstract"):
             a["abstract_ko"] = translate_cached(cache, a["abstract"], key=f"{pid}:abstract")
         done += 1
         if done % 20 == 0:
-            print(f"[collect] 번역 {done}/{len(out)} (캐시 히트 누적 {cache_hit})", file=sys.stderr)
+            print(f"[collect] 번역 {done}/{len(out)} (누적 {TR_STATS})", file=sys.stderr)
     save_cache(cache)
-    print(f"[collect] 번역 완료 — 캐시 히트 {cache_hit}건", file=sys.stderr)
+    st = TR_STATS
+    print(f"[collect] 번역 완료 — 캐시 {st['cached']}건, 신규 {st['translated']}건, 실패 {st['failed']}건", file=sys.stderr)
+    if st["failed"]:
+        # GitHub Actions 주석(stdout). 비공식 gtx 엔드포인트가 막히면 여기서 먼저 드러난다.
+        total = st["translated"] + st["failed"]
+        print(f"::warning title=번역 실패::비공식 Google 번역(gtx) {st['failed']}/{total}건 실패 "
+              f"— 해당 제목·초록은 원문만 표시되고 다음 실행에서 재시도한다.")
     return out
 
 
