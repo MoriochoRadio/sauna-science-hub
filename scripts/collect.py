@@ -6,6 +6,7 @@ Sauna Science Hub — 키없는(keyless) PubMed 수집기.
 PubMed E-utilities 에서 가져와 data/research.json 으로 저장한다.
 무료 · API 키 불필요 · 매일 GitHub Actions 에서 실행.
 """
+import hashlib
 import json
 import sys
 import time
@@ -73,17 +74,24 @@ def fetch_json(url):
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.loads(r.read().decode("utf-8"))
 
+def src_fp(text):
+    """번역 원문 지문(공백 정규화 후 해시). 원문이 바뀌면 캐시를 다시 번역하게 한다."""
+    return hashlib.sha1(" ".join(text.split()).encode("utf-8")).hexdigest()[:12]
+
+
 def translate_cached(cache, text, sl="en", tl="ko", key=None):
-    """캐시 우선 번역. key 는 캐시 구분용(PMID+필드)."""
+    """캐시 우선 번역. key 는 캐시 구분용(PMID+필드). 원문 지문이 같을 때만 캐시를 쓴다."""
     if not text or not text.strip():
         return ""
     if key:
         ck = f"{sl}>{tl}:{key}"
-        if ck in cache and cache[ck]:
+        fp = src_fp(text)
+        if cache.get(ck) and cache.get(ck + "#src") == fp:
             return cache[ck]
     tr = translate(text, sl, tl)
     if key and tr:
         cache[ck] = tr
+        cache[ck + "#src"] = fp
     return tr
 
 
@@ -159,13 +167,30 @@ def _text(el, path):
     return node.text.strip() if node is not None and node.text else ""
 
 
+def _alltext(node):
+    """인라인 태그(<i>, <sup> 등) 뒤의 텍스트까지 포함한 전체 텍스트(공백 정규화)."""
+    return " ".join("".join(node.itertext()).split()) if node is not None else ""
+
+
+def _abstract(cite):
+    """구조화 초록(BACKGROUND/METHODS/RESULTS…)의 모든 단락을 라벨과 함께 이어 붙인다."""
+    parts = []
+    for node in cite.findall("./Abstract/AbstractText"):
+        body = _alltext(node)
+        if not body:
+            continue
+        label = (node.get("Label") or "").strip()
+        parts.append(f"{label}: {body}" if label and label.upper() != "UNLABELLED" else body)
+    return " ".join(parts)
+
+
 def parse_article(art):
     cite = art.find(".//Article")
     if cite is None:
         return None
     pmid = _text(art, ".//PMID")
-    title = _text(cite, "./ArticleTitle")
-    abstract = _text(cite, "./Abstract/AbstractText")
+    title = _alltext(cite.find("./ArticleTitle"))
+    abstract = _abstract(cite)
     journal = _text(cite, "./Journal/Title")
     year = ""
     for tag in (".//Journal/JournalIssue/PubDate/Year",
@@ -228,22 +253,25 @@ def parse_article(art):
 def main():
     # 기존 research.json 에 이미 번역된 값이 있으면 캐시로 적재 (재번역 방지)
     cache = load_cache()
-    migrated = 0
+    migrated = stamped = 0
     try:
         old = json.load(open(OUT, encoding="utf-8"))
         for a in old.get("articles", []):
             pid = a.get("pmid", "")
-            if pid and a.get("title_ko"):
-                k = f"en>ko:{pid}:title"
+            for field in ("title", "abstract"):
+                ko = a.get(field + "_ko")
+                if not (pid and ko):
+                    continue
+                k = f"en>ko:{pid}:{field}"
                 if k not in cache:
-                    cache[k] = a["title_ko"]; migrated += 1
-            if pid and a.get("abstract_ko"):
-                k = f"en>ko:{pid}:abstract"
-                if k not in cache:
-                    cache[k] = a["abstract_ko"]; migrated += 1
-        if migrated:
+                    cache[k] = ko; migrated += 1
+                # 지문 없는 옛 캐시: 번역 당시 원문(research.json 에 남은 값)으로 지문을 찍는다.
+                # 이후 원문이 달라진 논문(예: 잘렸던 초록)만 다시 번역된다.
+                if cache.get(k) == ko and k + "#src" not in cache and a.get(field):
+                    cache[k + "#src"] = src_fp(a[field]); stamped += 1
+        if migrated or stamped:
             save_cache(cache)
-            print(f"[collect] 기존 번역 {migrated}건 캐시 적재", file=sys.stderr)
+            print(f"[collect] 기존 번역 {migrated}건 캐시 적재, 원문 지문 {stamped}건 기록", file=sys.stderr)
     except (FileNotFoundError, json.JSONDecodeError):
         pass
 
