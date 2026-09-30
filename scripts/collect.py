@@ -212,10 +212,10 @@ def parse_article(art):
         if last:
             authors.append(f"{last} {fore}".strip())
     authors = authors[:6]
-    doi = ""
-    for aid in art.findall(".//ArticleIdList/ArticleId"):
-        if aid.get("IdType") == "doi":
-            doi = aid.text.strip()
+    # 이 논문의 DOI 만: .//ArticleIdList 는 참고문헌(ReferenceList)의 ID 까지 잡으므로
+    # PubmedData 바로 아래 목록의 첫 값을 쓰고, 없으면 본문 ELocationID 로 보완한다.
+    doi = (_text(art, "./PubmedData/ArticleIdList/ArticleId[@IdType='doi']")
+           or _text(cite, "./ELocationID[@EIdType='doi']"))
     pubtypes = [_text(pt, ".") for pt in art.findall(".//PublicationTypeList/PublicationType")]
     evidence = "기타"
     for pt in pubtypes:
