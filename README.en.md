@@ -59,7 +59,7 @@ A. Paid translation APIs were ruled out under the zero-cost principle. Instead, 
 A. HTTP requests, XML/JSON parsing, and HTML generation are perfectly doable with `urllib`, `xml.etree`, and `json`. With zero dependencies there's no install step in CI, and locally it runs with nothing but Python — fewer breakable parts in a pipeline that runs every day.
 
 **Q. Why include evidence-level labeling?**
-A. With health information, credibility varies enormously with study design, so distinguishing tiers from RCTs and meta-analyses (tier 1) down to observational and cross-sectional studies (tier 4 and below) is what makes it a true "evidence-based archive". Tier assignment maps PubMed's own publication types directly, ruling out arbitrary judgment.
+A. With health information, credibility varies enormously with study design, so distinguishing tiers from RCTs and meta-analyses (tier 1) down to observational and cross-sectional studies (tier 4 and below) is what makes it a true "evidence-based archive". Tier assignment maps PubMed's own publication types directly, ruling out arbitrary judgment. The one exception: recent papers whose publication type is still only 'Journal Article' get a design guessed from title/abstract keywords, marked '(추정)' (estimated) and shown one tier lower (with no clue, they are shown as '원저(유형 미표기)' — untyped original article, unrated).
 
 ## Running Locally
 

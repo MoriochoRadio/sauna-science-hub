@@ -56,22 +56,60 @@ CATEGORIES = {
 }
 CATEGORY_RE = {label: re.compile("|".join(pats)) for label, pats in CATEGORIES.items()}
 
+# PubMed PublicationType -> 근거 라벨. 위에 있을수록 우선한다(여러 유형이 붙으면 PubMed 나열
+# 순서가 아니라 더 높은 근거를 택함 — 예: Systematic Review + Meta-Analysis → 메타분석).
 EVIDENCE_LABELS = {
+    "Meta-Analysis": "메타분석",
     "Randomized Controlled Trial": "무작위 대조 시험(RCT)",
-    "Clinical Trial": "임상시험",
+    "Systematic Review": "체계적 문헌고찰",
+    "Controlled Clinical Trial": "대조 임상시험",
     "Clinical Trial, Phase I": "임상시험 I상",
     "Clinical Trial, Phase II": "임상시험 II상",
     "Clinical Trial, Phase III": "임상시험 III상",
     "Clinical Trial, Phase IV": "임상시험 IV상",
-    "Controlled Clinical Trial": "대조 임상시험",
-    "Meta-Analysis": "메타분석",
-    "Systematic Review": "체계적 문헌고찰",
-    "Review": "리뷰",
+    "Clinical Trial": "임상시험",
     "Cohort Study": "코호트 연구",
     "Case-Control Study": "환자-대조 연구",
     "Observational Study": "관찰 연구",
     "Cross-Sectional Study": "단면 연구",
+    "Case Reports": "증례 보고",
+    "Review": "리뷰",
+    "Scoping Review": "리뷰",
+    "Editorial": "사설·논평",
+    "Comment": "사설·논평",
+    "Letter": "서신",
+    "Clinical Trial Protocol": "연구 프로토콜",
 }
+
+# PublicationType 이 'Journal Article' 뿐인 논문(대개 MEDLINE 색인 전 최신 논문)은 제목, 없으면
+# 초록의 설계 키워드로 유형을 '추정'한다. 휴리스틱이라 라벨에 (추정)을 붙이고 build.py 에서
+# 한 단계 낮춰 표시한다. 단서가 없으면 UNTYPED.
+UNTYPED = "원저(유형 미표기)"
+_DESIGN_HINTS = [
+    (r"\bmeta-?analys[ie]s\b", "메타분석(추정)"),
+    (r"\bsystematic (?:literature )?review\b", "체계적 문헌고찰(추정)"),
+    (r"\b(?:this|narrative|scoping|literature|integrative|critical|umbrella) review\b", "리뷰(추정)"),
+    (r"(?<!non-)\brandomi[sz]ed\b|\brandomly (?:assigned|allocated)\b", "무작위 시험(추정)"),
+    (r"\b(?:clinical|controlled|pilot|feasibility|single-arm) trial\b", "임상시험(추정)"),
+    (r"\bcase-control\b", "환자-대조 연구(추정)"),
+    (r"\bcohort\b", "코호트 연구(추정)"),
+    (r"\bcross-sectional\b", "단면 연구(추정)"),
+]
+DESIGN_HINTS = [(re.compile(p, re.I), label) for p, label in _DESIGN_HINTS]
+TITLE_REVIEW = re.compile(r"\breview\b", re.I)
+
+
+def guess_design(title, abstract):
+    """제목 → 초록 순으로 설계 키워드를 찾아 (추정) 라벨을 돌려준다(제목의 review 는 단독어도 인정)."""
+    for pat, label in DESIGN_HINTS:
+        if pat.search(title):
+            return label
+    if TITLE_REVIEW.search(title):
+        return "리뷰(추정)"
+    for pat, label in DESIGN_HINTS:
+        if pat.search(abstract):
+            return label
+    return UNTYPED
 
 
 def load_cache():
@@ -252,12 +290,12 @@ def parse_article(art):
     doi = (_text(art, "./PubmedData/ArticleIdList/ArticleId[@IdType='doi']")
            or _text(cite, "./ELocationID[@EIdType='doi']"))
     pubtypes = [_text(pt, ".") for pt in art.findall(".//PublicationTypeList/PublicationType")]
-    evidence = "기타"
-    for pt in pubtypes:
-        if pt in EVIDENCE_LABELS:
-            evidence = EVIDENCE_LABELS[pt]
-            break
-    is_clinical = any("Trial" in pt or "Clinical" in pt or "Randomized" in pt for pt in pubtypes)
+    evidence = next((lbl for pt, lbl in EVIDENCE_LABELS.items() if pt in pubtypes), "")
+    if not evidence:
+        evidence = guess_design(title, abstract)
+    # 시험 '계획서'(Clinical Trial Protocol)는 결과가 없으므로 임상 근거로 세지 않는다.
+    is_clinical = any(("Trial" in pt or "Clinical" in pt or "Randomized" in pt) and "Protocol" not in pt
+                      for pt in pubtypes)
     blob = (title + " " + abstract).lower()
     cats = []
     for label, pat in CATEGORY_RE.items():

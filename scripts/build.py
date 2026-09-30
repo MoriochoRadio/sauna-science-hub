@@ -35,14 +35,23 @@ EVIDENCE_RANK = {
     "임상시험 I상": 3, "임상시험 II상": 3, "임상시험 III상": 3, "임상시험 IV상": 3,
     "메타분석": 1, "체계적 문헌고찰": 2, "리뷰": 4,
     "코호트 연구": 3, "환자-대조 연구": 3, "관찰 연구": 4, "단면 연구": 4,
-    "기타": 5,
+    # 출판유형 미표기 논문의 키워드 추정(collect.py guess_design) — 휴리스틱이라 한 단계 낮춘다
+    "메타분석(추정)": 2, "무작위 시험(추정)": 2, "체계적 문헌고찰(추정)": 3, "임상시험(추정)": 4,
+    "코호트 연구(추정)": 4, "환자-대조 연구(추정)": 4, "단면 연구(추정)": 5, "리뷰(추정)": 5,
+    "증례 보고": 5, "사설·논평": 5, "서신": 5,
+    "연구 프로토콜": 5, "원저(유형 미표기)": 5, "기타": 5,
 }
+# 설계를 알 수 없어 등급을 매기지 않는 라벨(정렬상으로만 5급 취급)
+UNRATED = {"연구 프로토콜", "원저(유형 미표기)", "기타"}
 
 EVIDENCE_GROUPS = OrderedDict([
-    ("RCT", ["무작위 대조 시험(RCT)"]),
-    ("임상시험", ["임상시험", "임상시험 I상", "임상시험 II상", "임상시험 III상", "임상시험 IV상", "대조 임상시험"]),
-    ("메타·고찰", ["메타분석", "체계적 문헌고찰", "리뷰"]),
-    ("관찰연구", ["코호트 연구", "환자-대조 연구", "관찰 연구", "단면 연구"]),
+    ("RCT", ["무작위 대조 시험(RCT)", "무작위 시험(추정)"]),
+    ("임상시험", ["임상시험", "임상시험 I상", "임상시험 II상", "임상시험 III상", "임상시험 IV상", "대조 임상시험",
+              "임상시험(추정)"]),
+    ("메타·고찰", ["메타분석", "체계적 문헌고찰", "리뷰", "메타분석(추정)", "체계적 문헌고찰(추정)", "리뷰(추정)"]),
+    ("관찰연구", ["코호트 연구", "환자-대조 연구", "관찰 연구", "단면 연구",
+              "코호트 연구(추정)", "환자-대조 연구(추정)", "단면 연구(추정)"]),
+    ("증례·논평", ["증례 보고", "사설·논평", "서신"]),
 ])
 
 
@@ -102,6 +111,13 @@ def card(a, idx):
     evidence = a.get("evidence", "기타")
     rank = EVIDENCE_RANK.get(evidence, 5)
     group = ev_group(evidence)
+    rank_txt = "등급 미상" if evidence in UNRATED else f"근거 {rank}급"
+    if evidence.endswith("(추정)"):
+        ev_tip = "PubMed 출판유형 미표기 — 제목·초록 키워드로 추정한 설계(휴리스틱, 한 단계 낮춰 표시)"
+    elif evidence in UNRATED:
+        ev_tip = "PubMed 출판유형이 'Journal Article'뿐이거나 결과가 없는 문서라 등급을 매기지 않음"
+    else:
+        ev_tip = "PubMed 출판유형(PublicationType) 기준"
     clinical = "1" if a.get("is_clinical") else "0"
     title_ko = esc(a.get("title_ko", ""))
     title_en = esc(a.get("title", ""))
@@ -125,7 +141,7 @@ def card(a, idx):
     <article class="entry{top_cls}" data-year="{esc(a.get('year','0'))}" data-rank="{rank}" data-clinical="{clinical}" data-group="{group}" data-cats='{esc(json.dumps(cats, ensure_ascii=False))}' data-text="{data_text}">
       <div class="yr">{year_disp}<small>{esc(a.get('volume',''))}</small></div>
       <div class="body">
-        <span class="ev">{esc(evidence)}</span><span class="rank">근거 {rank}급</span>{top}
+        <span class="ev" title="{esc(ev_tip)}">{esc(evidence)}</span><span class="rank">{rank_txt}</span>{top}
         <h3><a href="{esc(a['url'])}" target="_blank" rel="noopener">{title_html}</a></h3>
         <div class="cats">{cats_html}</div>
         <p class="abs collapsed" id="abs-{esc(a.get('pmid',''))}">{abs_ko_html}{abs_en_html}</p>
@@ -347,6 +363,7 @@ mark{background:var(--mark);color:inherit;padding:0 1px}
     <ul>
       <li><b>출처</b>: <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a>(NCBI)의 peer-reviewed 논문 메타데이터. 키 없이 무료 E-utilities로 매일 수집한다.</li>
       <li><b>근거 수준</b>: 출판 유형별로 RCT·임상시험·메타분석·코호트 등을 라벨링하고 1~5급으로 표시(1급=가장 높은 근거). <b>★</b> 표시는 1급(RCT·메타분석)이다.</li>
+      <li><b>(추정) 라벨</b>: PubMed 출판 유형이 아직 'Journal Article'뿐인 최신 논문은 제목·초록의 설계 키워드(randomized, cohort, cross-sectional 등)로 유형을 추정해 한 단계 낮춰 표시한다. 휴리스틱이라 틀릴 수 있으니 원문을 확인하라. 단서가 없으면 '원저(유형 미표기)·등급 미상'이다.</li>
       <li><b>번역</b>: 제목·초록은 기계번역으로 한국어를 제공한다(원문 토글 가능). 번역 품질은 참고용이며 정확한 내용은 원문 링크를 확인하라.</li>
       <li><b>주제 분류</b>: 초록 키워드 기반 자동 태깅(심혈관·사망률·인지·대사·호흡기·회복·정신건강·통증·염증).</li>
       <li><b>면책</b>: 교육·정보 목적이며 의학적 조언을 대체하지 않는다. 사우나 이용은 건강 상태에 따라 전문의와 상담하라.</li>
