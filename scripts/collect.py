@@ -32,17 +32,29 @@ RETMAX = 90
 # 수집 후 한 번 더 거르는 사우나 어휘 — 제목·초록·저자 키워드 중 한 곳에는 있어야 채택
 SAUNA_TERMS = re.compile(r"\bsaunas?\b|\bwaon\b|\bsteam[- ]?(?:baths?|rooms?)\b", re.I)
 
-# 카테고리 매핑 (키워드 -> 한국어 라벨)
+# 카테고리 매핑 (정규식 -> 한국어 라벨, 소문자 제목+초록에 적용)
+# \b 로 단어 앞머리를 고정해 부분 문자열 오탐(experimental/environmental → mental,
+# Spain → pain)을 막는다. vascular·metabolic·weight 는 합성어(cerebrovascular,
+# cardiometabolic, overweight)를 살리려고 앞 경계를 두지 않는다.
+# 운동생리 연구에 흔한 측정어는 뺀다: 단독 heart rate(심박, HRV 는 유지), heat/oxidative 등 생리적 stress,
+# neuromuscular, brain natriuretic peptide(심부전 표지자).
+_PHYS_STRESS = ("heat", "thermal", "oxidative", "cold", "shear", "hemodynamic", "haemodynamic",
+                "physiological", "cardiovascular", "metabolic", "nitrosative", "mechanical", "environmental")
 CATEGORIES = {
-    "심혈관": ["cardiovascular", "heart", "cardiac", "coronary", "myocardial", "arterial", "blood pressure", "hypertension", "vascular"],
-    "사망률·수명": ["mortality", "mortalit", "longevity", "life expectancy", "all-cause", "survival", "death"],
-    "인지·뇌": ["cognit", "brain", "neuro", "alzheimer", "dementia", "memory", "mental"],
-    "대사·체중": ["metabolic", "glucose", "insulin", "diabet", "weight", "obesity", "lipid", "cholesterol"],
-    "호흡기": ["respiratory", "lung", "asthma", "pneumonia", "copd"],
-    "회복·운동": ["recovery", "athletic", "exercise", "performance", "muscle", "endurance"],
-    "정신건강": ["depression", "stress", "mood", "anxiety", "well-being", "wellbeing", "psycholog"],
-    "통증·염증": ["pain", "inflammation", "arthritis", "rheumatoid", "fibromyalgia"],
+    "심혈관": [r"\bcardiovascular", r"\bheart\b(?![\s-]+rates?\b(?![\s-]+variability))",r"\bcardiac", r"\bcoronary", r"\bmyocardial",
+               r"\barterial", r"\bblood pressure", r"\bhypertension", r"vascular"],
+    "사망률·수명": [r"\bmortalit", r"\blongevity", r"\blife expectancy", r"\ball-cause", r"\bsurvival", r"\bdeath"],
+    "인지·뇌": [r"\bcognit", r"\bbrain\b(?![\s-]+natriuretic)", r"\bneuro(?!muscular)", r"\balzheimer",
+                r"\bdementia", r"\bmemory", r"\bmental\b"],
+    "대사·체중": [r"metabolic", r"\bglucose", r"\binsulin", r"\bdiabet", r"weight\b", r"\bobesity", r"\blipid",
+                 r"\bcholesterol"],
+    "호흡기": [r"\brespiratory", r"\blung", r"\basthma", r"\bpneumonia", r"\bcopd"],
+    "회복·운동": [r"\brecovery", r"\bathletic", r"\bexercise", r"\bperformance", r"\bmuscle", r"\bendurance"],
+    "정신건강": [r"\bdepression", "".join(rf"(?<!\b{w}[\s-])" for w in _PHYS_STRESS) + r"\bstress", r"\bmood",
+                r"\banxiety", r"\bwell-being", r"\bwellbeing", r"\bpsycholog"],
+    "통증·염증": [r"\bpain", r"\binflammation", r"\barthritis", r"\brheumatoid", r"\bfibromyalgia"],
 }
+CATEGORY_RE = {label: re.compile("|".join(pats)) for label, pats in CATEGORIES.items()}
 
 EVIDENCE_LABELS = {
     "Randomized Controlled Trial": "무작위 대조 시험(RCT)",
@@ -248,8 +260,8 @@ def parse_article(art):
     is_clinical = any("Trial" in pt or "Clinical" in pt or "Randomized" in pt for pt in pubtypes)
     blob = (title + " " + abstract).lower()
     cats = []
-    for label, kws in CATEGORIES.items():
-        if any(k in blob for k in kws):
+    for label, pat in CATEGORY_RE.items():
+        if pat.search(blob):
             cats.append(label)
     if not cats:
         cats = ["기타"]
