@@ -29,7 +29,7 @@ GitHub Actions가 수집→번역→빌드→배포를 전부 수행하며, 운�
 ## 동작 구조
 
 ```
-        ┌──────────── GitHub Actions (매일 KST 10:17 + push 시) ────────────┐
+        ┌──────────── GitHub Actions (매일 1회 예약 + push 시) ─────────────┐
         │                                                                   │
   collect.py ──────────► data/research.json ──► build.py ──► index.html ──► Pages 배포
  (PubMed E-utilities      (논문 메타데이터)      (정적 사이트    (완성된 HTML)

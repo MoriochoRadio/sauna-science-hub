@@ -2,7 +2,7 @@ name: Sauna Science Hub — Daily Update
 
 on:
   schedule:
-    - cron: "17 1 * * *"   # 매일 KST 10:17 (UTC 01:17) — 사우나 매니아 아침 브리핑
+    - cron: "17 1 * * *"   # 매일 KST 10:17 (UTC 01:17) 예약 — GitHub 스케줄 지연으로 실제 시작은 보통 15시(KST) 전후
   workflow_dispatch: {}    # 수동 실행 버튼
   push:
     branches: [main]

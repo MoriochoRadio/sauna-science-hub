@@ -29,7 +29,7 @@ GitHub Actions handles the entire collect → translate → build → deploy pip
 ## How It Works
 
 ```
-        ┌──────────── GitHub Actions (daily at 10:17 KST + on push) ────────────┐
+        ┌──────────── GitHub Actions (daily schedule + on push) ────────────────┐
         │                                                                        │
   collect.py ──────────► data/research.json ──► build.py ──► index.html ──► Pages deploy
  (PubMed E-utilities      (paper metadata)      (static site   (finished HTML)

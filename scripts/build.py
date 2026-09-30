@@ -167,7 +167,7 @@ def build():
     years = Counter(a.get("year", "") for a in articles if a.get("year"))
     year_stats = ", ".join(f"{y}년 {n}편" for y, n in sorted(years.items(), reverse=True)[:6])
 
-    filter_btns = ['<button class="fbtn active" data-cat="all">전체 <span class="cnt">{total}</span></button>']
+    filter_btns = [f'<button class="fbtn active" data-cat="all">전체 <span class="cnt">{total}</span></button>']
     for c in CATEGORY_META:
         if cat_counts.get(c):
             color = cat_color(c)
@@ -332,7 +332,7 @@ mark{background:var(--mark);color:inherit;padding:0 1px}
       <div><b>__NCAT__</b><span>주제 분류</span></div>
       <div><b>__UPDATED__</b><span>최종 갱신</span></div>
     </div>
-    <div class="issue">정기 간행물 형태 · 매일 KST 10:17 자동 발행</div>
+    <div class="issue">정기 간행물 형태 · 매일 자동 갱신</div>
   </div>
 </header>
 
