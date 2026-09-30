@@ -11,6 +11,7 @@ import json
 import sys
 import time
 import os
+import re
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -21,8 +22,15 @@ OUT = "data/research.json"
 CACHE = "data/translations.json"
 
 # 사우나 과학 증거를 좁히는 쿼리 (PubMed 검색 구문)
-QUERY = '(sauna OR "sauna bathing" OR "thermal bathing") AND (health OR cardiovascular OR mortality OR "clinical trial" OR "randomized" OR cognition OR metabolic OR recovery OR "blood pressure")'
+# 사우나 쪽은 [tiab](제목·초록·저자 키워드)로 묶는다. 필드 태그 없이 쓰면 PubMed 자동 확장으로
+# "thermal bathing" 이 (thermal AND bathing), sauna 가 (steam AND bath)까지 넓어져
+# 신생아 목욕·해변 열 지각 같은 무관 논문이 절반 넘게 섞였다.
+# 온천요법(balneotherapy)·해수요법은 사이트 범위(사우나) 밖이라 넣지 않는다.
+QUERY = '(sauna[tiab] OR saunas[tiab] OR "sauna bathing"[tiab] OR "Waon therapy"[tiab] OR "Steam Bath"[mh]) AND (health OR cardiovascular OR mortality OR "clinical trial" OR "randomized" OR cognition OR metabolic OR recovery OR "blood pressure")'
 RETMAX = 90
+
+# 수집 후 한 번 더 거르는 사우나 어휘 — 제목·초록·저자 키워드 중 한 곳에는 있어야 채택
+SAUNA_TERMS = re.compile(r"\bsaunas?\b|\bwaon\b|\bsteam[- ]?(?:baths?|rooms?)\b", re.I)
 
 # 카테고리 매핑 (키워드 -> 한국어 라벨)
 CATEGORIES = {
@@ -130,16 +138,31 @@ def search_pmids():
     return data.get("esearchresult", {}).get("idlist", [])
 
 
+def is_sauna_related(art, a):
+    """제목·초록·저자 키워드에 사우나 어휘가 있는지 (검색어 확장으로 딸려 온 무관 논문 제거)."""
+    keywords = " ".join(_alltext(k) for k in art.findall(".//KeywordList/Keyword"))
+    return bool(SAUNA_TERMS.search(" ".join((a["title"], a["abstract"], keywords))))
+
+
 def fetch_details(pmids):
     out = []
+    dropped = []
     for i in range(0, len(pmids), 100):
         batch = pmids[i:i + 100]
         url = f"{BASE}/efetch.fcgi?db=pubmed&id={','.join(batch)}&retmode=xml"
         xml = fetch_xml(url)
         root = ET.fromstring(xml)
         for art in root.iter("PubmedArticle"):
-            out.append(parse_article(art))
+            a = parse_article(art)
+            if not a:
+                continue
+            if not is_sauna_related(art, a):
+                dropped.append(a["pmid"])
+                continue
+            out.append(a)
         time.sleep(0.4)
+    if dropped:
+        print(f"[collect] 사우나 어휘 없는 {len(dropped)}편 제외: {', '.join(dropped)}", file=sys.stderr)
     # 한국어 번역 (제목 + 초록). 캐시 우선 — 재번역·rate-limit 방지.
     cache = load_cache()
     cache_hit = 0
