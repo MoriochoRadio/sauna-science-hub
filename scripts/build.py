@@ -293,6 +293,10 @@ main{padding:24px 0 60px}
 .abs{font-size:.9rem;color:var(--ink2);line-height:1.7;margin-top:6px}
 .abs.collapsed{max-height:3.4em;overflow:hidden;position:relative}
 .abs .t-en{display:none}
+/* 원문 보기 토글 + 번역이 비었을 때(초록에 원문 span 만 있을 때) 원문 표시 */
+[data-lang="en"] .t-ko{display:none}
+[data-lang="en"] .abs .t-en,.abs .t-en:only-child{display:inline}
+[data-lang="en"] .t-en.t-sub{font-size:inherit;font-weight:inherit;color:inherit;margin-top:0;line-height:inherit}
 .abs-toggle{cursor:pointer;font-size:.76rem;color:var(--accent2);font-weight:700;margin-top:6px;user-select:none}
 .abs-toggle:hover{text-decoration:underline}
 .meta{font-size:.78rem;color:var(--ink2);margin-top:8px}
