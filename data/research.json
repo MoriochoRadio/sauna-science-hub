@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-30",
+  "updated": "2026-10-01",
   "query": "(sauna[tiab] OR saunas[tiab] OR \"sauna bathing\"[tiab] OR \"Waon therapy\"[tiab] OR \"Steam Bath\"[mh]) AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 5,
