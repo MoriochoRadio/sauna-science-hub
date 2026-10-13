@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-12",
+  "updated": "2026-10-13",
   "query": "(sauna[tiab] OR saunas[tiab] OR \"sauna bathing\"[tiab] OR \"Waon therapy\"[tiab] OR \"Steam Bath\"[mh]) AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 5,
@@ -137,6 +137,30 @@
       "categories": [
         "심혈관",
         "회복·운동"
+      ]
+    },
+    {
+      "pmid": "42860738",
+      "title": "Rapid weight loss practices and methods among Mongolian judo athletes.",
+      "title_ko": "몽골 유도 선수들의 빠른 체중 감량 관행과 방법.",
+      "abstract": "PURPOSE: Rapid weight loss is prevalent and potentially hazardous in combat sports; however, evidence among Mongolian athletes remains limited. This study characterized rapid weight loss practices among Mongolian judo athletes and compared behavioral practices and social influences between Limited-Method-Use and Combined-Method-Use profiles. METHODS: This cross-sectional study included 100 competitive Mongolian judo athletes. Of the 81 athletes who reported rapid weight loss, hierarchical cluster analysis classified 57 as Limited-Method-Use and 24 as Combined-Method-Use based on 12 weight-cutting modalities. RESULTS: Pre-competition rapid weight loss was reported by 81.0% of participants. Compared with the Limited-Method-Use group, the Combined-Method-Use group had greater body mass reduction (6.86% vs. 5.25%, p = 0.001) and post-competition body mass regain (6.62% vs. 5.04%, p = 0.001). The Combined-Method-Use group relied heavily on multifaceted dietary restrictions and thermal dehydration methods [sauna, fluid restriction, and plastic suit training (all p < 0.05)]. Regression analysis identified total body mass reduction percentage as the sole significant predictor of weight regain (β = 0.647, p < 0.001). Coaches and teammates were the primary social influences, whereas healthcare professionals had limited influence. CONCLUSION: Rapid weight loss is deeply embedded as a normative practice within the Mongolian judo community, with many competitors adopting aggressive, dehydration-driven methodologies. The strong association between weight cuts and severe weight regain highlights the hazardous nature of these practices. These insights underscore the critical need for evidence-based sports nutrition education and preventative screenings targeting athletes and coaching staff.",
+      "abstract_ko": "목적: 빠른 체중 감량은 전투 스포츠에서 널리 퍼져 있으며 잠재적으로 위험합니다. 그러나 몽골 운동선수들 사이의 증거는 여전히 제한적입니다. 이 연구는 몽골 유도 선수들의 빠른 체중 감량 관행을 특징으로 하고 제한된 방법 사용 프로필과 복합 방법 사용 프로필 간의 행동 관행과 사회적 영향을 비교했습니다. 방법: 이 단면적 연구에는 100명의 몽골 유도 선수가 포함되었습니다. 빠른 체중 감량을 보고한 81명의 운동선수 중 계층적 클러스터 분석은 12가지 체중 감량 방식을 기반으로 57명을 제한적 방법 사용으로, 24명은 복합 방법 사용으로 분류했습니다. 결과: 참가자의 81.0%가 경기 전 급격한 체중 감소를 보고했습니다. 제한된 방법 사용 그룹과 비교하여 복합 방법 사용 그룹은 더 큰 체질량 감소(6.86% vs. 5.25%, p = 0.001)와 경기 후 체질량 회복(6.62% vs. 5.04%, p = 0.001)을 나타냈습니다. 복합 방법 사용 그룹은 다면적인 식이 제한과 열 탈수 방법[사우나, 수분 제한 및 플라스틱 옷 훈련(모두 p < 0.05)]에 크게 의존했습니다. 회귀 분석에서는 총 체질량 감소율이 체중 회복의 유일한 유의미한 예측 변수임을 확인했습니다(β = 0.647, p < 0.001). 코치와 팀 동료가 주요 사회적 영향력을 행사한 반면, 의료 전문가의 영향력은 제한적이었습니다. 결론: 빠른 체중 감량은 몽골 유도 공동체 내에서 규범적인 관행으로 깊이 자리 잡고 있으며, 많은 경쟁자들이 공격적인 탈수 중심 방법론을 채택하고 있습니다. 체중 감량과 심각한 체중 회복 사이의 강한 연관성은 이러한 관행의 위험성을 강조합니다. 이러한 통찰력은 운동선수와 코칭 스태프를 대상으로 하는 증거 기반 스포츠 영양 교육과 예방 검사의 중요성을 강조합니다.",
+      "journal": "Physical activity and nutrition",
+      "year": "2026",
+      "volume": "30",
+      "issue": "3",
+      "pages": "81-88",
+      "authors": [
+        "Battsengel Enkhzaya",
+        "Sa Jaesin",
+        "Lee Jounghee"
+      ],
+      "doi": "10.20463/pan.2026.0043",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42860738/",
+      "evidence": "단면 연구(추정)",
+      "is_clinical": false,
+      "categories": [
+        "대사·체중"
       ]
     },
     {
@@ -2381,34 +2405,6 @@
       "is_clinical": false,
       "categories": [
         "기타"
-      ]
-    },
-    {
-      "pmid": "39660118",
-      "title": "Death after sauna-case report of a heat stroke associated subarachnoid hemorrhage.",
-      "title_ko": "사우나 후 ​​사망 - 열사병 관련 지주막하 출혈 사례 보고.",
-      "abstract": "Heat exposure could cause organ injuries leading to multi-organ failure. This case report describes a cardiopulmonary healthy 61-year-old woman who was admitted to our university hospital in an unconscious state after spending more than 30 min in an 80°C sauna. Initial radiological imaging revealed no pathological findings. Laboratory results revealed a rapidly progressing disseminated intravascular coagulation (\"DIC\") and a clinically asymptomatic COVID-19 infection. The patient died 38 h after admission due to a second-stage subarachnoid hemorrhage associated with progressive DIC. This report emphasizes the importance of awareness and strategies to mitigate deadly consequences of heat exposure.",
-      "abstract_ko": "열 노출로 인해 장기 손상이 발생하여 다기관 부전이 발생할 수 있습니다. 본 증례보고는 심폐기능이 건강한 61세 여성으로 80℃ 사우나에서 30분 이상을 보낸 후 의식불명 상태로 우리 대학병원에 입원하였다. 초기 방사선 영상에서는 병리학적 소견이 나타나지 않았습니다. 실험실 결과, 빠르게 진행되는 파종성 혈관내 응고(\"DIC\")와 임상적으로 무증상인 코로나19 감염이 밝혀졌습니다. 환자는 진행성 DIC와 관련된 2단계 지주막하 출혈로 인해 입원 38시간 만에 사망했습니다. 이 보고서는 열 노출로 인한 치명적인 결과를 완화하기 위한 인식과 전략의 중요성을 강조합니다.",
-      "journal": "Frontiers in cardiovascular medicine",
-      "year": "2024",
-      "volume": "11",
-      "issue": "",
-      "pages": "1476962",
-      "authors": [
-        "Nothnagel Anna Maria",
-        "Schwartz Stefan",
-        "Abramovich Igor",
-        "Schneider Thomas",
-        "Angermair Stefan",
-        "Treskatsch Sascha"
-      ],
-      "doi": "10.3389/fcvm.2024.1476962",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/39660118/",
-      "evidence": "증례 보고",
-      "is_clinical": false,
-      "categories": [
-        "심혈관",
-        "사망률·수명"
       ]
     }
   ]
