@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "query": "(sauna[tiab] OR saunas[tiab] OR \"sauna bathing\"[tiab] OR \"Waon therapy\"[tiab] OR \"Steam Bath\"[mh]) AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 5,
@@ -1029,6 +1029,33 @@
       ]
     },
     {
+      "pmid": "41406341",
+      "title": "A systematic appraisal of emerging alternative therapies in men's health and wellness.",
+      "title_ko": "남성의 건강과 웰니스 분야에서 새롭게 떠오르는 대체 치료법에 대한 체계적인 평가입니다.",
+      "abstract": "INTRODUCTION: The use of alternative therapies for men's health continues to grow in popularity, as claims of their urologic and overall health benefits become more widespread. This study aimed to evaluate commonly purported therapies (intravenous [IV] nutrient infusions, saunas, ice baths, light therapy, and condensed nutritional supplements) in the treatment or improvement of men's urologic health. METHODS: A scoping review was conducted using the databases PubMED and SCOPUS to identify literature discussing each intervention. Outcomes of interest were urologic parameters in men aged 18 and above. RESULTS: Overall, the results were often conflicting or inconclusive. IV therapy lacked any supportive evidence for the claims regarding its benefits in erectile dysfunction, sperm quality, or testosterone enhancement. Sauna had mixed outcomes, with some temporary increases in testosterone and reversible adverse effects on sperm parameters. Similarly, cold water immersion showed inconsistent benefits for testosterone, with improvements in fatigue and soreness. Light therapy showed non-significant changes in hormone levels, while improvements in sexual satisfaction and hair regrowth were noted. While some herbal products showed benefits for sexual function, testosterone levels, and sperm quality, others had negligible or inconsistent outcomes. CONCLUSIONS: There is a discordance between media claims and scientific literature regarding the impact of alternative therapies for men's health. The data are significantly limited by small sample sizes and a lack of long-term followup. There is a need for larger-scale trials to better inform patient counseling.",
+      "abstract_ko": "",
+      "journal": "Canadian Urological Association journal = Journal de l'Association des urologues du Canada",
+      "year": "2026",
+      "volume": "20",
+      "issue": "4",
+      "pages": "132-137",
+      "authors": [
+        "Qaoud Yazan",
+        "Morcos Maya",
+        "McDonald Madeleine",
+        "Shoeib Ahmed",
+        "Qureshi Yara",
+        "Mak Matthew"
+      ],
+      "doi": "10.5489/cuaj.9368",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41406341/",
+      "evidence": "리뷰",
+      "is_clinical": false,
+      "categories": [
+        "기타"
+      ]
+    },
+    {
       "pmid": "41265722",
       "title": "Hydrogen sulfide and the physiology of \"totonou\": a hypothesis on sauna-induced vascular recovery.",
       "title_ko": "황화수소와 \"totonou\"의 생리: 사우나로 인한 혈관 회복에 대한 가설.",
@@ -1238,33 +1265,6 @@
       "doi": "10.1186/s12889-025-25517-8",
       "url": "https://pubmed.ncbi.nlm.nih.gov/41413811/",
       "evidence": "단면 연구(추정)",
-      "is_clinical": false,
-      "categories": [
-        "기타"
-      ]
-    },
-    {
-      "pmid": "41406341",
-      "title": "A systematic appraisal of emerging alternative therapies in men's health and wellness.",
-      "title_ko": "남성의 건강과 웰니스 분야에서 새롭게 떠오르는 대체 치료법에 대한 체계적인 평가입니다.",
-      "abstract": "INTRODUCTION: The use of alternative therapies for men's health continues to grow in popularity, as claims of their urologic and overall health benefits become more widespread. This study aimed to evaluate commonly purported therapies (intravenous [IV] nutrient infusions, saunas, ice baths, light therapy, and condensed nutritional supplements) in the treatment or improvement of men's urologic health. METHODS: A scoping review was conducted using the databases PubMED and SCOPUS to identify literature discussing each intervention. Outcomes of interest were urologic parameters in men aged 18 and above. RESULTS: Overall, the results were often conflicting or inconclusive. IV therapy lacked any supportive evidence for the claims regarding its benefits in erectile dysfunction, sperm quality, or testosterone enhancement. Sauna had mixed outcomes, with some temporary increases in testosterone and reversible adverse effects on sperm parameters. Similarly, cold water immersion showed inconsistent benefits for testosterone, with improvements in fatigue and soreness. Light therapy showed non-significant changes in hormone levels, while improvements in sexual satisfaction and hair regrowth were noted. While some herbal products showed benefits for sexual function, testosterone levels, and sperm quality, others had negligible or inconsistent outcomes. CONCLUSIONS: There is a discordance between media claims and scientific literature regarding the impact of alternative therapies for men's health. This data is significantly limited by small sample sizes and a lack of long-term followup. There is a need for larger-scale trials to better inform patient counseling.",
-      "abstract_ko": "소개: 남성 건강을 위한 대체 요법의 사용은 비뇨기과 및 전반적인 건강상의 이점에 대한 주장이 더욱 널리 퍼지면서 인기가 계속 높아지고 있습니다. 이 연구는 남성의 비뇨기과 건강 치료 또는 개선에서 일반적으로 알려진 치료법(정맥주사(IV) 영양 주입, 사우나, 얼음 목욕, 광선 요법 및 농축 영양 보충제)을 평가하는 것을 목표로 했습니다. 방법: PubMED 및 SCOPUS 데이터베이스를 사용하여 범위 지정 검토를 수행하여 각 개입을 논의하는 문헌을 식별했습니다. 관심 결과는 18세 이상 남성의 비뇨기과적 매개변수였습니다. 결과: 전반적으로 결과는 종종 상충되거나 결론이 나지 않았습니다. IV 요법은 발기 부전, 정자의 질 또는 테스토스테론 강화에 대한 이점에 대한 주장을 뒷받침하는 증거가 부족했습니다. 사우나는 테스토스테론이 일시적으로 증가하고 정자 매개변수에 가역적인 부작용이 나타나는 등 혼합된 결과를 보였습니다. 마찬가지로 찬물에 담그는 것도 테스토스테론에 일관되지 않은 이점을 보여 피로와 통증이 개선되는 것으로 나타났습니다. 광선 요법은 호르몬 수치의 유의미한 변화를 나타내지 않았지만 성적 만족도와 모발 재성장의 개선이 나타났습니다. 일부 허브 제품은 성기능, 테스토스테론 수치, 정자의 질에 이점을 보인 반면, 다른 제품은 무시할 수 있거나 일관되지 않은 결과를 보였습니다. 결론: 남성 건강에 대한 대체 치료법의 영향에 관한 언론 주장과 과학 문헌 간에는 불일치가 있습니다. 이 데이터는 표본 크기가 작고 장기적인 추적 조사가 부족하여 상당히 제한됩니다. 환자 상담에 더 나은 정보를 제공하기 위해서는 대규모 시험이 필요합니다.",
-      "journal": "Canadian Urological Association journal = Journal de l'Association des urologues du Canada",
-      "year": "2025",
-      "volume": "",
-      "issue": "",
-      "pages": "",
-      "authors": [
-        "Qaoud Yazan",
-        "Morcos Maya",
-        "Macdonald Madeleine",
-        "Shoeib Ahmed",
-        "Qureshi Yara",
-        "Mak Matthew"
-      ],
-      "doi": "10.5489/cuaj.9368",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/41406341/",
-      "evidence": "리뷰",
       "is_clinical": false,
       "categories": [
         "기타"
