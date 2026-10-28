@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27",
+  "updated": "2026-10-28",
   "query": "(sauna[tiab] OR saunas[tiab] OR \"sauna bathing\"[tiab] OR \"Waon therapy\"[tiab] OR \"Steam Bath\"[mh]) AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 5,
@@ -136,6 +136,33 @@
       "is_clinical": true,
       "categories": [
         "심혈관",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "42934391",
+      "title": "Post-Exercise Thermal Interventions and Nocturnal Sleep in Athletes: A Narrative Review of the Potential Underlying Physiological Mechanisms.",
+      "title_ko": "운동선수의 운동 후 온열 중재 및 야간 수면: 잠재적인 기본 생리적 메커니즘에 대한 서술적 검토.",
+      "abstract": "Sleep is essential for optimal performance and recovery in athletes. Post-exercise cold exposure, including cold water immersion and cryotherapy, is typically used to enhance recovery, but its effects on sleep remain unclear. Emerging evidence also suggests that post-exercise heat exposure, including sauna and hot water immersion before sleep may improve both objective and subjective sleep outcomes. However, the effectiveness of post-exercise thermal interventions for improving nocturnal sleep in athletes specifically has not yet been comprehensively evaluated. This narrative review synthesizes the current evidence and discusses the potential physiological mechanisms by which post-exercise thermal interventions may influence nocturnal sleep in athletes. Despite methodological heterogeneity, existing research indicates that post-exercise thermal interventions may influence the subsequent nocturnal sleep of athletes through multiple and varying interacting mechanisms. For example, cold exposure close to bedtime (< 2 h) may disrupt sleep by reducing the distal-to-proximal skin temperature gradient (DPG), thereby increasing sleep onset latency and shortening sleep duration. In contrast, when applied more than 2 h before bedtime, cold exposure may improve sleep by augmenting parasympathetic tone and/or reducing muscle soreness and associated nocturnal movement. Although it remains unclear whether post-exercise heat exposure improves sleep via autonomic modulation or reduced muscle soreness, existing evidence indicates that sleep may be facilitated by an increased DPG. Moderating factors such as sex, time of day, environmental temperature, bedding microclimate, acclimatization status, and training load may influence the effects of post-exercise thermal interventions on sleep and should be investigated in future studies.",
+      "abstract_ko": "운동선수의 최적의 성능과 회복을 위해서는 수면이 필수적입니다. 냉수 침수 및 냉동 요법을 포함한 운동 후 추위 노출은 일반적으로 회복을 향상시키는 데 사용되지만 수면에 미치는 영향은 불분명합니다. 새로운 증거는 또한 잠자기 전 사우나나 온수에 몸을 담그는 등 운동 후 열 노출이 객관적 및 주관적 수면 결과를 모두 향상시킬 수 있음을 시사합니다. 그러나 특히 운동선수의 야간 수면 개선을 위한 운동 후 온열 중재의 효과는 아직 종합적으로 평가되지 않았습니다. 이 서사적 리뷰는 현재의 증거를 종합하고 운동 후 열 중재가 운동선수의 야간 수면에 영향을 미칠 수 있는 잠재적인 생리학적 메커니즘에 대해 논의합니다. 방법론적 이질성에도 불구하고 기존 연구에 따르면 운동 후 열 개입은 다양하고 다양한 상호 작용 메커니즘을 통해 운동선수의 후속 야간 수면에 영향을 미칠 수 있습니다. 예를 들어, 취침 시간에 가까운(2시간 미만) 추위에 노출되면 원위부에서 근위부까지의 피부 온도 구배(DPG)가 감소하여 수면 시작 대기 시간이 늘어나고 수면 시간이 단축되어 수면을 방해할 수 있습니다. 대조적으로, 취침 시간 2시간 이상 전에 적용하면 추위에 노출되면 부교감 신경의 긴장을 증가시키고/또는 근육통 및 관련 야간 운동을 감소시켜 수면을 개선할 수 있습니다. 운동 후 열 노출이 자율신경계 조절이나 근육통 감소를 통해 수면을 개선하는지 여부는 불분명하지만, 기존 증거에 따르면 DPG가 증가하면 수면이 촉진될 수 있습니다. 성별, 시간, 환경 온도, 침구 미기후, 순응 상태 및 훈련 부하와 같은 조절 요인은 운동 후 열 개입이 수면에 미치는 영향에 영향을 미칠 수 있으며 향후 연구에서 조사해야 합니다.",
+      "journal": "Sports medicine (Auckland, N.Z.)",
+      "year": "2026",
+      "volume": "",
+      "issue": "",
+      "pages": "",
+      "authors": [
+        "Miliotis Panagiotis G",
+        "Halson Shona L",
+        "Mundel Toby",
+        "Leota Josh",
+        "Toubekis Argyris G",
+        "Botonis Petros G"
+      ],
+      "doi": "10.1007/s40279-026-02555-9",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42934391/",
+      "evidence": "리뷰",
+      "is_clinical": false,
+      "categories": [
         "회복·운동"
       ]
     },
@@ -2351,33 +2378,6 @@
       "is_clinical": false,
       "categories": [
         "회복·운동"
-      ]
-    },
-    {
-      "pmid": "39688619",
-      "title": "Lack of gastric emptying at autopsy eleven days after heat trauma in the sauna- a forensic autopsy case report.",
-      "title_ko": "사우나 열외상 11일 후 부검 시 위 배출 부족 - 법의학적 부검 사례 보고.",
-      "abstract": "A man in his mid-70s passed out in a public 90-degree sauna and remained unconscious for at least half an hour. He suffered third-degree burns to approximately 50% of his body surface area. Despite immediate transport to a burn center and intensive care therapy, he did not regain consciousness and died eleven days later.When the body was opened, the lungs, liver, kidneys, and spleen showed changes consistent with the burns, intensive care therapy, and clinically suspected septic shock. The stomach contained approximately 200 ml of thickened chyme with coarse vegetable components. Such food components were not seen in the duodenum or in the following intestinal segments.Considering the overall circumstances, the stomach contents must have been the last meal the man had eaten before the sauna session. The problem of reduced gastrointestinal motility in burn patients is clinically recognized. Nevertheless, a complete failure of gastric emptying for eleven days after intensive care therapy has not been described before and shows that the use of gastric contents in forensic practice is inappropriate for drawing conclusions about the time interval between last food intake and death and thus for estimating the time of death.",
-      "abstract_ko": "70대 중반 남성이 90도 공중 사우나에서 기절해 최소 30분 동안 의식을 잃은 상태였다. 그는 신체 표면적의 약 50%에 3도 화상을 입었습니다. 즉시 화상센터로 이송하고 집중치료를 받았음에도 불구하고 의식을 회복하지 못하고 11일 만에 사망했다. 시신을 열었을 때 폐, 간, 신장, 비장 등에 화상과 중환자치료, 임상적으로 의심되는 패혈성 쇼크와 일치하는 변화가 나타났다. 위에는 거친 야채 성분이 포함된 걸쭉한 유미즙이 약 200ml 들어 있었습니다. 이러한 음식물 성분은 십이지장이나 이어지는 장 부위에서는 보이지 않았다. 전체적인 상황으로 볼 때 위 내용물은 남성이 사우나를 하기 전 먹은 마지막 식사였을 것으로 추정된다. 화상 환자의 위장 운동성 감소 문제는 임상적으로 인정됩니다. 그럼에도 불구하고 집중 치료 후 11일 동안 위 배출이 완전히 실패한 사례는 이전에 기술된 바 없으며 법의학 실습에서 위 내용물을 사용하는 것이 마지막 음식 섭취부터 사망까지의 시간 간격에 대한 결론을 도출하고 사망 시간을 추정하는 데 부적절함을 보여줍니다.",
-      "journal": "Forensic science, medicine, and pathology",
-      "year": "2025",
-      "volume": "21",
-      "issue": "3",
-      "pages": "1321-1326",
-      "authors": [
-        "Kerscher Susanne R",
-        "Kern Natascha",
-        "Chistiakova Nadezhda",
-        "Verhoff Doreen",
-        "Verhoff Marcel A"
-      ],
-      "doi": "10.1007/s12024-024-00931-3",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/39688619/",
-      "evidence": "증례 보고",
-      "is_clinical": false,
-      "categories": [
-        "사망률·수명",
-        "호흡기"
       ]
     },
     {
