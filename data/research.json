@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "query": "(sauna[tiab] OR saunas[tiab] OR \"sauna bathing\"[tiab] OR \"Waon therapy\"[tiab] OR \"Steam Bath\"[mh]) AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 5,
@@ -136,6 +136,35 @@
       "is_clinical": true,
       "categories": [
         "심혈관",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "43020269",
+      "title": "Effects of Sauna Bathing on NMR-Based Metabolomic Profiles.",
+      "title_ko": "",
+      "abstract": "BACKGROUND: Frequent sauna bathing is associated with reduced risk of adverse cardiovascular outcomes. However, the biochemical pathways through which sauna bathing may exert its cardiovascular health effects remain unclear. We therefore investigated the effects of Finnish sauna bathing on various blood-based cardiometabolic biomarkers. Specifically, this study investigated how a single 30-minute Finnish sauna session (AS) and an 8-week exercise-plus-sauna intervention (ESS) influence circulating metabolomic biomarkers related to lipid and amino acid metabolism. METHODS: The study included two complementary populations: (1) an acute sauna exposure study including 63 habitual sauna users with at least one cardiovascular risk factor, and (2) an 8-week randomized controlled trial (RCT) including 47 sedentary non-regular sauna users randomized to exercise, exercise plus sauna, and control arms. The exercise intervention consisted of concurrent training three times per week, with the sauna group additionally completing 15 min of post-exercise sauna bathing. Circulating metabolites were quantified using high-throughput 1H-NMR spectroscopy at multiple time points in the acute study and at baseline and post-intervention in the RCT. RESULTS: AS produced consistent metabolic shifts, including significant reductions in concentrations of plasma triglycerides and VLDL particles, decreases in branched-chain and aromatic amino acids, and increases in ketone bodies, suggesting a metabolic pattern compatible with enhanced lipid utilization and a transient metabolic stress response. ESS resulted in additional improvements beyond exercise alone, including reductions in LDL particle number and concentration, greater decreases in VLDL subclasses, and increases in HDL particle size, suggesting additional metabolic effects when heat exposure is added to exercise training. CONCLUSIONS: Sauna bathing, as an example of heat exposure, induces favorable alterations in lipid and amino acid metabolism and when combined with regular exercise, augments longer-term improvements in lipoprotein profiles.",
+      "abstract_ko": "",
+      "journal": "Mayo Clinic proceedings",
+      "year": "2026",
+      "volume": "",
+      "issue": "",
+      "pages": "",
+      "authors": [
+        "Laukkanen Jari A",
+        "Heinonen Ilkka H A",
+        "Lee Earric",
+        "Kunutsor Setor K",
+        "Schwab Ursula",
+        "Kainulainen Heikki"
+      ],
+      "doi": "10.1016/j.mayocp.2026.11.006",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/43020269/",
+      "evidence": "무작위 시험(추정)",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "대사·체중",
         "회복·운동"
       ]
     },
@@ -2354,29 +2383,6 @@
       "is_clinical": false,
       "categories": [
         "심혈관",
-        "회복·운동"
-      ]
-    },
-    {
-      "pmid": "39762944",
-      "title": "The effect of post-exercise heat exposure (passive heat acclimation) on endurance exercise performance: a systematic review and meta-analysis.",
-      "title_ko": "운동 후 열 노출(수동 열 순응)이 지구력 운동 성능에 미치는 영향: 체계적 검토 및 메타 분석.",
-      "abstract": "BACKGROUND: \"Active\" heat acclimation (exercise-in-the-heat) can improve exercise performance but the efficacy of \"passive\" heat acclimation using post-exercise heat exposure is unclear. Therefore, we synthesised a systematic review and meta-analysis to answer whether post-exercise heat exposure improves exercise performance. METHODS: Five databases were searched to identify studies including: (i) healthy adults; (ii) an exercise training intervention with post-exercise heat exposure via sauna or hot water immersion (treatment group); (iii) a non-heat exposure control group completing the same training; and (iv) outcomes measuring exercise performance in the heat (primary outcome), or performance in thermoneutral conditions, V̇O2max, lactate threshold, economy, heart rate, RPE, core temperature, sweat rate, and thermal sensations. Study quality was assessed using the Cochrane Risk of Bias 2 tool. To determine the effect of post-exercise heat exposure, between-group ratio of means or standardized mean differences (SMD) were calculated for each outcome and weighted by the inverse of their variance to calculate an overall effect estimate (ratio of mean or Hedges'g) in a random effects meta-analysis, with 95% confidence intervals (CI) and prediction intervals (PI). Quality of evidence was assessed using the Grading of Recommendations Assessment, Development and Evaluation (GRADE) tool. RESULTS: Ten studies (199 participants: 156 male, 43 female, age 20-32 years) were included. The effect of post-exercise heat exposure on performance in hot conditions (33-40 °C) was trivial (ratio of means = 1.04) with poor precision (95%CI 0.94-1.15, P = 0.46) and low predictive certainty (95%PI 0.81-1.33). There were also trivial effects on performance in thermoneutral conditions (18-24 °C) and speed at lactate threshold, small effects on V̇O2max, heart rate, core temperature, and sweat rate, and a moderate effect on thermal sensations. However, the certainty in the effect estimates was graded as low to very low across all outcomes due to small sample sizes, high risk of bias, risk of publication bias, imprecision in the effect estimates, and low statistical power. CONCLUSIONS: The use of post-exercise heat exposure for improving exercise performance is uncertain. Further high-quality trials are needed to make firm conclusions. PROTOCOL REGISTRATION: Open Science Foundation ( https://doi.org/10.17605/OSF.IO/256XZ ).",
-      "abstract_ko": "배경: \"활동적인\" 열 순응(더위 속에서 운동)은 운동 성능을 향상시킬 수 있지만 운동 후 열 노출을 이용한 \"수동적인\" 열 순응의 효능은 불분명합니다. 따라서 우리는 운동 후 열 노출이 운동 수행 능력을 향상시키는지 알아보기 위해 체계적인 검토와 메타 분석을 종합했습니다. 방법: 다음을 포함한 연구를 확인하기 위해 5개의 데이터베이스를 검색했습니다. (i) 건강한 성인; (ii) 사우나 또는 온수 침수를 통한 운동 후 열 노출을 통한 운동 훈련 중재(치료군); (iii) 동일한 교육을 이수한 비열 노출 대조군; (iv) 더위에서의 운동 성능(1차 결과) 또는 열 중립 조건에서의 성능, V̇O2max, 젖산염 역치, 경제성, 심박수, RPE, 심부 체온, 땀 속도 및 열 감각을 측정한 결과. Cochrane Risk of Bias 2 도구를 사용하여 연구 품질을 평가했습니다. 운동 후 열 노출의 효과를 확인하기 위해 각 결과에 대해 그룹 간 평균 비율 또는 표준화된 평균 차이(SMD)를 계산하고 분산의 역수로 가중하여 무작위 효과 메타 분석에서 95% 신뢰 구간(CI) 및 예측 구간(PI)을 사용하여 전체 효과 추정치(평균 또는 Hedges'g 비율)를 계산했습니다. GRADE(Grading of Recommendations Assessment, Development and Evaluation) 도구를 사용하여 증거의 품질을 평가했습니다. 결과: 10개의 연구(참가자 199명: 남성 156명, 여성 43명, 연령 20-32세)가 포함되었습니다. 더운 조건(33~40°C)에서 운동 후 열 노출이 성능에 미치는 영향은 미미했으며(평균 비율 = 1.04), 정밀도가 낮았고(95%CI 0.94~1.15, P = 0.46) 예측 확실성이 낮았습니다(95%PI 0.81~1.33). 또한 열중립 조건(18~24°C)의 성능과 젖산염 역치의 속도에 대한 사소한 영향이 있었고, V̇O2max, 심박수, 심부 온도 및 땀율에 대한 작은 영향과 열 감각에 대한 중간 정도의 영향이 있었습니다. 그러나 효과 추정의 확실성은 작은 표본 크기, 높은 편향 위험, 출판 편향 위험, 효과 추정의 부정확성 및 낮은 통계적 검정력으로 인해 모든 결과에 걸쳐 낮음에서 매우 낮은 등급으로 분류되었습니다. 결론: 운동 성능 향상을 위해 운동 후 열 노출을 사용하는 것은 불확실합니다. 확고한 결론을 내리기 위해서는 추가적인 고품질 시험이 필요합니다. 프로토콜 등록: Open Science Foundation ( https://doi.org/10.17605/OSF.IO/256XZ ).",
-      "journal": "BMC sports science, medicine & rehabilitation",
-      "year": "2025",
-      "volume": "17",
-      "issue": "1",
-      "pages": "4",
-      "authors": [
-        "Solomon Thomas P J",
-        "Laye Matthew J"
-      ],
-      "doi": "10.1186/s13102-024-01038-6",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/39762944/",
-      "evidence": "메타분석(추정)",
-      "is_clinical": false,
-      "categories": [
         "회복·운동"
       ]
     },
