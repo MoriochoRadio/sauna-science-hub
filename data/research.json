@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14",
+  "updated": "2026-11-15",
   "query": "(sauna[tiab] OR saunas[tiab] OR \"sauna bathing\"[tiab] OR \"Waon therapy\"[tiab] OR \"Steam Bath\"[mh]) AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
   "count": 90,
   "clinical_count": 5,
@@ -136,6 +136,35 @@
       "is_clinical": true,
       "categories": [
         "심혈관",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "43030112",
+      "title": "Phase Angle, Skeletal Muscle Function, and Molecular Phenotype in HFpEF: A Subanalysis of the SAUNA-HFpEF Study.",
+      "title_ko": "",
+      "abstract": "BACKGROUND: The phase angle (PhA) derived from bioelectrical impedance analysis (BIA) is a non-invasive marker of cellular integrity that has been associated with nutritional status, functional status and prognosis in heart failure (HF). Whether PhA is related to the skeletal muscle molecular phenotype in HF with preserved ejection fraction (HFpEF) remains unknown. METHODS: In this exploratory subanalysis of the SAUNA-HFpEF trial, 17 patients with HFpEF underwent BIA with assessment of body composition, cardiopulmonary exercise testing, isokinetic assessment of quadriceps muscle strength, and measurement of circulating growth differentiation factor-15 (GDF-15), as well as nutrition-related and metabolic laboratory parameters before and after a 10-week sauna intervention. Paired vastus lateralis biopsies (n = 12) were analyzed by quantitative real-time polymerase chain reaction (qRT-PCR) for catabolic (FBXO32, GSK-3β), fatty acid metabolism (ACADL, CPT1B, CD36), and anabolic (mTOR, IGF-1) markers. Associations with PhA were assessed using Spearman correlation and repeated-measures correlation (rmcorr), with false discovery rate (FDR) correction for multiple testing. RESULTS: Cross-sectionally, lower baseline PhA correlated with higher GDF-15 (r = -0.758; 95% CI -0.936 to -0.412), higher extracellular water to total body water (ECW/TBW) ratio (r = -0.744; 95% CI -0.941 to -0.350), higher expression of GSK-3β, ACADL, FBXO32, CD36, and CPT1B (all r ≤ -0.620), and lower isokinetic quadriceps strength (r = 0.523) (all FDR-adjusted p < 0.05). No significant associations were found for IGF-1, mTOR, or muscle mass. An exploratory comparison using a previously published PhA cut-off of 4.65° showed consistent differences. Longitudinally, PhA did not change significantly over the intervention, and longitudinal changes in PhA were unrelated to changes in molecular markers but correlated with changes in the ECW/TBW ratio (rmcorr r = -0.708; 95% CI -0.883 to -0.360). Body composition, waist circumference, the lipid profile, HbA1c and iron status were also assessed at both time points without any observed changes (all FDR-adjusted p > 0.05). CONCLUSIONS: In this small exploratory analysis, lower PhA was associated with a more catabolic and metabolically altered skeletal muscle gene expression profile in HFpEF. PhA may provide complementary, non-invasive information on muscle quality and cellular and fluid status. Its potential role in identifying patients who warrant a structured nutritional assessment deserves further investigation. These hypothesis-generating findings require validation in larger prospective studies.",
+      "abstract_ko": "",
+      "journal": "Nutrients",
+      "year": "2026",
+      "volume": "18",
+      "issue": "21",
+      "pages": "",
+      "authors": [
+        "Abo Hwach Ammar",
+        "Dasdemir Aysenur",
+        "Ahrens Doerte",
+        "Roeper Matthias",
+        "Tanev Ivan",
+        "Hansen Michael"
+      ],
+      "doi": "10.3390/nu18213483",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/43030112/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "대사·체중",
         "회복·운동"
       ]
     },
@@ -2360,30 +2389,6 @@
       "is_clinical": false,
       "categories": [
         "심혈관"
-      ]
-    },
-    {
-      "pmid": "39773956",
-      "title": "Severe heat stroke with multiorgan failure following collapse in a sauna.",
-      "title_ko": "사우나에서 쓰러진 후 다기관 부전을 동반한 심각한 열사병입니다.",
-      "abstract": "Heat stroke is characterised by hyperthermia and acute encephalopathy. We describe a rare case of classical heat stroke secondary to prolonged sauna use with multiorgan sequelae including seizures, liver injury, kidney injury, disseminated intravascular coagulation, rhabdomyolysis and type 2 myocardial infarction. The patient was treated with external cooling, intravenous fluid therapy and blood products, and made a full recovery without need for advanced organ support. We discuss the evidence base surrounding the immediate treatment of heat stroke in the emergency department.",
-      "abstract_ko": "열사병은 고열과 급성 뇌병증이 특징입니다. 우리는 발작, 간 손상, 신장 손상, 파종성 혈관내 응고, 횡문근융해증 및 제2형 심근경색을 포함한 다장기 후유증을 동반한 장기간의 사우나 사용에 따른 전형적인 열사병의 드문 사례를 설명합니다. 환자는 외부 냉각, 정맥 수액 요법 및 혈액 제제로 치료를 받았으며 고급 장기 지원 없이도 완전히 회복되었습니다. 응급실에서 열사병의 즉각적인 치료를 둘러싼 근거 기반을 논의합니다.",
-      "journal": "BMJ case reports",
-      "year": "2025",
-      "volume": "18",
-      "issue": "1",
-      "pages": "",
-      "authors": [
-        "McIver William Jack",
-        "Zia Muhammad"
-      ],
-      "doi": "10.1136/bcr-2024-262069",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/39773956/",
-      "evidence": "증례 보고",
-      "is_clinical": false,
-      "categories": [
-        "심혈관",
-        "회복·운동"
       ]
     },
     {
