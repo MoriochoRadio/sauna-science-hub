@@ -12,6 +12,7 @@ import json
 import sys
 import time
 import os
+import random
 import re
 import urllib.error
 import urllib.parse
@@ -173,10 +174,10 @@ def _throttle():
     _last_request[0] = time.monotonic()
 
 
-def _retry_after(err):
+def _retry_after(err, cap=RETRY_AFTER_CAP):
     """429/503 응답의 Retry-After(초)를 존중하되 상한을 둔다. 없거나 날짜 형식이면 None."""
     try:
-        return min(float(err.headers.get("Retry-After")), RETRY_AFTER_CAP)
+        return min(float(err.headers.get("Retry-After")), cap)
     except (AttributeError, TypeError, ValueError):
         return None
 
@@ -210,8 +211,9 @@ def src_fp(text):
     return hashlib.sha1(" ".join(text.split()).encode("utf-8")).hexdigest()[:12]
 
 
-# 번역 집계 — 캐시 재사용 / 새 번역 / 실패(빈 값). 실패 건은 원문만 표시되고 다음 실행에서 재시도된다.
-TR_STATS = {"cached": 0, "translated": 0, "failed": 0}
+# 번역 집계 — 캐시 재사용 / 새 번역 / 실패(빈 값) / 미룸(이번 실행 한도·중단으로 시도 안 함).
+# 실패·미룸 건은 캐시에 넣지 않으므로 원문만 표시되고 다음 실행에서 다시 시도된다.
+TR_STATS = {"cached": 0, "translated": 0, "failed": 0, "skipped": 0}
 
 
 def translate_cached(cache, text, sl="en", tl="ko", key=None):
@@ -225,6 +227,9 @@ def translate_cached(cache, text, sl="en", tl="ko", key=None):
             TR_STATS["cached"] += 1
             return cache[ck]
     tr = translate(text, sl, tl)
+    if tr is None:
+        TR_STATS["skipped"] += 1
+        return ""
     TR_STATS["translated" if tr else "failed"] += 1
     if key and tr:
         cache[ck] = tr
@@ -236,26 +241,75 @@ def fetch_xml(url):
     return http_get(url)
 
 
+# 키 없는 gtx 는 IP 단위로 429 를 준다. 11-16 실행은 새 번역 50건을 0.12초 간격으로 몰아 보내 전부 429,
+# 11-13·11-15 는 공유 러너 IP 라 첫 요청부터 429 였다. 그래서 천천히·조금씩 보내고, 막히면 그날은 접는다.
+TR_MIN_INTERVAL = 1.0    # 요청 간격(초) — 여기에 0~TR_JITTER 초를 무작위로 더한다
+TR_JITTER = 0.5
+TR_MAX_REQUESTS = 30     # 실행당 gtx 요청 상한(재시도 포함). 밀린 번역은 며칠에 나눠 채운다.
+TR_MAX_TRIES = 3         # 한 텍스트당 시도 횟수
+TR_BACKOFF = 4.0         # 429·5xx·타임아웃 백오프 4·8초 (Retry-After 가 있으면 그 값, 상한 30초)
+TR_RETRY_AFTER_CAP = 30
+TR_STOP_AFTER_429 = 3    # 429 가 연달아 이만큼 오면 이번 실행의 번역을 멈춘다(두드리지 않는다)
+TR_STATE = {"requests": 0, "consecutive_429": 0, "stopped": ""}
+_last_translate = [float("-inf")]
+
+
+def _tr_throttle():
+    wait = _last_translate[0] + TR_MIN_INTERVAL + random.uniform(0, TR_JITTER) - time.monotonic()
+    if wait > 0:
+        time.sleep(wait)
+    _last_translate[0] = time.monotonic()
+
+
 def translate(text, sl="en", tl="ko"):
-    """키없는 Google 번역(gtx). 실패 시 빈 문자열 반환(fallback)."""
+    """키없는 Google 번역(gtx). 성공 시 번역문, 실패 시 "" (fallback),
+    이번 실행의 요청 상한·중단 때문에 시도조차 안 했으면 None."""
     if not text or not text.strip():
         return ""
-    try:
-        q = urllib.parse.quote(text[:5000])
-        url = (f"https://translate.googleapis.com/translate_a/single"
-               f"?client=gtx&sl={sl}&tl={tl}&dt=t&q={q}")
-        req = urllib.request.Request(
-            url,
-            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
-        with urllib.request.urlopen(req, timeout=20) as r:
-            data = json.loads(r.read().decode("utf-8"))
-        parts = [seg[0] for seg in data[0] if seg and seg[0]]
-        return "".join(parts)
-    except Exception as e:
-        print(f"[translate] 실패({sl}->{tl}): {str(e)[:80]}", file=sys.stderr)
-        return ""
-    finally:
-        time.sleep(0.12)
+    q = urllib.parse.quote(text[:5000])
+    url = (f"https://translate.googleapis.com/translate_a/single"
+           f"?client=gtx&sl={sl}&tl={tl}&dt=t&q={q}")
+    reason = ""
+    for attempt in range(1, TR_MAX_TRIES + 1):
+        if not TR_STATE["stopped"] and TR_STATE["requests"] >= TR_MAX_REQUESTS:
+            TR_STATE["stopped"] = f"실행당 요청 상한 {TR_MAX_REQUESTS}회"
+        if TR_STATE["stopped"]:
+            return None if attempt == 1 else ""
+        _tr_throttle()
+        TR_STATE["requests"] += 1
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+            with urllib.request.urlopen(req, timeout=20) as r:
+                data = json.loads(r.read().decode("utf-8"))
+            TR_STATE["consecutive_429"] = 0
+            return "".join(seg[0] for seg in data[0] if seg and seg[0])
+        except urllib.error.HTTPError as e:   # URLError 의 하위 클래스라 먼저 잡는다
+            reason = f"HTTP {e.code}"
+            if e.code == 429:
+                TR_STATE["consecutive_429"] += 1
+                if TR_STATE["consecutive_429"] >= TR_STOP_AFTER_429:
+                    TR_STATE["stopped"] = f"429 {TR_STATE['consecutive_429']}회 연속"
+                    print(f"[translate] {TR_STATE['stopped']} — 이번 실행의 남은 번역은 다음 실행으로 미룬다",
+                          file=sys.stderr)
+                    return ""
+            else:
+                TR_STATE["consecutive_429"] = 0
+                if e.code < 500:
+                    break
+            delay = _retry_after(e, TR_RETRY_AFTER_CAP) or TR_BACKOFF * 2 ** (attempt - 1)
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException) as e:
+            reason = type(e).__name__
+            delay = TR_BACKOFF * 2 ** (attempt - 1)
+        except (ValueError, TypeError, IndexError, KeyError) as e:   # 응답 형식이 달라짐 — 재시도해도 같다
+            reason = f"응답 형식 {type(e).__name__}"
+            break
+        if attempt < TR_MAX_TRIES:
+            print(f"[translate] {reason} — {delay:.0f}초 뒤 재시도", file=sys.stderr)
+            time.sleep(delay)
+    print(f"[translate] 실패({sl}->{tl}): {reason}", file=sys.stderr)
+    return ""
 
 
 def search_pmids():
@@ -339,24 +393,25 @@ def translate_articles(out):
     # 한국어 번역 (제목 + 초록). 캐시 우선 — 재번역·rate-limit 방지.
     cache = load_cache()
     print(f"[collect] 한국어 번역 시작 ({len(out)}편)...", file=sys.stderr)
-    done = 0
-    for a in out:
-        pid = a.get("pmid", "")
-        if a.get("title"):
-            a["title_ko"] = translate_cached(cache, a["title"], key=f"{pid}:title")
-        if a.get("abstract"):
-            a["abstract_ko"] = translate_cached(cache, a["abstract"], key=f"{pid}:abstract")
-        done += 1
-        if done % 20 == 0:
-            print(f"[collect] 번역 {done}/{len(out)} (누적 {TR_STATS})", file=sys.stderr)
+    # 요청 상한이 있으니 눈에 잘 띄는 제목부터 전부 번역하고, 남은 몫으로 초록을 번역한다.
+    for field in ("title", "abstract"):
+        for a in out:
+            if a.get(field):
+                a[field + "_ko"] = translate_cached(cache, a[field], key=f"{a.get('pmid', '')}:{field}")
+        print(f"[collect] {field} 번역 끝 (누적 {TR_STATS}, gtx 요청 {TR_STATE['requests']}회)", file=sys.stderr)
     save_cache(cache)
     st = TR_STATS
-    print(f"[collect] 번역 완료 — 캐시 {st['cached']}건, 신규 {st['translated']}건, 실패 {st['failed']}건", file=sys.stderr)
-    if st["failed"]:
-        # GitHub Actions 주석(stdout). 비공식 gtx 엔드포인트가 막히면 여기서 먼저 드러난다.
+    print(f"[collect] 번역 완료 — 캐시 {st['cached']}건, 신규 {st['translated']}건, 실패 {st['failed']}건, "
+          f"미룸 {st['skipped']}건", file=sys.stderr)
+    stopped = TR_STATE["stopped"]
+    if st["failed"] or stopped.startswith("429"):
+        # GitHub Actions 주석(stdout). 비공식 gtx 엔드포인트가 막히면 여기서 먼저 드러난다. 실행은 실패시키지 않는다.
         total = st["translated"] + st["failed"]
-        print(f"::warning title=번역 실패::비공식 Google 번역(gtx) {st['failed']}/{total}건 실패 "
+        why = f", {stopped}로 {st['skipped']}건 미룸" if st["skipped"] else ""
+        print(f"::warning title=번역 실패::비공식 Google 번역(gtx) {st['failed']}/{total}건 실패{why} "
               f"— 해당 제목·초록은 원문만 표시되고 다음 실행에서 재시도한다.")
+    elif st["skipped"]:
+        print(f"::notice title=번역 나눠 채우는 중::{stopped} — 남은 {st['skipped']}건은 다음 실행에서 번역한다.")
     return out
 
 

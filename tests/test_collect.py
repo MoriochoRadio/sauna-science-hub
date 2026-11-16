@@ -241,5 +241,102 @@ class FetchDetailsTest(unittest.TestCase):
         self.assertEqual([a["pmid"] for a in out], ["3", "2"])
 
 
+def _gtx(text):
+    return _Resp(json.dumps([[[text, "src", None, None]]]).encode("utf-8"))
+
+
+class TranslateTest(unittest.TestCase):
+    def setUp(self):
+        c.TR_STATE.update(requests=0, consecutive_429=0, stopped="")
+        c.TR_STATS.update(cached=0, translated=0, failed=0, skipped=0)
+        c._last_translate[0] = float("-inf")
+        self.sleep = mock.patch.object(c.time, "sleep").start()
+        self.urlopen = mock.patch.object(c.urllib.request, "urlopen").start()
+        mock.patch.object(c.random, "uniform", return_value=0.0).start()
+        self.addCleanup(mock.patch.stopall)
+        err = redirect_stderr(io.StringIO())
+        err.__enter__()
+        self.addCleanup(err.__exit__, None, None, None)
+
+    def backoffs(self):
+        return [call.args[0] for call in self.sleep.call_args_list if call.args[0] >= 2]
+
+    def test_requests_are_spaced_at_least_a_second(self):
+        clock = iter([100.0, 100.0, 100.2, 101.0])   # 1차 대기 계산·기록, 2차 대기 계산·기록
+        with mock.patch.object(c.time, "monotonic", side_effect=lambda: next(clock)):
+            self.urlopen.side_effect = [_gtx("가"), _gtx("나")]
+            self.assertEqual(c.translate("a"), "가")
+            self.assertEqual(c.translate("b"), "나")
+        waits = [call.args[0] for call in self.sleep.call_args_list]
+        self.assertEqual(len(waits), 1)
+        self.assertAlmostEqual(waits[0], c.TR_MIN_INTERVAL - 0.2)
+
+    def test_429_backs_off_with_retry_after_then_succeeds(self):
+        self.urlopen.side_effect = [_http_error(429, "7"), _http_error(429), _gtx("번역")]
+        self.assertEqual(c.translate("text"), "번역")
+        self.assertEqual(self.backoffs(), [7.0, c.TR_BACKOFF * 2])
+        self.assertEqual(c.TR_STATE["consecutive_429"], 0)   # 성공하면 연속 카운트를 되돌린다
+
+    def test_retry_after_is_capped(self):
+        self.urlopen.side_effect = [_http_error(503, "3600"), _gtx("번역")]
+        self.assertEqual(c.translate("text"), "번역")
+        self.assertEqual(self.backoffs(), [float(c.TR_RETRY_AFTER_CAP)])
+
+    def test_consecutive_429_stops_the_run(self):
+        self.urlopen.side_effect = [_http_error(429)] * 10
+        self.assertEqual(c.translate("one"), "")
+        self.assertEqual(self.urlopen.call_count, c.TR_STOP_AFTER_429)
+        self.assertTrue(c.TR_STATE["stopped"].startswith("429"))
+        # 이후 텍스트는 요청 없이 '미룸'
+        self.assertIsNone(c.translate("two"))
+        self.assertEqual(self.urlopen.call_count, c.TR_STOP_AFTER_429)
+
+    def test_429_count_spans_texts(self):
+        self.urlopen.side_effect = [_http_error(500), _http_error(500), _http_error(429),   # 1번: 실패
+                                    _http_error(429), _http_error(429)]                     # 2번: 연속 3회 → 중단
+        self.assertEqual(c.translate("one"), "")
+        self.assertEqual(c.translate("two"), "")
+        self.assertTrue(c.TR_STATE["stopped"])
+        self.assertIsNone(c.translate("three"))
+
+    def test_4xx_other_than_429_is_not_retried(self):
+        self.urlopen.side_effect = [_http_error(403)]
+        self.assertEqual(c.translate("text"), "")
+        self.assertEqual(self.urlopen.call_count, 1)
+        self.assertFalse(c.TR_STATE["stopped"])
+
+    def test_request_cap_per_run(self):
+        with mock.patch.object(c, "TR_MAX_REQUESTS", 2):
+            self.urlopen.side_effect = [_gtx("1"), _gtx("2"), _gtx("3")]
+            self.assertEqual([c.translate(t) for t in "abc"], ["1", "2", None])
+        self.assertEqual(self.urlopen.call_count, 2)
+
+    def test_failures_and_skips_are_not_cached(self):
+        cache = {}
+        self.urlopen.side_effect = [_http_error(429)] * 3
+        self.assertEqual(c.translate_cached(cache, "Sauna", key="1:title"), "")
+        self.assertEqual(c.translate_cached(cache, "Heat", key="2:title"), "")
+        self.assertEqual(cache, {})
+        self.assertEqual((c.TR_STATS["failed"], c.TR_STATS["skipped"]), (1, 1))
+
+    def test_cached_entries_need_no_request_even_when_stopped(self):
+        cache = {"en>ko:1:title": "사우나", "en>ko:1:title#src": c.src_fp("Sauna")}
+        c.TR_STATE["stopped"] = "429 3회 연속"
+        self.assertEqual(c.translate_cached(cache, "Sauna", key="1:title"), "사우나")
+        self.urlopen.assert_not_called()
+
+    def test_titles_are_translated_before_abstracts(self):
+        arts = [{"pmid": str(i), "title": f"T{i}", "abstract": f"A{i}"} for i in (1, 2)]
+        self.urlopen.side_effect = lambda req, timeout: _gtx("번역")
+        with mock.patch.object(c, "TR_MAX_REQUESTS", 2), \
+                mock.patch.object(c, "load_cache", return_value={}), \
+                mock.patch.object(c, "save_cache"), redirect_stdout(io.StringIO()) as out:
+            c.translate_articles(arts)
+        self.assertEqual([a["title_ko"] for a in arts], ["번역", "번역"])
+        self.assertEqual([a.get("abstract_ko") for a in arts], ["", ""])
+        self.assertIn("::notice", out.getvalue())     # 상한으로 미룬 것만이면 경고가 아니라 안내
+        self.assertNotIn("::warning", out.getvalue())
+
+
 if __name__ == "__main__":
     unittest.main()
