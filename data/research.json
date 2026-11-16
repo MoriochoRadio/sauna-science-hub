@@ -1,8 +1,8 @@
 {
-  "updated": "2026-11-15",
-  "query": "(sauna[tiab] OR saunas[tiab] OR \"sauna bathing\"[tiab] OR \"Waon therapy\"[tiab] OR \"Steam Bath\"[mh]) AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")",
-  "count": 62,
-  "clinical_count": 5,
+  "updated": "2026-11-16",
+  "query": "((sauna[tiab] OR saunas[tiab] OR \"sauna bathing\"[tiab] OR \"Waon therapy\"[tiab] OR \"Steam Bath\"[mh]) AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")) NOT ((\"men who have sex with men\"[tiab] OR \"sexual minority men\"[tiab] OR gay[tiab] OR bisexual[tiab] OR \"sex-on-premises\"[tiab] OR chemsex[tiab] OR \"sexually transmitted\"[tiab] OR \"weight cutting\"[tiab] OR \"weight cut\"[tiab] OR \"rapid weight loss\"[tiab] OR \"rapid weight reduction\"[tiab] OR \"SAUNA model\"[tiab] OR \"SAUNA-induced\"[tiab]) NOT (sauna[ti] OR saunas[ti]))",
+  "count": 90,
+  "clinical_count": 7,
   "articles": [
     {
       "pmid": "42213968",
@@ -137,6 +137,61 @@
       "categories": [
         "심혈관",
         "회복·운동"
+      ]
+    },
+    {
+      "pmid": "39209309",
+      "title": "A Single Sauna Session Does Not Improve Postprandial Blood Glucose Handling in Individuals with Type 2 Diabetes Mellitus: A Cross-Over, Randomized, Controlled Trial.",
+      "title_ko": "",
+      "abstract": "INTRODUCTION: Passive heat treatment has been suggested to improve glycemic control in individuals with type 2 diabetes mellitus (T2DM). Previous studies have focused predominantly on hot water immersion and traditional sauna bathing, as opposed to the more novel method of infrared-based sauna bathing. Here, the impact of a single infrared sauna session on post-prandial glycemic control was assessed in older individuals with T2DM. METHODS: In this randomized controlled crossover trial, 12 participants with T2DM (male/female: 10/2, age: 69±7 y, BMI: 27.5±2.9 kg/m2) rested in an infrared sauna twice: once in a heated (60°C) and once in a thermoneutral (21°C) condition for 40 min, immediately followed by a 2-h oral glucose tolerance test (OGTT). Venous blood samples were obtained to assess plasma glucose and insulin concentrations and to determine the whole-body composite insulin sensitivity index. RESULTS: Body core and leg skin temperature were higher following the heated condition compared to the thermoneutral condition (38.0±0.3 vs. 36.6±0.2°C and 39.4±0.8 vs. 31.3±0.8°C, respectively; P<0.001 for both). The incremental area under the curve (iAUC) of plasma glucose concentrations during the OGTT was higher after the heated condition compared to the thermoneutral condition (17.7±3.1 vs. 14.8±2.8 mmol/L/120 min; P<0.001). No differences were observed in plasma insulin concentrations (heated: 380±194 vs. thermoneutral: 376±210 pmol/L/120 min; P=0.93) or whole-body composite insulin sensitivity indexes (4.5±2.8 vs. 4.5±2.1; P=0.67). CONCLUSIONS: A single infrared sauna session does not improve postprandial blood glucose handling in individuals with T2DM. Future studies should assess the effect of more prolonged application of infrared sauna bathing on daily glycemic control.",
+      "abstract_ko": "",
+      "journal": "Experimental and clinical endocrinology & diabetes : official journal, German Society of Endocrinology [and] German Diabetes Association",
+      "year": "2024",
+      "volume": "132",
+      "issue": "11",
+      "pages": "622-630",
+      "authors": [
+        "Schenaarts Laura",
+        "Hendriks Floris K",
+        "Fuchs Cas J",
+        "Sluijsmans Wendy Em",
+        "Snijders Tim",
+        "van Loon Luc Jc"
+      ],
+      "doi": "10.1055/a-2406-4491",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39209309/",
+      "evidence": "무작위 대조 시험(RCT)",
+      "is_clinical": true,
+      "categories": [
+        "대사·체중"
+      ]
+    },
+    {
+      "pmid": "37650138",
+      "title": "Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial.",
+      "title_ko": "",
+      "abstract": "Regular Finnish sauna use is associated with a reduced risk of cardiovascular mortality. However, physiological mechanisms underlying this association remain unknown. This study determined if an 8-wk Finnish sauna intervention improves peripheral endothelial function, microvascular function, central arterial stiffness, and blood pressure in adults with coronary artery disease (CAD). Forty-one adults (62 ± 6 yr, 33 men/8 women) with stable CAD were randomized to 8 wk of Finnish sauna use (n = 21, 4 sessions/wk, 20-30 min/session, 79°C, 13% relative humidity) or a control intervention (n = 20, lifestyle maintenance). Brachial artery flow-mediated dilation (FMD), carotid-femoral pulse wave velocity (cf-PWV), total (area under the curve) and peak postocclusion forearm reactive hyperemia, and blood pressure (automated auscultation) were measured before and after the intervention. After the sauna intervention, resting core temperature was lower (-0.27°C [-0.54, -0.01], P = 0.046) and sweat rate during sauna exposure was greater (0.3 L/h [0.1, 0.5], P = 0.003). The change in brachial artery FMD did not differ between interventions (control: 0.07% [-0.99, +1.14] vs. sauna: 0.15% [-0.89, +1.19], interaction P = 0.909). The change in total (P = 0.031) and peak (P = 0.024) reactive hyperemia differed between interventions due to a nonsignificant decrease in response to the sauna intervention and an increase in response to control. The change in cf-PWV (P = 0.816), systolic (P = 0.951), and diastolic (P = 0.292) blood pressure did not differ between interventions. These results demonstrate that four sessions of Finnish sauna bathing per week for 8 wk does not improve markers of vascular health in adults with stable CAD.NEW & NOTEWORTHY This study determined if unsupervised Finnish sauna bathing for 8 wk improves markers of vascular health in adults with coronary artery disease. Finnish sauna bathing reduced resting core temperature and improved sweating capacity, indicative of heat acclimation. Despite evidence of heat acclimation, Finnish sauna bathing did not improve markers of endothelial function, microvascular function, arterial stiffness, or blood pressure.",
+      "abstract_ko": "",
+      "journal": "Journal of applied physiology (Bethesda, Md. : 1985)",
+      "year": "2023",
+      "volume": "135",
+      "issue": "4",
+      "pages": "795-804",
+      "authors": [
+        "Debray Amélie",
+        "Gravel Hugo",
+        "Garceau Laurence",
+        "Bartlett Audrey-Ann",
+        "Chaseling Georgia K",
+        "Barry Hadiatou"
+      ],
+      "doi": "10.1152/japplphysiol.00322.2023",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37650138/",
+      "evidence": "무작위 대조 시험(RCT)",
+      "is_clinical": true,
+      "categories": [
+        "심혈관",
+        "사망률·수명"
       ]
     },
     {
@@ -1671,6 +1726,698 @@
       "is_clinical": false,
       "categories": [
         "심혈관"
+      ]
+    },
+    {
+      "pmid": "39773956",
+      "title": "Severe heat stroke with multiorgan failure following collapse in a sauna.",
+      "title_ko": "사우나에서 쓰러진 후 다기관 부전을 동반한 심각한 열사병입니다.",
+      "abstract": "Heat stroke is characterised by hyperthermia and acute encephalopathy. We describe a rare case of classical heat stroke secondary to prolonged sauna use with multiorgan sequelae including seizures, liver injury, kidney injury, disseminated intravascular coagulation, rhabdomyolysis and type 2 myocardial infarction. The patient was treated with external cooling, intravenous fluid therapy and blood products, and made a full recovery without need for advanced organ support. We discuss the evidence base surrounding the immediate treatment of heat stroke in the emergency department.",
+      "abstract_ko": "열사병은 고열과 급성 뇌병증이 특징입니다. 우리는 발작, 간 손상, 신장 손상, 파종성 혈관내 응고, 횡문근융해증 및 제2형 심근경색을 포함한 다장기 후유증을 동반한 장기간의 사우나 사용에 따른 전형적인 열사병의 드문 사례를 설명합니다. 환자는 외부 냉각, 정맥 수액 요법 및 혈액 제제로 치료를 받았으며 고급 장기 지원 없이도 완전히 회복되었습니다. 응급실에서 열사병의 즉각적인 치료를 둘러싼 근거 기반을 논의합니다.",
+      "journal": "BMJ case reports",
+      "year": "2025",
+      "volume": "18",
+      "issue": "1",
+      "pages": "",
+      "authors": [
+        "McIver William Jack",
+        "Zia Muhammad"
+      ],
+      "doi": "10.1136/bcr-2024-262069",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39773956/",
+      "evidence": "증례 보고",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "39762944",
+      "title": "The effect of post-exercise heat exposure (passive heat acclimation) on endurance exercise performance: a systematic review and meta-analysis.",
+      "title_ko": "운동 후 열 노출(수동 열 순응)이 지구력 운동 성능에 미치는 영향: 체계적 검토 및 메타 분석.",
+      "abstract": "BACKGROUND: \"Active\" heat acclimation (exercise-in-the-heat) can improve exercise performance but the efficacy of \"passive\" heat acclimation using post-exercise heat exposure is unclear. Therefore, we synthesised a systematic review and meta-analysis to answer whether post-exercise heat exposure improves exercise performance. METHODS: Five databases were searched to identify studies including: (i) healthy adults; (ii) an exercise training intervention with post-exercise heat exposure via sauna or hot water immersion (treatment group); (iii) a non-heat exposure control group completing the same training; and (iv) outcomes measuring exercise performance in the heat (primary outcome), or performance in thermoneutral conditions, V̇O2max, lactate threshold, economy, heart rate, RPE, core temperature, sweat rate, and thermal sensations. Study quality was assessed using the Cochrane Risk of Bias 2 tool. To determine the effect of post-exercise heat exposure, between-group ratio of means or standardized mean differences (SMD) were calculated for each outcome and weighted by the inverse of their variance to calculate an overall effect estimate (ratio of mean or Hedges'g) in a random effects meta-analysis, with 95% confidence intervals (CI) and prediction intervals (PI). Quality of evidence was assessed using the Grading of Recommendations Assessment, Development and Evaluation (GRADE) tool. RESULTS: Ten studies (199 participants: 156 male, 43 female, age 20-32 years) were included. The effect of post-exercise heat exposure on performance in hot conditions (33-40 °C) was trivial (ratio of means = 1.04) with poor precision (95%CI 0.94-1.15, P = 0.46) and low predictive certainty (95%PI 0.81-1.33). There were also trivial effects on performance in thermoneutral conditions (18-24 °C) and speed at lactate threshold, small effects on V̇O2max, heart rate, core temperature, and sweat rate, and a moderate effect on thermal sensations. However, the certainty in the effect estimates was graded as low to very low across all outcomes due to small sample sizes, high risk of bias, risk of publication bias, imprecision in the effect estimates, and low statistical power. CONCLUSIONS: The use of post-exercise heat exposure for improving exercise performance is uncertain. Further high-quality trials are needed to make firm conclusions. PROTOCOL REGISTRATION: Open Science Foundation ( https://doi.org/10.17605/OSF.IO/256XZ ).",
+      "abstract_ko": "배경: \"활동적인\" 열 순응(더위 속에서 운동)은 운동 성능을 향상시킬 수 있지만 운동 후 열 노출을 이용한 \"수동적인\" 열 순응의 효능은 불분명합니다. 따라서 우리는 운동 후 열 노출이 운동 수행 능력을 향상시키는지 알아보기 위해 체계적인 검토와 메타 분석을 종합했습니다. 방법: 다음을 포함한 연구를 확인하기 위해 5개의 데이터베이스를 검색했습니다. (i) 건강한 성인; (ii) 사우나 또는 온수 침수를 통한 운동 후 열 노출을 통한 운동 훈련 중재(치료군); (iii) 동일한 교육을 이수한 비열 노출 대조군; (iv) 더위에서의 운동 성능(1차 결과) 또는 열 중립 조건에서의 성능, V̇O2max, 젖산염 역치, 경제성, 심박수, RPE, 심부 체온, 땀 속도 및 열 감각을 측정한 결과. Cochrane Risk of Bias 2 도구를 사용하여 연구 품질을 평가했습니다. 운동 후 열 노출의 효과를 확인하기 위해 각 결과에 대해 그룹 간 평균 비율 또는 표준화된 평균 차이(SMD)를 계산하고 분산의 역수로 가중하여 무작위 효과 메타 분석에서 95% 신뢰 구간(CI) 및 예측 구간(PI)을 사용하여 전체 효과 추정치(평균 또는 Hedges'g 비율)를 계산했습니다. GRADE(Grading of Recommendations Assessment, Development and Evaluation) 도구를 사용하여 증거의 품질을 평가했습니다. 결과: 10개의 연구(참가자 199명: 남성 156명, 여성 43명, 연령 20-32세)가 포함되었습니다. 더운 조건(33~40°C)에서 운동 후 열 노출이 성능에 미치는 영향은 미미했으며(평균 비율 = 1.04), 정밀도가 낮았고(95%CI 0.94~1.15, P = 0.46) 예측 확실성이 낮았습니다(95%PI 0.81~1.33). 또한 열중립 조건(18~24°C)의 성능과 젖산염 역치의 속도에 대한 사소한 영향이 있었고, V̇O2max, 심박수, 심부 온도 및 땀율에 대한 작은 영향과 열 감각에 대한 중간 정도의 영향이 있었습니다. 그러나 효과 추정의 확실성은 작은 표본 크기, 높은 편향 위험, 출판 편향 위험, 효과 추정의 부정확성 및 낮은 통계적 검정력으로 인해 모든 결과에 걸쳐 낮음에서 매우 낮은 등급으로 분류되었습니다. 결론: 운동 성능 향상을 위해 운동 후 열 노출을 사용하는 것은 불확실합니다. 확고한 결론을 내리기 위해서는 추가적인 고품질 시험이 필요합니다. 프로토콜 등록: Open Science Foundation ( https://doi.org/10.17605/OSF.IO/256XZ ).",
+      "journal": "BMC sports science, medicine & rehabilitation",
+      "year": "2025",
+      "volume": "17",
+      "issue": "1",
+      "pages": "4",
+      "authors": [
+        "Solomon Thomas P J",
+        "Laye Matthew J"
+      ],
+      "doi": "10.1186/s13102-024-01038-6",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39762944/",
+      "evidence": "메타분석(추정)",
+      "is_clinical": false,
+      "categories": [
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "39688619",
+      "title": "Lack of gastric emptying at autopsy eleven days after heat trauma in the sauna- a forensic autopsy case report.",
+      "title_ko": "사우나 열외상 11일 후 부검 시 위 배출 부족 - 법의학적 부검 사례 보고.",
+      "abstract": "A man in his mid-70s passed out in a public 90-degree sauna and remained unconscious for at least half an hour. He suffered third-degree burns to approximately 50% of his body surface area. Despite immediate transport to a burn center and intensive care therapy, he did not regain consciousness and died eleven days later.When the body was opened, the lungs, liver, kidneys, and spleen showed changes consistent with the burns, intensive care therapy, and clinically suspected septic shock. The stomach contained approximately 200 ml of thickened chyme with coarse vegetable components. Such food components were not seen in the duodenum or in the following intestinal segments.Considering the overall circumstances, the stomach contents must have been the last meal the man had eaten before the sauna session. The problem of reduced gastrointestinal motility in burn patients is clinically recognized. Nevertheless, a complete failure of gastric emptying for eleven days after intensive care therapy has not been described before and shows that the use of gastric contents in forensic practice is inappropriate for drawing conclusions about the time interval between last food intake and death and thus for estimating the time of death.",
+      "abstract_ko": "70대 중반 남성이 90도 공중 사우나에서 기절해 최소 30분 동안 의식을 잃은 상태였다. 그는 신체 표면적의 약 50%에 3도 화상을 입었습니다. 즉시 화상센터로 이송하고 집중치료를 받았음에도 불구하고 의식을 회복하지 못하고 11일 만에 사망했다. 시신을 열었을 때 폐, 간, 신장, 비장 등에 화상과 중환자치료, 임상적으로 의심되는 패혈성 쇼크와 일치하는 변화가 나타났다. 위에는 거친 야채 성분이 포함된 걸쭉한 유미즙이 약 200ml 들어 있었습니다. 이러한 음식물 성분은 십이지장이나 이어지는 장 부위에서는 보이지 않았다. 전체적인 상황으로 볼 때 위 내용물은 남성이 사우나를 하기 전 먹은 마지막 식사였을 것으로 추정된다. 화상 환자의 위장 운동성 감소 문제는 임상적으로 인정됩니다. 그럼에도 불구하고 집중 치료 후 11일 동안 위 배출이 완전히 실패한 사례는 이전에 기술된 바 없으며 법의학 실습에서 위 내용물을 사용하는 것이 마지막 음식 섭취부터 사망까지의 시간 간격에 대한 결론을 도출하고 사망 시간을 추정하는 데 부적절함을 보여줍니다.",
+      "journal": "Forensic science, medicine, and pathology",
+      "year": "2025",
+      "volume": "21",
+      "issue": "3",
+      "pages": "1321-1326",
+      "authors": [
+        "Kerscher Susanne R",
+        "Kern Natascha",
+        "Chistiakova Nadezhda",
+        "Verhoff Doreen",
+        "Verhoff Marcel A"
+      ],
+      "doi": "10.1007/s12024-024-00931-3",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39688619/",
+      "evidence": "증례 보고",
+      "is_clinical": false,
+      "categories": [
+        "사망률·수명",
+        "호흡기"
+      ]
+    },
+    {
+      "pmid": "39607529",
+      "title": "Effects of thermal interventions on skeletal muscle adaptations and regeneration: perspectives on epigenetics: a narrative review.",
+      "title_ko": "",
+      "abstract": "Recovery methods, such as thermal interventions, have been developed to promote optimal recovery and maximize long-term training adaptations. However, the beneficial effects of these recovery strategies remain a source of controversy. This narrative review aims to provide a detailed understanding of how cold and heat interventions impact long-term training adaptations. Emphasis is placed on skeletal muscle adaptations, particularly the involvement of signaling pathways regulating protein turnover, ribosome and mitochondrial biogenesis, as well as the critical role of satellite cells in promoting myofiber regeneration following atrophy. The current literature suggests that cold interventions can blunt molecular adaptations (e.g., protein synthesis and satellite cell activation) and oxi-inflammatory responses after resistance exercise, resulting in diminished exercise-induced hypertrophy and lower gains in isometric strength during training protocols. Conversely, heat interventions appear promising for mitigating skeletal muscle degradation during immobilization and atrophy. Indeed, heat treatments (e.g., passive interventions such as sauna-bathing or diathermy) can enhance protein turnover and improve the maintenance of muscle mass in atrophic conditions, although their effects on uninjured skeletal muscles in both humans and rodents remain controversial. Nonetheless, heat treatment may serve as an important tool for attenuating atrophy and preserving mitochondrial function in immobilized or injured athletes. Finally, the potential interplay between exercise, thermal interventions and epigenetics is discussed. Future studies must be encouraged to clarify how repeated thermal interventions (heat and cold) affect long-term exercise training adaptations and to determine the optimal modalities (i.e., method of application, temperature, duration, relative humidity, and timing).",
+      "abstract_ko": "",
+      "journal": "European journal of applied physiology",
+      "year": "2025",
+      "volume": "125",
+      "issue": "2",
+      "pages": "277-301",
+      "authors": [
+        "Normand-Gravier Tom",
+        "Solsona Robert",
+        "Dablainville Valentin",
+        "Racinais Sébastien",
+        "Borrani Fabio",
+        "Bernardi Henri"
+      ],
+      "doi": "10.1007/s00421-024-05642-9",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39607529/",
+      "evidence": "리뷰",
+      "is_clinical": false,
+      "categories": [
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "39545999",
+      "title": "Influence of hydrotherapy on change in weight: a narrative review.",
+      "title_ko": "",
+      "abstract": "There is a growing interest in weight loss in today's world. Environmental factors are the main contributor behind the rapidly spreading obesity during pandemic. Exercise and diet are two controllable elements that significantly effect on energy balance., The use of cold application such as cold-water immersion, cold abdominal pack, balneotherapy, cold exposure, water drinking, steam, and sauna sessions, has shown a positive impact in weight management. This review explains the mechanism and various types of hydrotherapy applications managing weight through thermogenesis and non-shivering thermogenic pathways, which involve the brown adipose tissue, and dependent on uncoupling protein 1 (UCP1) in the inner mitochondrial membrane. Hence the present literature provides insight into use of hydrotherapy applications for future direction in weight management.",
+      "abstract_ko": "",
+      "journal": "International journal of biometeorology",
+      "year": "2025",
+      "volume": "69",
+      "issue": "2",
+      "pages": "295-301",
+      "authors": [
+        "Manju M Y",
+        "Shetty Geetha B",
+        "Sujatha K J",
+        "Shetty Prashanth"
+      ],
+      "doi": "10.1007/s00484-024-02823-1",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39545999/",
+      "evidence": "리뷰",
+      "is_clinical": false,
+      "categories": [
+        "대사·체중",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "39373667",
+      "title": "Repeated passive heat treatment increases muscle tissue capillarization, but does not affect postprandial muscle protein synthesis rates in healthy older adults.",
+      "title_ko": "",
+      "abstract": "Prolonged passive heat treatment (PHT) has been suggested to trigger skeletal muscle adaptations that may improve muscle maintenance in older individuals. To assess the effects of PHT on skeletal muscle tissue capillarization, perfusion capacity, protein synthesis rates, hypertrophy and leg strength, 14 older adults (9 males, 5 females; 73 ± 6 years) underwent 8 weeks of PHT (infrared sauna: 3× per week, 45 min at ∼60°C). Before and after PHT we collected muscle biopsies to assess skeletal muscle capillarization and fibre cross-sectional area (CSA). Basal and postprandial muscle tissue perfusion kinetics and protein synthesis rates were assessed using contrast-enhanced ultrasound and primed continuous l-[ring-13C6]phenylalanine infusions, respectively. One-repetition maximum (1RM) leg strength and vastus lateralis muscle CSA were assessed. Type I and type II muscle fibre capillarization strongly increased following PHT (capillary-to-fibre perimeter exchange index: +31 ± 18 and +33 ± 30%, respectively; P < 0.001). No changes were observed in basal (0.24 ± 0.27 vs. 0.18 ± 0.11 AU; P = 0.266) or postprandial (0.20 ± 0.12 vs. 0.18 ± 0.14 AU; P = 0.717) microvascular blood flow following PHT. Basal (0.048 ± 0.014 vs. 0.051 ± 0.019%/h; P = 0.630) and postprandial (0.041 ± 0.012 vs. 0.051 ± 0.024%/h; P = 0.199) muscle protein synthesis rates did not change in response to prolonged PHT. Furthermore, no changes in vastus lateralis muscle CSA (15.3 ± 4.6 vs. 15.2 ± 4.6 cm2; P = 0.768) or 1RM leg strength (46 ± 12 vs. 47 ± 12 kg; P = 0.087) were observed over time. In conclusion, prolonged PHT increases muscle tissue capillarization but this does not improve muscle microvascular blood flow or increase muscle protein synthesis rates in healthy, older adults. Prolonged PHT does not induce skeletal muscle hypertrophy or increase leg strength in healthy, older adults. KEY POINTS: Repeated exposure to heat has been suggested to trigger skeletal muscle adaptive responses. We investigated the effect of 8 weeks of whole-body passive heat treatment (PHT; infrared sauna: 3× per week for 45 min at ∼60°C) on skeletal muscle tissue capillarization, perfusion capacity, basal, and postprandial muscle protein synthesis rates, muscle (fibre) hypertrophy, and leg strength in healthy, older adults. Prolonged PHT increases muscle tissue capillarization, but this does not improve muscle microvascular blood flow or increase muscle protein synthesis rates. Despite increases in muscle tissue capillarization, prolonged PHT does not suffice to induce skeletal muscle hypertrophy or increase leg strength in healthy, older adults.",
+      "abstract_ko": "",
+      "journal": "The Journal of physiology",
+      "year": "2025",
+      "volume": "603",
+      "issue": "1",
+      "pages": "167-186",
+      "authors": [
+        "Fuchs Cas J",
+        "Betz Milan W",
+        "Petrick Heather L",
+        "Weber Jil",
+        "Senden Joan M",
+        "Hendriks Floris K"
+      ],
+      "doi": "10.1113/JP286986",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39373667/",
+      "evidence": "단면 연구(추정)",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "39660118",
+      "title": "Death after sauna-case report of a heat stroke associated subarachnoid hemorrhage.",
+      "title_ko": "사우나 후 ​​사망 - 열사병 관련 지주막하 출혈 사례 보고.",
+      "abstract": "Heat exposure could cause organ injuries leading to multi-organ failure. This case report describes a cardiopulmonary healthy 61-year-old woman who was admitted to our university hospital in an unconscious state after spending more than 30 min in an 80°C sauna. Initial radiological imaging revealed no pathological findings. Laboratory results revealed a rapidly progressing disseminated intravascular coagulation (\"DIC\") and a clinically asymptomatic COVID-19 infection. The patient died 38 h after admission due to a second-stage subarachnoid hemorrhage associated with progressive DIC. This report emphasizes the importance of awareness and strategies to mitigate deadly consequences of heat exposure.",
+      "abstract_ko": "열 노출로 인해 장기 손상이 발생하여 다기관 부전이 발생할 수 있습니다. 본 증례보고는 심폐기능이 건강한 61세 여성으로 80℃ 사우나에서 30분 이상을 보낸 후 의식불명 상태로 우리 대학병원에 입원하였다. 초기 방사선 영상에서는 병리학적 소견이 나타나지 않았습니다. 실험실 결과, 빠르게 진행되는 파종성 혈관내 응고(\"DIC\")와 임상적으로 무증상인 코로나19 감염이 밝혀졌습니다. 환자는 진행성 DIC와 관련된 2단계 지주막하 출혈로 인해 입원 38시간 만에 사망했습니다. 이 보고서는 열 노출로 인한 치명적인 결과를 완화하기 위한 인식과 전략의 중요성을 강조합니다.",
+      "journal": "Frontiers in cardiovascular medicine",
+      "year": "2024",
+      "volume": "11",
+      "issue": "",
+      "pages": "1476962",
+      "authors": [
+        "Nothnagel Anna Maria",
+        "Schwartz Stefan",
+        "Abramovich Igor",
+        "Schneider Thomas",
+        "Angermair Stefan",
+        "Treskatsch Sascha"
+      ],
+      "doi": "10.3389/fcvm.2024.1476962",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39660118/",
+      "evidence": "증례 보고",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "사망률·수명"
+      ]
+    },
+    {
+      "pmid": "39618664",
+      "title": "Use of Lower-Leg Bathing to Facilitate Exercise Therapy in a Patient With Severe Pulmonary Arterial Hypertension: A Case Report.",
+      "title_ko": "",
+      "abstract": "Waon therapy (WT), which in Japanese means soothing warmth, is a repeated sauna therapy that improves cardiac and vascular endothelial function in patients with chronic heart failure (CHF). However, lower-leg baths can be easily performed anywhere. Here, we report a case in which leg baths were used to alleviate the symptoms of heart failure and enable the introduction of exercise therapy. A woman in her 70s with collagenous pulmonary arterial hypertension (class Ⅲ) associated with scleroderma was on home oxygen therapy; however, she experienced difficulty in performing active exercise therapy owing to shortness of breath on exertion and hypotension. As an alternative to WT, three sessions of lower-leg bathing at 42°C were performed weekly for three weeks. After lower-leg bathing, the patient's peripheral blood flow improved, and her clinical symptoms were alleviated; as such, exercise therapy could be introduced. However, tricuspid regurgitation pressure gradient and N-terminal pro-B-type natriuretic peptide returned to pre-intervention levels nine months after discharge. Although lower-leg bathing can temporarily alleviate the patient's symptoms, its effect is not long-lasting. Although lower-leg bathing has no long-term effects, it may be a treatment option for severe pulmonary hypertension (PH) when exercise therapy is difficult to introduce.",
+      "abstract_ko": "",
+      "journal": "Cureus",
+      "year": "2024",
+      "volume": "16",
+      "issue": "10",
+      "pages": "e72732",
+      "authors": [
+        "Takahashi Yusuke",
+        "Miyamoto Daido",
+        "Hasegawa Kakeru",
+        "Suzuki Tomohito",
+        "Watanabe Hiroyuki"
+      ],
+      "doi": "10.7759/cureus.72732",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39618664/",
+      "evidence": "증례 보고",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "39554929",
+      "title": "A Defined, Plant-Based Diet and Other Integrative Therapies Improve Functional Status and Ejection Fraction while Reducing Medications in Patients With Heart Failure: A Case Series.",
+      "title_ko": "",
+      "abstract": "Heart failure with reduced ejection fraction (HFrEF) is a major contributor of premature cardiovascular-related deaths. Patients are typically on numerous medications to manage this condition; however, patients continue to experience poor quality of life. Alternative therapeutic approaches are needed to treat HFrEF. The clinical course of seven patients with Stage C and D HFrEF who failed guideline-directed medical therapy were retrospectively analyzed based on medical chart data. All patients consumed a defined, plant-based diet as part of their clinical treatment, and a subset also underwent alternative treatment modalities: External Counterpulsation therapy, BEMER therapy, infrared sauna therapy, ozone therapy, or PlaqueX® therapy. Chart review of these patients indicated improvement in left ventricular ejection fraction (LVEF) and right ventricular systolic pressure (RVSP). All patients also had a significant reduction in medication needs and body weight. Further, all patients reported significant improvements in their quality of life. These data suggest that a defined, plant-based diet combined with other alternative modalities may be efficacious in reducing HFrEF medications and treating Stage C or D HFrEF patients who failed guideline-direct medical therapies. Observations from this case series indicate a need for rigorous prospective studies to confirm these effects.",
+      "abstract_ko": "",
+      "journal": "American journal of lifestyle medicine",
+      "year": "2024",
+      "volume": "",
+      "issue": "",
+      "pages": "15598276241281475",
+      "authors": [
+        "Owens Camille V",
+        "Najjar Rami S",
+        "Bruce Marino A",
+        "Beech Bettina M",
+        "Montgomery Baxter D"
+      ],
+      "doi": "10.1177/15598276241281475",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39554929/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "사망률·수명",
+        "대사·체중"
+      ]
+    },
+    {
+      "pmid": "39446139",
+      "title": "Sauna bathing in northern Sweden: results from the MONICA study 2022.",
+      "title_ko": "",
+      "abstract": "Frequent sauna bathing has been associated with a reduced risk of cardiovascular disease and proposed as a mediator for improved health. Therefore, the aim was to describe and compare sauna bathers with non-sauna bathers in northern Sweden based on their demographics, health and life attitudes, and to describe sauna bathers' sauna habits. Questions on sauna bathing habits were included in the questionnaire for the participants in the Northern Sweden MONICA (multinational monitoring of trends and determinants in cardiovascular disease) study, conducted during spring of 2022, inviting adults 25-74 years living in the two northernmost counties of Sweden (Norr- and Västerbotten), randomly selected from the population register. Of the 1180 participants in MONICA 2022, 971 (82%) answered the question about sauna bathing. Of these, 641 (66%) were defined as sauna bathers. Sauna bathers reported less hypertension diagnosis and self-reported pain. They also reported higher levels of happiness and energy, more satisfying sleep patterns, as well as better general and mental health. Sauna bathers were younger, more often men and found to have a healthier life-profile compared to non-sauna bathers. Additionally, the results suggest that the positive effects associated with sauna bathing plateaued from 1-4 times per month.",
+      "abstract_ko": "",
+      "journal": "International journal of circumpolar health",
+      "year": "2024",
+      "volume": "83",
+      "issue": "1",
+      "pages": "2419698",
+      "authors": [
+        "Engström Åsa",
+        "Hägglund Hans",
+        "Lee Earric",
+        "Wennberg Maria",
+        "Söderberg Stefan",
+        "Andersson Maria"
+      ],
+      "doi": "10.1080/22423982.2024.2419698",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39446139/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "인지·뇌",
+        "통증·염증"
+      ]
+    },
+    {
+      "pmid": "39411024",
+      "title": "Implementation of a mixed-methods heat acclimation programme in a professional soccer referee before the 2022 FIFA world cup in Qatar: a case study.",
+      "title_ko": "",
+      "abstract": "OBJECTIVES: This case study reports the real-world practicalities of implementing a mixed-methods heat acclimation (HA) programme before the 2022 FIFA World Cup. METHODS: One male English soccer referee (age: 44 years; height: 1.82 m; body mass: 76.0 kg) who had officiated professionally for over 17 years and had over 10 years' experience officiating in European and international matches undertook an 11-session HA programme over 22 days. On days 1 and 22, a 30 min fixed-intensity heat tolerance test (9 km.h-1, 2% gradient, 40°C, 40% relative humidity) was performed, and physiological and perceptual responses were measured. A mixed-methods HA approach was used, including environmental chamber isothermic training, post-temperate training saunas and hot water immersion. RESULTS: Compared with the pre-test, peak core temperature reduced by 0.40°C (38.4 vs 38.0°C; minimal detectable change (MDC) = 0.34°C), peak skin temperature reduced by 0.5°C (36.7 vs 36.2°C; MDC=0.28°C) and peak heart rate reduced by 5 b·min-1 (167 vs. 162 b·min-1; MDC=4 b·min-1) in the post-test. In the post-test, the sweat rate increased by 17% (1.94 vs 2.27 L.h-1; MDC=0.42 L.h-1). Peak thermal sensation (7 = 'hot') and the rating of perceived exertion (3 = 'moderate') were unchanged between the tests. However, peak thermal comfort (3 = 'slightly uncomfortable' vs 2 = 'uncomfortable') was rated lower in the post-test. CONCLUSION: The HA programme elicited positive physiological but indifferent perceptual responses, highlighting that mixed-methods HA can be implemented when a referee still has officiating, travel and training responsibilities during the HA window.",
+      "abstract_ko": "",
+      "journal": "BMJ open sport & exercise medicine",
+      "year": "2024",
+      "volume": "10",
+      "issue": "4",
+      "pages": "e002185",
+      "authors": [
+        "Read Dale B",
+        "Evans Daniel T",
+        "Breivik Simon",
+        "Elliott Joshua D",
+        "Gibson Oliver R",
+        "Birdsey Laurence P"
+      ],
+      "doi": "10.1136/bmjsem-2024-002185",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39411024/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "기타"
+      ]
+    },
+    {
+      "pmid": "39049501",
+      "title": "Blood, Sweat, and Tears: Implications for Hydration Testing in Combat Sports-Investigating Body Mass Loss and Biomarker Changes.",
+      "title_ko": "",
+      "abstract": "Combat sports athletes often undergo rapid body mass loss (BML), which presents health risks. Hydration testing has been proposed as a possible solution to reduce or eliminate rapid BML. However, combat sports athletes may exhibit distinct physiological characteristics due to repeated exposure to BML. Thus, traditional and emerging hydration biomarkers should be investigated to determine their potential suitability for field use in this cohort. This study examined whether BML can explain changes in serum and urine osmolality (SosmΔ, UosmΔ), tear osmolarity (TosmΔ), hematocrit (HctΔ), and urine-specific gravity (USGΔ) after mild-moderate passive dehydration. Biomarker reliability was also assessed across two trials. Fifteen male and female combat sports athletes (age: 26.3 ± 5.3 years, body mass: 67.7 ± 9.9 kg) underwent a sauna protocol twice (5-28 days apart) aiming for 4% BML. The average BML in Trials 1 and 2 was 3.0 ± 0.7%. Regression analysis revealed that BML explained HctΔ (R2 = 0.22, p = 0.009) but not SosmΔ (R2 = 0.11, p = 0.079) or other biomarkers. Intraclass correlation coefficients (ICCs) were significant for all biomarkers except TosmΔ (ICC = 0.06, p = 0.37) and post-Tosm (ICC = 0.04, p = 0.42); post-Hct performed best (ICC = 0.82, p < 0.001). Contingency tables with post-Sosm (295 mOsm/kg) and post-USG (1.020) cutoffs revealed an 80% true negative rate (TNR) and a 62% true positive rate (TPR). Increasing the Sosm cutoff to 301 mOsm/kg decreased the TNR to 52% but increased the TPR to 83%. Although blood parameters were most sensitive to BML, they could only explain 11%-22% of biomarker variation. The typical USG cutoff misclassified 42% of athletes postdehydration, and reliability was generally poor-moderate. Alternative strategies should be pursued to manage rapid BML in combat sports.",
+      "abstract_ko": "",
+      "journal": "Scandinavian journal of medicine & science in sports",
+      "year": "2024",
+      "volume": "34",
+      "issue": "8",
+      "pages": "e14701",
+      "authors": [
+        "Doherty Colin S",
+        "Fortington Lauren V",
+        "Barley Oliver R"
+      ],
+      "doi": "10.1111/sms.14701",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39049501/",
+      "evidence": "코호트 연구(추정)",
+      "is_clinical": false,
+      "categories": [
+        "기타"
+      ]
+    },
+    {
+      "pmid": "38836690",
+      "title": "Enhancing Cardiorespiratory Fitness Through Sauna Bathing: Insights From the Kuopio Ischemic Heart Disease Prospective Study.",
+      "title_ko": "",
+      "abstract": "PURPOSE: The physiological adaptations stimulated by a sauna bath (SB) are similar to those produced by moderate- or high-intensity physical activity (PA), but the relationship between SB and cardiorespiratory fitness (CRF) is not clear. The objective of this study was to evaluate the cross-sectional and longitudinal associations between frequency and duration of SB with CRF. METHODS: Baseline SB habits were assessed in 2012 men aged 42 -61 yr. CRF was directly measured using a respiratory gas exchange analyzer during cardiopulmonary exercise testing at baseline and 11 yr later. The associations of SB frequency and duration with baseline and 11-yr levels of CRF were examined using robust regression analyses adjusted for several confounders, including lifestyle factors such as PA. RESULTS: In baseline analysis, a unit increase in sauna sessions/wk was associated with an increase in CRF 0.30 mL/kg/min (standard error [SE]: 0.14; P = .034). Alternatively, compared with a single sauna sessions/wk, 2-3 and 4-7 sauna sessions/wk was each associated with significant increases in levels of CRF: 0.84 mL/kg/min (SE: 0.32; P = .008) and 1.17 mL/kg/min (SE: 0.57; P = .041), respectively. In longitudinal analysis, frequent SB was associated with increases in 11-yr CRF levels, but this was only significant for 2-3 sauna sessions/wk compared with a single sauna sessions/wk: 1.22 mL/kg/min (SE: 0.59; P = .038). Duration of SB was not significantly associated with CRF levels in cross-sectional and longitudinal analyses. CONCLUSIONS: Frequent SB may improve levels of CRF independently of PA. These results warrant replication in robust definitive randomized controlled trials.",
+      "abstract_ko": "",
+      "journal": "Journal of cardiopulmonary rehabilitation and prevention",
+      "year": "2024",
+      "volume": "44",
+      "issue": "4",
+      "pages": "295-300",
+      "authors": [
+        "Kunutsor Setor K",
+        "Isiozor Nzechukwu M",
+        "Kurl Sudhir",
+        "Laukkanen Jari A"
+      ],
+      "doi": "10.1097/HCR.0000000000000876",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38836690/",
+      "evidence": "무작위 시험(추정)",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "호흡기",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "38718442",
+      "title": "Frequent sauna bathing and psychosis: Interrelationship with cardiorespiratory fitness.",
+      "title_ko": "",
+      "abstract": "Frequent sauna bathing and higher cardiorespiratory fitness (CRF) levels may play a role in reducing the risk of mental disorders such as psychosis, however, data on their joint contributions is scanty. We aimed to investigate the interplay between sauna bathing, CRF and psychosis risk using a population-based prospective study. Self-reported frequency of sauna bathing (FSB) and CRF measured by respiratory gas analyses were assessed at baseline in 2221 men aged 42-61 years who had no history of psychosis. Frequency of sauna bathing was categorized as low and high (≤2 and 3-7 sessions/week, respectively) and CRF as tertiles (low, medium and high). Hazard ratios (HRs) with 95% CIs were estimated. During a median follow-up of 25.2 years, 215 psychotic disorders were recorded. Comparing high vs low FSB, the multivariable-adjusted HRs (95% CIs) for psychosis was 0.49 (0.32-0.74), which persisted on further adjustment for CRF 0.50 (0.33-0.75). Compared to low CRF, the multivariable-adjusted HRs (95% CIs) for medium and high CRF levels were 0.65 (0.46-0.90) and 0.75 (0.52-1.07) respectively. Compared to low FSB & low CRF, the HRs (95% CIs) for low FSB & medium-high CRF, high FSB & low CRF, and high FSB & medium-high CRF were 0.62 (0.45-0.84), 0.26 (0.11-0.60), and 0.41 (0.25-0.68) respectively. Frequent sauna baths and medium-high CRF levels appear to each independently decrease psychosis risk. However, frequent sauna bathing may be related to a reduced risk of psychosis irrespective of fitness levels and might be a stronger risk indicator for psychosis than CRF.",
+      "abstract_ko": "",
+      "journal": "Journal of psychiatric research",
+      "year": "2024",
+      "volume": "175",
+      "issue": "",
+      "pages": "75-80",
+      "authors": [
+        "Kunutsor Setor K",
+        "Kauhanen Jussi",
+        "Laukkanen Jari A"
+      ],
+      "doi": "10.1016/j.jpsychires.2024.04.044",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38718442/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "인지·뇌",
+        "호흡기"
+      ]
+    },
+    {
+      "pmid": "38716581",
+      "title": "Association of MTHFR (C677T, A1298C) and MTRR A66G polymorphisms with fatty acids profile and risk of neural tube defects.",
+      "title_ko": "",
+      "abstract": "OBJECTIVE: This study aims to determine if 5,10-methylenetetrahydrofolate reductase (MTHFR C677T and A1298C) and methionine synthase reductase (MTRR A66G) gene polymorphisms were associated with fatty acid (FA) levels in mothers of fetuses with neural tube defects (NTDs) and whether these associations were modified by environmental factors. METHODS: Plasma FA composition was assessed using capillary gas chromatography. Concentrations of studied FA were compared between 42 mothers of NTDs fetuses and 30 controls as a function of each polymorphism by the Kruskal-Wallis nonparametric test. RESULTS: In MTHFR gene C677T polymorphism, cases with (CT + TT) genotype had lower monounsaturated FAs (MUFA) and omega-3 polyunsaturated FA (n-3 PUFA) levels, but higher omega-6 polyunsaturated FAs (n-6 PUFA) and omega-6 polyunsaturated FAs: omega-3 polyunsaturated FAs (n-6:n-3) ratio levels. In MTRR gene A66G polymorphism, cases with (AG + GG) genotype had lower MUFA levels, but higher PUFA and n-6 PUFA levels. Controls with (AG + GG) genotype had lower n-6 PUFA levels. In MTHFR gene C677T polymorphism, cases with smoking spouses and (CT + TT) genotype had lower MUFA and n-3 PUFA levels, but higher PUFA, n-6 PUFA, and n-6:n-3 ratio levels. Cases with (CT + TT) genotype and who used sauna during pregnancy had lower n-3 PUFA levels. In MTRR gene A66G polymorphism, cases with (AG + GG) genotype and who used sauna during pregnancy had higher PUFA and n-6 PUFA levels. CONCLUSIONS: Further research is required to clarify the association of FA metabolism and (MTHFR, MTRR) polymorphisms with NTDs.",
+      "abstract_ko": "",
+      "journal": "Birth defects research",
+      "year": "2024",
+      "volume": "116",
+      "issue": "5",
+      "pages": "e2333",
+      "authors": [
+        "Nasri Kaouther",
+        "Ben Jamaa Nadia",
+        "Gaigi Soumeya Siala",
+        "Feki Moncef",
+        "Marrakchi Raja"
+      ],
+      "doi": "10.1002/bdr2.2333",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38716581/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "기타"
+      ]
+    },
+    {
+      "pmid": "38577299",
+      "title": "The multifaceted benefits of passive heat therapies for extending the healthspan: A comprehensive review with a focus on Finnish sauna.",
+      "title_ko": "",
+      "abstract": "Passive heat therapy is characterized by exposure to a high environmental temperature for a brief period. There are several types of passive heat therapy which include hot tubs, Waon therapy, hydrotherapy, sanarium, steam baths, infrared saunas and Finnish saunas. The most commonly used and widely studied till date are the Finnish saunas, which are characterized by high temperatures (ranging from 80-100°C) and dry air with relative humidity varying from 10-20%. The goal of this review is to provide a summary of the current evidence on the impact of passive heat therapies particularly Finnish saunas on various health outcomes, while acknowledging the potential of these therapies to contribute to the extension of healthspan, based on their demonstrated health benefits and disease prevention capabilities. The Finnish saunas have the most consistent and robust evidence regarding health benefits and they have been shown to decrease the risk of health outcomes such as hypertension, cardiovascular disease, thromboembolism, dementia, and respiratory conditions; may improve the severity of musculoskeletal disorders, COVID-19, headache and flu, while also improving mental well-being, sleep, and longevity. Finnish saunas may also augment the beneficial effects of other protective lifestyle factors such as physical activity. The beneficial effects of passive heat therapies may be linked to their anti-inflammatory, cytoprotective and anti-oxidant properties and synergistic effects on neuroendocrine, circulatory, cardiovascular and immune function. Passive heat therapies, notably Finnish saunas, are emerging as potentially powerful and holistic strategies to promoting health and extending the healthspan in all populations.",
+      "abstract_ko": "",
+      "journal": "Temperature (Austin, Tex.)",
+      "year": "2024",
+      "volume": "11",
+      "issue": "1",
+      "pages": "27-51",
+      "authors": [
+        "Laukkanen Jari A",
+        "Kunutsor Setor K"
+      ],
+      "doi": "10.1080/23328940.2023.2300623",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38577299/",
+      "evidence": "리뷰",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "사망률·수명",
+        "인지·뇌",
+        "호흡기",
+        "정신건강"
+      ]
+    },
+    {
+      "pmid": "38540640",
+      "title": "The Healthspan Project: A Retrospective Pilot of Biomarkers and Biometric Outcomes after a 6-Month Multi-Modal Wellness Intervention.",
+      "title_ko": "",
+      "abstract": "Wellness-centric proactive healthcare is increasingly sought after, with individuals frequently embracing complementary modalities to achieve this goal. In this six-month study, healthy adult participants (n = 25) received specific therapies, including whole-body cryotherapy, infrared sauna, and photobiomodulation, along with guidance on physical activity, diet, and alcohol intake. Serum biomarkers were measured for all participants, while a subset also received biometric assessments for body composition (n = 10) and heart rate variability (n = 7). Over the course of the study (mean (SD) follow-up days = 174 (130)), participants exhibited significant improvements in health. LDL cholesterol (-9.77 (15.43) md/dL) and hsCRP (-1.75 (2.66) mg/L) decreased significantly (p < 0.05). HbA1c increased slightly (p < 0.05), but the effect size was small (0.12 (0.13)%). The body composition subset lost overall body weight (-3.29 (3.75) kg), primarily body fat, while preserving lean muscle mass (p < 0.05). Heart rate variability increased for those with existing cardiovascular risk factors (p < 0.05). In conclusion, participation in the multimodal Healthspan protocol is associated with substantial improvements in health-related biomarkers and biometrics.",
+      "abstract_ko": "",
+      "journal": "Healthcare (Basel, Switzerland)",
+      "year": "2024",
+      "volume": "12",
+      "issue": "6",
+      "pages": "",
+      "authors": [
+        "Chun Elizabeth",
+        "Crete Annie",
+        "Neal Christopher",
+        "Joseph Richard",
+        "Pojednic Rachele"
+      ],
+      "doi": "10.3390/healthcare12060676",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38540640/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "대사·체중",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "38496149",
+      "title": "Unveiling Lethal Risks Lurking in Hot Tub Baths: A Review of Tragic Consequences.",
+      "title_ko": "",
+      "abstract": "Heat therapy, including saunas, jacuzzi, and hot tub bathing, has gained global popularity. However, the escalating incidents of injuries and fatalities associated with hot tub activities are a significant public health concern. This study aims to comprehensively review and analyze the pathophysiological factors contributing to hot tub-related deaths, addressing the need for awareness and mitigation strategies. A comprehensive search of electronic databases, PubMed and Science Direct, was conducted to identify articles relevant to bath-related deaths. Eligible studies were exported to the Rayyan (Qatar Computing Research Institute, Qatar) software for data analysis. The data extracted from the 18 studies were compiled to elucidate the mechanisms underlying hot tub bath-related deaths and to advocate for the adoption of potential mitigation strategies and future directions to prevent such incidents in the future. The review revealed insights into the current trend of fatalities linked to hot tub bathing. A detailed analysis of pathophysiological aspects, encompassing hemodynamics, electrolyte disturbances, serum glucagon alterations, and the impact of alcohol and substance abuse during hot tub use, was conducted. Furthermore, we explored the effects of temperature and conducted a thorough discussion of postmortem evidence analysis concerning deaths related to bathtub usage. Finally, the paper discusses mitigation strategies to prevent fatalities attributed to hot tub bathing. In conclusion, our review highlights growing public health concerns surrounding injuries and fatalities related to hot tub activities. Through an examination of the incidence rates, pathophysiological factors, and proposed mitigation strategies, we provide crucial insights for enhancing safety and addressing the escalating risks associated with hot tub bathing.",
+      "abstract_ko": "",
+      "journal": "Cureus",
+      "year": "2024",
+      "volume": "16",
+      "issue": "2",
+      "pages": "e54198",
+      "authors": [
+        "Dahiya Roopali",
+        "Asif Maryam",
+        "Santhi Sharanya E",
+        "Hashmi Amna",
+        "Ahadi Awranoos",
+        "Arshad Zara"
+      ],
+      "doi": "10.7759/cureus.54198",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38496149/",
+      "evidence": "리뷰",
+      "is_clinical": false,
+      "categories": [
+        "사망률·수명"
+      ]
+    },
+    {
+      "pmid": "38410962",
+      "title": "Sauna bathing and mortality risk: unraveling the interaction with systolic blood pressure in a cohort of Finnish men.",
+      "title_ko": "",
+      "abstract": "Objectives: This cohort study aimed to investigate the potential interplay between systolic blood pressure (SBP), frequency of sauna bathing (FSB), and all-cause mortality risk among Caucasian men. Design: A prospective study was conducted, involving 2575 men aged 42 to 61 years. Baseline assessments included resting blood pressure measurements and self-reported sauna bathing habits. SBP levels were categorized as normal (<140 mmHg) or high (≥140 mmHg), while FSB was classified as low (≤2 sessions/week) or high (3-7 sessions/week). Hazard ratios (HRs) with 95% confidence intervals (CIs) were estimated using Cox regression analysis, while adjusting for lifestyle factors, lipids, inflammation, and comorbidities. Results: Over a median follow-up of 27.8 years, 1,618 deaths were recorded. In the adjusted analysis, individuals with high SBP versus low SBP showed a 29% increased all-cause mortality risk (HR 1.29, 95% CI 1.16-1.43). Similarly, those with low FSB versus high FSB exhibited a 16% elevated mortality risk (HR 1.16, 95% CI 1.02-1.31). When considering combined effects, participants with high SBP-low FSB had a 47% higher mortality risk (HR 1.47, 95% CI 1.24-1.74) compared to those with normal SBP-high FSB. However, no significant association was observed between individuals with high SBP-high FSB and mortality risk (HR 1.24, 95% CI 0.98-1.57). There were potential additive and multiplicative interactions between SBP and sauna bathing concerning mortality risk. Conclusions: This study reveals a potential interplay between SBP, sauna bathing, and mortality risk in Finnish men. Frequent sauna bathing may mitigate the increased mortality risk associated with elevated SBP.",
+      "abstract_ko": "",
+      "journal": "Scandinavian cardiovascular journal : SCJ",
+      "year": "2024",
+      "volume": "58",
+      "issue": "1",
+      "pages": "2302159",
+      "authors": [
+        "Kunutsor Setor K",
+        "Jae Sae Young",
+        "Kurl Sudhir",
+        "Laukkanen Jari A"
+      ],
+      "doi": "10.1080/14017431.2024.2302159",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38410962/",
+      "evidence": "코호트 연구(추정)",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "사망률·수명",
+        "대사·체중",
+        "통증·염증"
+      ]
+    },
+    {
+      "pmid": "38299219",
+      "title": "Passive heat therapy: a promising preventive measure for people at risk of adverse health outcomes during heat extremes.",
+      "title_ko": "",
+      "abstract": "The world is experiencing increased frequency, duration, and severity of life-threatening heat extremes. Most hospitalizations and excess deaths during extreme heat events are associated with preexisting diseases in older adults. As climate change persists, the global population ages and the number of individuals with chronic diseases expands, more people are at risk of adverse health outcomes during extreme heat events. Therefore, proactive preventive measures are urgently needed to mitigate heat-related health risks within these populations. In this context, passive heat therapy (e.g., hot baths, saunas, and water-perfused suits) emerges as a promising countermeasure to improve physiological resilience to a warming planet. Passive heating improves cardiovascular function and overall health in older adults and individuals living with chronic diseases, offering the prospect of reducing cardiovascular strain during hotter days. Moreover, some studies suggest that passive heat therapy can be an effective strategy for heat acclimation (i.e., improved thermoregulation). This review describes the existing literature on the effects of passive heat therapy on cardiovascular and thermoregulatory responses in individuals with higher heat-related health risks and explores the use of passive heating as a strategy for heat acclimation to mitigate health risks during extreme heat events.NEW & NOTEWORTHY Passive heat therapy improves cardiovascular function and health in middle-aged and older adults living with or without chronic diseases. In addition, preliminary studies indicate that passive heat interventions can induce heat acclimation, improving thermoregulatory responses. Thus, passive heat therapy could serve as a preventive measure for people at risk of adverse health outcomes during extreme heat events, improving resilience to ongoing climate change.",
+      "abstract_ko": "",
+      "journal": "Journal of applied physiology (Bethesda, Md. : 1985)",
+      "year": "2024",
+      "volume": "136",
+      "issue": "4",
+      "pages": "677-694",
+      "authors": [
+        "Rodrigues Patrick",
+        "Orssatto Lucas B R",
+        "Gagnon Daniel",
+        "Dahhak Amine",
+        "Hecksteden Anne",
+        "Stewart Ian B"
+      ],
+      "doi": "10.1152/japplphysiol.00701.2023",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38299219/",
+      "evidence": "리뷰",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "사망률·수명"
+      ]
+    },
+    {
+      "pmid": "38271083",
+      "title": "The vascular response to acute sauna heating is similar in young and middle-aged adults.",
+      "title_ko": "",
+      "abstract": "Sauna has been linked to a reduction of cardiovascular disease risk and is a promising nonpharmacological treatment for populations at risk of cardiovascular disease. This study examined the vascular response to an acute bout of sauna heating in young and middle-aged individuals. Ten young (25 ± 4 yr, 6 males and 4 females) and eight middle-aged adults (56 ± 4 yr, 4 males and 4 females) underwent 40 min of sauna exposure at 80°C. Esophageal and intramuscular temperatures, brachial and superficial femoral artery blood flow, artery diameter, and shear rates were recorded at baseline and following heat exposure. Brachial artery flow-mediated dilation (FMD) was measured at baseline and following 90 min of recovery. Esophageal and muscle temperatures increased similarly in the young and middle-aged adults by 1.5 ± 0.53 and 1.95 ± 0.70°C, respectively (P < 0.05). The shear rate increased by 170-200% (P < 0.001), while blood flow increased by 180-390% (P < 0.001) in the superficial femoral and brachial arteries, respectively, and did not differ between age groups (P = 0.190-0.899). Systolic blood pressure was reduced from 135 ± 17 to 122 ± 20 mmHg (P = 0.017) in middle-aged participants. These data indicate that young and middle-aged adults have similar vascular responses to acute sauna heating.NEW & NOTEWORTHY Sauna therapy has been shown to improve cardiovascular health and function in older adults and individuals with cardiovascular disease risk factors. Specifically, improvements in vascular function have been reported and have been attributed to the increased hemodynamic stimuli on the vasculature associated with thermal stress. The present study quantified this hemodynamic response to a sauna protocol associated with improved cardiovascular health across the lifespan. Our data show that middle-aged adults have the same shear rate and blood flow response to sauna as young adults.",
+      "abstract_ko": "",
+      "journal": "Journal of applied physiology (Bethesda, Md. : 1985)",
+      "year": "2024",
+      "volume": "136",
+      "issue": "3",
+      "pages": "573-582",
+      "authors": [
+        "Leach Olivia K",
+        "Strong Kaitlyn",
+        "Mack Gary W",
+        "Gifford Jayson R"
+      ],
+      "doi": "10.1152/japplphysiol.00287.2023",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38271083/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "38344040",
+      "title": "The influence of extreme thermal stress on the physiological and psychological characteristics of young women who sporadically use the sauna: practical implications for the safe use of the sauna.",
+      "title_ko": "",
+      "abstract": "BACKGROUND: Many individuals who use the sauna at a temperature of 120°C of higher are not aware of the negative consequences of extreme thermal stress. Despite extensive research into sauna use, the impact of extreme thermal stress on the physiological and psychological characteristics of sauna users have not been examined to date. AIM: The aim was to determine the effect of 20 min sauna sessions with a temperature of 80°C and 120°C on the physiological and psychological characteristics of women who sporadically visit the sauna. METHODS: The study was conducted on 22 full-time female university students. Physical activity (PA) levels were evaluated with the Polish short version of the International Physical Activity Questionnaire (IPAQ). Anthropometric characteristics were measured before the first sauna session by the InBody270 body composition analyzer. Physiological parameters, including heart, energy expenditure, physical effort, and blood pressure (systolic blood pressure - SBP, and diastolic blood pressure - DBP), were assessed indirectly using Polar V800 heart rate monitors and the Omron M6 Comfort blood pressure monitor. The participants' wellbeing was assessed with the Profile of Mood States (POMS) questionnaire. The presence of significant correlations between heat exhaustion and heat stress variables and syncope during the second sauna session was examined with the use of classification and regression trees (CRT) and the cross-validation technique. RESULTS: Twenty-minute sauna sessions with a temperature of 80°C and 120°C induced a significant (p < 0.001) decrease in the values of SBP (excluding the temperature of 120°C), DBP, and body mass, as well as a significant increase in HR and forehead temperature. Exposure to a temperature of 80°C led to a significant (p < 0.001) increase in vigor with a simultaneous decrease in tension, depression, anger, fatigue, and confusion. In turn, sauna bathing at a temperature of 120°C had an opposite effect on the above mood parameters. Vomiting and confusion were the main predictors of syncope that occurred in some of the surveyed women. CONCLUSION: Excessive air temperature can induce symptoms characteristic of heat exhaustion and heat stress nausea, heavy sweating, fast weak or strong HR, high body temperature, and confusion. Therefore, sauna bathing at a temperature of 80°C can be recommended to women who sporadically use the sauna, whereas exposure to a temperature of 120°C is not advised in this group of sauna users. The present findings provide highly valuable inputs for managing wellness and SPA centers.",
+      "abstract_ko": "",
+      "journal": "Frontiers in public health",
+      "year": "2023",
+      "volume": "11",
+      "issue": "",
+      "pages": "1303804",
+      "authors": [
+        "Podstawski Robert",
+        "Borysławski Krzysztof",
+        "Józefacka Natalia Maja",
+        "Snarska Jadwiga",
+        "Hinca Bożena",
+        "Biernat Elżbieta"
+      ],
+      "doi": "10.3389/fpubh.2023.1303804",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38344040/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "정신건강"
+      ]
+    },
+    {
+      "pmid": "38273883",
+      "title": "Influence of monaural auditory stimulation combined with music on brain activity.",
+      "title_ko": "",
+      "abstract": "INTRODUCTION: Recently, the increasing attention to mental states and psychophysical health has fueled the research into methods that can aid in relaxation and recovery. Traditional methods like meditation and sauna, while effective, have their limitations; thus, the need for more accessible and convenient alternatives. METHODS: Our innovative approach combines monaural beats with music, attempting to replicate the relaxing effects of a sauna in the auditory domain. RESULTS: In comparison to normal music and silent condition, the power of the theta active band significantly increased when listening to our modified music. Furthermore, after listening to modified music, there was a significant increase in mismatch negativity (MMN) amplitude in the oddball task. Additionally, participants' subjective responses to a questionnaire indicated significant changes in body relaxation and other metrics after listening to the processed music. DISCUSSION: This state is considered similar to the \"totonou\" state, which manifests in physical and mental feelings of relaxation, pleasure, and mental clarity in the sauna. Thus, the present research proposes a convenient method for achieving relaxation, opening an avenue for individuals to customize their \"totonou\" music based on personal preferences.",
+      "abstract_ko": "",
+      "journal": "Frontiers in human neuroscience",
+      "year": "2023",
+      "volume": "17",
+      "issue": "",
+      "pages": "1311602",
+      "authors": [
+        "Chang Ming",
+        "Tanaka Kenta",
+        "Naruse Yasushi",
+        "Imamura Yasuhiko",
+        "Fujii Shinya"
+      ],
+      "doi": "10.3389/fnhum.2023.1311602",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38273883/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "인지·뇌",
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "38011189",
+      "title": "A study on neural changes induced by sauna bathing: Neural basis of the \"totonou\" state.",
+      "title_ko": "",
+      "abstract": "Saunas are becoming increasingly popular worldwide, being an activity that promotes relaxation and health. Intense feelings of happiness have been reported shortly after enjoying a hot sauna and cold water, what is known in Japan as the \"totonou\" state. However, no research has investigated what occurs in the brain during the \"totonou\" state. In the present study, participants underwent a sauna phase, consisting of three sets of alternating hot sauna, cold water, and rest. We elucidated changes in brain activity and mood in the \"totonou\" state by measuring and comparing brain activity and emotional scales before and after the sauna phase and during the rest phase in each set. We found significant increases in theta and alpha power during rest and after the sauna phase compared to before the sauna phase. Moreover, in an auditory oddball task, the p300 amplitude decreased significantly and MMN amplitude increased significantly after the sauna phase. The increase in MMN indicates higher activation of the pre-attentional auditory process, leading to a decrease in attention-related brain activity P300. Hence, the brain reaches in a more efficient state. Further, the response time in behavioral tasks decreased significantly. In addition, the participants' subjective responses to the questionnaire showed significant changes in physical relaxation and other indicators after being in the sauna. Finally, we developed an artificial intelligence classifier, obtaining an average accuracy of brain state classification of 88.34%. The results have potential for future application.",
+      "abstract_ko": "",
+      "journal": "PloS one",
+      "year": "2023",
+      "volume": "18",
+      "issue": "11",
+      "pages": "e0294137",
+      "authors": [
+        "Chang Ming",
+        "Ibaraki Takuya",
+        "Naruse Yasushi",
+        "Imamura Yasuhiko"
+      ],
+      "doi": "10.1371/journal.pone.0294137",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38011189/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "인지·뇌",
+        "정신건강"
+      ]
+    },
+    {
+      "pmid": "37999430",
+      "title": "Fundamentals or Icing on Top of the Cake? A Narrative Review of Recovery Strategies and Devices for Athletes.",
+      "title_ko": "",
+      "abstract": "The sport and athletic performance industry has seen a plethora of new recovery devices and technologies over recent years, and it has become somewhat difficult for athletes, coaches, and practitioners to navigate the efficacy of such devices or whether they are even required at all. With the increase in recovery devices and tools, it has also become commonplace for athletes to overlook more traditional, well-established recovery strategies. In this narrative review, we discuss recovery strategies in relation to the hierarchy of scientific evidence, classifying them based on the strength of the evidence, ranging from meta-analyses through to case studies and reports. We report that foam rolling, compression garments, cryotherapy, photobiomodulation, hydrotherapy, and active recovery have a high level of positive evidence for improved recovery outcomes, while sauna, recovery boots/sleeves, occlusion cuffs, and massage guns currently have a lower level of evidence and mixed results for their efficacy. Finally, we provide guidance for practitioners when deciding on recovery strategies to use with athletes during different phases of the season.",
+      "abstract_ko": "",
+      "journal": "Sports (Basel, Switzerland)",
+      "year": "2023",
+      "volume": "11",
+      "issue": "11",
+      "pages": "",
+      "authors": [
+        "Driller Matthew",
+        "Leabeater Alana"
+      ],
+      "doi": "10.3390/sports11110213",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37999430/",
+      "evidence": "리뷰",
+      "is_clinical": false,
+      "categories": [
+        "회복·운동"
+      ]
+    },
+    {
+      "pmid": "37979477",
+      "title": "The reliability of a portable steam sauna pod for the whole-body passive heating of humans.",
+      "title_ko": "",
+      "abstract": "INTRODUCTION: Passive heating is receiving increasing attention within human performance and health contexts. A low-cost, portable steam sauna pod may offer an additional tool for those seeking to manipulate physiological (cardiovascular, thermoregulatory and sudomotor) and perceptual responses for improving sporting or health profiles. This study aimed to 1) report the different levels of heat stress and determine the pods' inter-unit reliability, and 2) quantify the reliability of physiological and perceptual responses to passive heating. METHOD: In part 1, five pods were assessed for temperature and relative humidity (RH) every 5 min across 70 min of heating for each of the 9 settings. In part 2, twelve males (age: 24 ± 4 years) completed two 60 min trials of passive heating (3 × 20 min at 44 °C/99% RH, separated by 1 week). Heart rate (HR), rectal (Trectal) and tympanic temperature (Ttympanic) were recorded every 5 min, thermal comfort (Tcomfort) and sensation (Tsensation) every 10 min, mean arterial pressure (MAP) at each break period and sweat rate (SR) after exiting the pod. RESULTS: In part 1, setting 9 provided the highest temperature (44.3 ± 0.2 °C) and longest time RH remained stable at 99% (51±7 min). Inter-unit reliability data demonstrated agreement between pods for settings 5-9 (intra-class correlation [ICC] >0.9), but not for settings 1-4 (ICC <0.9). In part 2, between-visits, high correlations, and low typical error of measurement (TEM) and coefficient of variation (CV) were found for Trectal, HR, MAP, SR, and Tcomfort, but not for Ttympanic or Tsensation. A peak Trectal of 38.09 ± 0.30 °C, HR of 124 ± 15 b min-1 and a sweat loss of 0.73 ± 0.33 L were reported. No between-visit differences (p > 0.05) were observed for Trectal, Ttympanic, Tsensation or Tcomfort, however HR (+3 b.min-1) and MAP (+4 mmHg) were greater in visit 1 vs. 2 (p < 0.05). CONCLUSION: Portable steam sauna pods generate reliable heat stress between-units. The highest setting (44 °C/99% RH) also provides reliable but modest adjustments in physiological and perceptual responses.",
+      "abstract_ko": "",
+      "journal": "Journal of thermal biology",
+      "year": "2023",
+      "volume": "118",
+      "issue": "",
+      "pages": "103743",
+      "authors": [
+        "Willmott A G B",
+        "James C A",
+        "Hayes M",
+        "Maxwell N S",
+        "Roberts J",
+        "Gibson O R"
+      ],
+      "doi": "10.1016/j.jtherbio.2023.103743",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37979477/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
+      "categories": [
+        "심혈관",
+        "회복·운동"
       ]
     }
   ]
