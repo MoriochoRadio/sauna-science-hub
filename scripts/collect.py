@@ -7,11 +7,13 @@ PubMed E-utilities 에서 가져와 data/research.json 으로 저장한다.
 무료 · API 키 불필요 · 매일 GitHub Actions 에서 실행.
 """
 import hashlib
+import http.client
 import json
 import sys
 import time
 import os
 import re
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -26,11 +28,37 @@ CACHE = "data/translations.json"
 # "thermal bathing" 이 (thermal AND bathing), sauna 가 (steam AND bath)까지 넓어져
 # 신생아 목욕·해변 열 지각 같은 무관 논문이 절반 넘게 섞였다.
 # 온천요법(balneotherapy)·해수요법은 사이트 범위(사우나) 밖이라 넣지 않는다.
-QUERY = '(sauna[tiab] OR saunas[tiab] OR "sauna bathing"[tiab] OR "Waon therapy"[tiab] OR "Steam Bath"[mh]) AND (health OR cardiovascular OR mortality OR "clinical trial" OR "randomized" OR cognition OR metabolic OR recovery OR "blood pressure")'
-RETMAX = 90
+_BASE_QUERY = ('(sauna[tiab] OR saunas[tiab] OR "sauna bathing"[tiab] OR "Waon therapy"[tiab] OR "Steam Bath"[mh]) '
+               'AND (health OR cardiovascular OR mortality OR "clinical trial" OR "randomized" OR cognition '
+               'OR metabolic OR recovery OR "blood pressure")')
+# 초록에 sauna 가 '장소·수단'으로만 나오는 무관 주제 — 게이 사우나(MSM 성행동·성병 연구), 격투기
+# 감량(사우나는 탈수 수단 중 하나), HFpEF 생쥐 'SAUNA 모델' 약어. 제목에 sauna 가 있으면 살린다.
+# ("SAUNA trial" 은 PubMed 구문 색인에 없어 무시되므로 수집 후 필터(SAUNA_ACRONYM)에서 거른다.)
+_OFF_TOPIC_QUERY = ('("men who have sex with men"[tiab] OR "sexual minority men"[tiab] OR gay[tiab] OR bisexual[tiab] '
+                    'OR "sex-on-premises"[tiab] OR chemsex[tiab] OR "sexually transmitted"[tiab] '
+                    'OR "weight cutting"[tiab] OR "weight cut"[tiab] OR "rapid weight loss"[tiab] '
+                    'OR "rapid weight reduction"[tiab] OR "SAUNA model"[tiab] OR "SAUNA-induced"[tiab])')
+QUERY = f"({_BASE_QUERY}) NOT ({_OFF_TOPIC_QUERY} NOT (sauna[ti] OR saunas[ti]))"
+RETMAX = 90        # 사이트에 싣는 편수
+SEARCH_MAX = 150   # 검색 창 — 수집 후 필터로 빠지는 몫을 채우려고 RETMAX 보다 넉넉히 받는다
 
 # 수집 후 한 번 더 거르는 사우나 어휘 — 제목·초록·저자 키워드 중 한 곳에는 있어야 채택
 SAUNA_TERMS = re.compile(r"\bsaunas?\b|\bwaon\b|\bsteam[- ]?(?:baths?|rooms?)\b", re.I)
+# 대문자 SAUNA 는 대개 사우나가 아닌 약어다 — HFpEF 생쥐 모델(Salty drinking water/Unilateral
+# Nephrectomy/Aldosterone), 신경내분비종양 'SAUNA trial'. 단 SAUNA-HFpEF 는 실제 사우나 시험이라 예외.
+SAUNA_ACRONYM = re.compile(r"\bSAUNA\b(?!-HFpEF)")
+# 초록에 sauna 가 한 번뿐이면, 온열·냉각 요법 맥락이 함께 있어야 사우나 연구로 본다.
+# (환경 열·직업성 열은 넣지 않는다 — 'heat exposure'·'heat stress' 는 일부러 뺐다)
+HEAT_THERAPY = re.compile(
+    r"heat therap|thermal therap|thermotherap|passive(?:ly)? heat|heat (?:intervention|stimul)|"
+    r"thermal intervention|hyperthermia|hot[- ]water (?:immersion|bath)|cold[- ]water immersion|"
+    r"contrast therap|cryotherap|cryostimulation|balneotherap|hydrotherap|kaumatherap|infrared|hormesis", re.I)
+# 제목에 sauna 가 없을 때 무관 주제로 보는 단서 (_OFF_TOPIC_QUERY 를 빠져나온 변형까지)
+OFF_TOPIC = re.compile(
+    r"\bmen who have sex with men\b|\bMSM\b|\bgay\b|\bbisexual\b|sex-on-premises|\bchemsex\b|\bslamming\b|"
+    r"\bsexual(?:ly)? (?:behaviou?rs?|transmitted|partners?)\b|\bmpox\b|\bHIV\b|"
+    r"\bweight[- ]cut|\brapid weight (?:loss|reduction)\b|\bweight[- ]loss (?:practices?|methods?)\b|\bWL methods?\b",
+    re.I)
 
 # 카테고리 매핑 (정규식 -> 한국어 라벨, 소문자 제목+초록에 적용)
 # \b 로 단어 앞머리를 고정해 부분 문자열 오탐(experimental/environmental → mental,
@@ -127,10 +155,55 @@ def save_cache(cache):
     os.replace(tmp, CACHE)
 
 
+# PubMed 요청 재시도 — 11-05 실행이 esearch 의 일시적 HTTP 500 한 번에 그대로 실패했다.
+# 429·5xx·타임아웃·연결 끊김만 지수 백오프(2·4·8초)로 최대 4번까지 시도하고, 4xx 는 바로 올린다.
+RETRY_STATUS = {429, 500, 502, 503, 504}
+MAX_TRIES = 4
+BACKOFF = 2.0
+RETRY_AFTER_CAP = 60
+# NCBI E-utilities 는 API 키 없이 초당 3회까지 — 모든 요청(재시도 포함) 사이를 0.34초 이상 띄운다.
+EUTILS_MIN_INTERVAL = 0.34
+_last_request = [0.0]
+
+
+def _throttle():
+    wait = _last_request[0] + EUTILS_MIN_INTERVAL - time.monotonic()
+    if wait > 0:
+        time.sleep(wait)
+    _last_request[0] = time.monotonic()
+
+
+def _retry_after(err):
+    """429/503 응답의 Retry-After(초)를 존중하되 상한을 둔다. 없거나 날짜 형식이면 None."""
+    try:
+        return min(float(err.headers.get("Retry-After")), RETRY_AFTER_CAP)
+    except (AttributeError, TypeError, ValueError):
+        return None
+
+
+def http_get(url, timeout=30):
+    """E-utilities GET (텍스트). 일시적 오류는 백오프 후 재시도, 끝내 실패하면 마지막 예외를 올린다."""
+    for attempt in range(1, MAX_TRIES + 1):
+        _throttle()
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "sauna-science-hub/1.0"})
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.read().decode("utf-8")
+        except urllib.error.HTTPError as e:   # URLError 의 하위 클래스라 먼저 잡는다
+            if e.code not in RETRY_STATUS or attempt == MAX_TRIES:
+                raise
+            reason, delay = f"HTTP {e.code}", _retry_after(e) or BACKOFF ** attempt
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException) as e:
+            if attempt == MAX_TRIES:
+                raise
+            reason, delay = type(e).__name__, BACKOFF ** attempt
+        print(f"[collect] PubMed 요청 실패({reason}) — {delay:.0f}초 뒤 재시도 ({attempt}/{MAX_TRIES - 1})",
+              file=sys.stderr)
+        time.sleep(delay)
+
+
 def fetch_json(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "sauna-science-hub/1.0"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read().decode("utf-8"))
+    return json.loads(http_get(url))
 
 def src_fp(text):
     """번역 원문 지문(공백 정규화 후 해시). 원문이 바뀌면 캐시를 다시 번역하게 한다."""
@@ -160,9 +233,7 @@ def translate_cached(cache, text, sl="en", tl="ko", key=None):
 
 
 def fetch_xml(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "sauna-science-hub/1.0"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return r.read().decode("utf-8")
+    return http_get(url)
 
 
 def translate(text, sl="en", tl="ko"):
@@ -189,18 +260,58 @@ def translate(text, sl="en", tl="ko"):
 
 def search_pmids():
     q = urllib.parse.quote(QUERY)
-    url = f"{BASE}/esearch.fcgi?db=pubmed&term={q}&retmode=json&retmax={RETMAX}&sort=date"
+    url = f"{BASE}/esearch.fcgi?db=pubmed&term={q}&retmode=json&retmax={SEARCH_MAX}&sort=date"
     data = fetch_json(url)
-    return data.get("esearchresult", {}).get("idlist", [])
+    res = data.get("esearchresult")
+    # 200 응답이어도 본문이 오류일 수 있다 — 빈 결과로 착각하지 말고 실패로 올린다.
+    if not isinstance(res, dict) or "ERROR" in res or "idlist" not in res:
+        raise RuntimeError(f"esearch 응답 오류: {str(res or data)[:200]}")
+    return res["idlist"]
 
 
-def is_sauna_related(art, a):
-    """제목·초록·저자 키워드에 사우나 어휘가 있는지 (검색어 확장으로 딸려 온 무관 논문 제거)."""
-    keywords = " ".join(_alltext(k) for k in art.findall(".//KeywordList/Keyword"))
-    return bool(SAUNA_TERMS.search(" ".join((a["title"], a["abstract"], keywords))))
+def _sauna_mentions(text):
+    """사우나 어휘 등장 횟수. 대문자 약어 SAUNA(생쥐 모델·다른 시험 이름)는 세지 않는다."""
+    if not text:
+        return 0
+    if not text.isupper():   # 제목 전체가 대문자면 약어와 구분할 수 없어 그대로 센다
+        text = SAUNA_ACRONYM.sub(" ", text)
+    return len(SAUNA_TERMS.findall(text))
+
+
+def relevance(title, abstract, keywords=(), mesh=()):
+    """사우나·온열요법 연구인지 판정해 (채택 여부, 사유)를 돌려준다.
+
+    초록 한 줄에 sauna 가 '장소·수단·배제 기준'으로만 나오는 논문(게이 사우나 성행동 조사, 격투기
+    감량 방법 설문, 땀 센서 시험 환경, 사우나에서 넘어진 증례 등)을 거른다.
+    1) 제목에 사우나 어휘 → 채택  2) 무관 주제 단서(OFF_TOPIC) → 제외
+    3) MeSH 'Steam Bath' 또는 저자 키워드에 사우나 → 채택  4) 초록에 2회 이상 → 채택
+    5) 초록에 1회 + 온열·냉각 요법 맥락(HEAT_THERAPY) → 채택  6) 나머지 → 제외
+    """
+    if _sauna_mentions(title):
+        return True, "title"
+    m = OFF_TOPIC.search(f"{title} {abstract}")
+    if m:
+        return False, f"off-topic:{m.group(0)}"
+    if "Steam Bath" in mesh or any(_sauna_mentions(k) for k in keywords):
+        return True, "keyword"
+    n = _sauna_mentions(abstract)
+    if n >= 2:
+        return True, "abstract"
+    if n == 1 and HEAT_THERAPY.search(f"{title} {abstract}"):
+        return True, "abstract+heat"
+    return False, "incidental" if n else "no-sauna"
+
+
+def _keywords(art):
+    return [_alltext(k) for k in art.findall(".//KeywordList/Keyword")]
+
+
+def _mesh(art):
+    return [_alltext(d) for d in art.findall(".//MeshHeadingList/MeshHeading/DescriptorName")]
 
 
 def fetch_details(pmids):
+    """efetch 로 상세를 받아 파싱·관련성 필터 후 검색 순서(최신순) 그대로 RETMAX 편까지 돌려준다."""
     out = []
     dropped = []
     for i in range(0, len(pmids), 100):
@@ -212,13 +323,19 @@ def fetch_details(pmids):
             a = parse_article(art)
             if not a:
                 continue
-            if not is_sauna_related(art, a):
-                dropped.append(a["pmid"])
+            ok, why = relevance(a["title"], a["abstract"], _keywords(art), _mesh(art))
+            if not ok:
+                dropped.append(f"{a['pmid']}({why})")
                 continue
             out.append(a)
-        time.sleep(0.4)
     if dropped:
-        print(f"[collect] 사우나 어휘 없는 {len(dropped)}편 제외: {', '.join(dropped)}", file=sys.stderr)
+        print(f"[collect] 사우나 연구가 아닌 {len(dropped)}편 제외: {', '.join(dropped)}", file=sys.stderr)
+    order = {p: i for i, p in enumerate(pmids)}
+    out.sort(key=lambda a: order.get(a["pmid"], len(order)))
+    return out[:RETMAX]
+
+
+def translate_articles(out):
     # 한국어 번역 (제목 + 초록). 캐시 우선 — 재번역·rate-limit 방지.
     cache = load_cache()
     print(f"[collect] 한국어 번역 시작 ({len(out)}편)...", file=sys.stderr)
@@ -357,14 +474,15 @@ def main():
         pass
 
     print(f"[collect] PubMed 검색: {QUERY}", file=sys.stderr)
-    pmids = search_pmids()
-    print(f"[collect] {len(pmids)}편 검색됨", file=sys.stderr)
-    if not pmids:
-        print("[collect] 결과 없음 -- 빈 파일 작성", file=sys.stderr)
-        with open(OUT, "w", encoding="utf-8") as f:
-            json.dump({"updated": str(date.today()), "count": 0, "articles": []}, f, ensure_ascii=False, indent=2)
-        return
-    articles = [a for a in fetch_details(pmids) if a]
+    try:
+        pmids = search_pmids()
+        print(f"[collect] {len(pmids)}편 검색됨", file=sys.stderr)
+        articles = [a for a in fetch_details(pmids) if a] if pmids else []
+    except Exception as e:   # 재시도까지 실패(5xx 지속·응답 깨짐 등) — 기존 데이터를 지킨다
+        return keep_existing(f"PubMed 요청 실패: {type(e).__name__}: {str(e)[:150]}")
+    if not articles:
+        return keep_existing(f"검색 {len(pmids)}편, 채택 0편")
+    translate_articles(articles)
     articles.sort(key=lambda a: (a["is_clinical"], a["year"]), reverse=True)
     payload = {
         "updated": str(date.today()),
@@ -373,10 +491,45 @@ def main():
         "clinical_count": sum(1 for a in articles if a["is_clinical"]),
         "articles": articles,
     }
-    with open(OUT, "w", encoding="utf-8") as f:
+    tmp = OUT + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
+    os.replace(tmp, OUT)
     print(f"[collect] data/research.json 저장 완료 ({len(articles)}편, 임상 {payload['clinical_count']}편)", file=sys.stderr)
+    return 0
+
+
+# 수집이 실패하거나 0편이면 research.json 을 덮어쓰지 않는다(빈 사이트 배포 방지). 'updated' 는
+# 마지막 성공 수집일로 남으므로, 그날로부터 STALE_DAYS 일 이상 이어질 때만 실행을 실패로 끝내
+# GitHub 의 실패 알림 메일로 사람에게 알린다. 그 전의 일시적 장애는 ::warning 주석만 남긴다.
+STALE_DAYS = 3
+
+
+def keep_existing(reason, today=None):
+    """기존 데이터를 그대로 두고 종료 코드를 돌려준다 (0 = 계속 배포, 1 = 실패로 알림)."""
+    today = today or date.today()
+    try:
+        with open(OUT, encoding="utf-8") as f:
+            old = json.load(f)
+        n = len(old.get("articles") or [])
+    except (FileNotFoundError, json.JSONDecodeError, AttributeError):
+        old, n = None, 0
+    if not n:
+        print(f"::error title=PubMed 수집 실패::{reason} — 보존할 기존 데이터도 없다.")
+        return 1
+    try:
+        last = date.fromisoformat(str(old.get("updated", "")))
+        stale = (today - last).days
+    except ValueError:
+        last, stale = "날짜 미상", 0
+    if stale >= STALE_DAYS:
+        print(f"::error title=PubMed 수집 {stale}일째 실패::{reason} — 마지막 성공 {last}. "
+              f"기존 데이터({n}편)는 그대로 두었다. 쿼리·E-utilities 상태를 확인할 것.")
+        return 1
+    print(f"::warning title=PubMed 수집 실패::{reason} — 기존 데이터({n}편, {last} 수집)를 유지하고 "
+          f"다음 실행에서 다시 시도한다.")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

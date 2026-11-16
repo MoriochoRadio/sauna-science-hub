@@ -37,7 +37,7 @@ GitHub Actions handles the entire collect → translate → build → deploy pip
   translation)
 ```
 
-1. **`collect.py`** — searches and collects the latest sauna-related research via PubMed E-utilities, assigns evidence tiers from the publication type (PublicationType) and topic categories from title/abstract keywords. Titles and abstracts are machine-translated into Korean, with the `translations.json` cache used first.
+1. **`collect.py`** — searches and collects the latest sauna-related research via PubMed E-utilities, assigns evidence tiers from the publication type (PublicationType) and topic categories from title/abstract keywords. Titles and abstracts are machine-translated into Korean, with the `translations.json` cache used first. Papers that mention a sauna only in passing (gay-sauna sexual-health surveys, combat-sport weight-cut surveys, the murine "SAUNA model" acronym, etc.) are removed by a relevance filter. PubMed 429/5xx/timeouts are retried with backoff (staying under 3 requests/s without a key), and a failed or empty collection never overwrites the existing `research.json` — the run is failed (to alert) only once that lasts 3+ days past the last successful collection.
 2. **`build.py`** — reads `research.json` and generates a finished static `index.html` with search, filters, sorting, and dark mode built in (no browser-side data parsing).
 3. **`daily.yml`** — runs the two steps above daily, commits data only when it has changed, and deploys to GitHub Pages. It also redeploys on push.
 
@@ -68,6 +68,7 @@ A. With health information, credibility varies enormously with study design, so 
 ```bash
 python3 scripts/collect.py   # PubMed collection + Korean translation (requires internet)
 python3 scripts/build.py     # Generate index.html
+python3 -m unittest discover -s tests   # Collector tests (no network)
 # Open the generated index.html in a browser
 ```
 
@@ -82,6 +83,7 @@ sauna-science-hub/
 ├─ scripts/
 │  ├─ collect.py                 # PubMed collection + evidence/topic classification + Korean translation (cached)
 │  └─ build.py                   # Static site generator
+├─ tests/test_collect.py         # Relevance filter, retry and keep-on-empty tests
 ├─ data/
 │  ├─ research.json              # Collected paper metadata
 │  └─ translations.json          # Translation cache

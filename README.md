@@ -36,7 +36,7 @@ GitHub Actions가 수집→번역→빌드→배포를 전부 수행하며, 운�
   수집 + 한국어 번역)   + translations.json 캐시    생성기)
 ```
 
-1. **`collect.py`** — PubMed E-utilities로 사우나 관련 최신 연구를 검색·수집하고, 출판 유형(PublicationType)으로 근거 등급을, 제목·초록 키워드로 주제 카테고리를 분류한다. 제목·초록은 한국어로 기계번역하되 `translations.json` 캐시를 우선 사용한다.
+1. **`collect.py`** — PubMed E-utilities로 사우나 관련 최신 연구를 검색·수집하고, 출판 유형(PublicationType)으로 근거 등급을, 제목·초록 키워드로 주제 카테고리를 분류한다. 제목·초록은 한국어로 기계번역하되 `translations.json` 캐시를 우선 사용한다. 초록에 sauna 가 장소·수단으로만 스친 논문(게이 사우나 성행동 조사, 격투기 감량 설문, 생쥐 'SAUNA 모델' 약어 등)은 관련성 필터로 거른다. PubMed 429·5xx·타임아웃은 백오프로 재시도(키 없이 초당 3회 이하)하고, 수집이 실패하거나 0편이면 기존 `research.json`을 덮어쓰지 않는다 — 마지막 성공 후 3일 넘게 이어질 때만 실행을 실패로 끝내 알린다.
 2. **`build.py`** — `research.json`을 읽어 검색·필터·정렬·다크모드가 포함된 완성 정적 `index.html`을 생성한다 (브라우저 측 데이터 파싱 없음).
 3. **`daily.yml`** — 위 두 단계를 매일 실행하고, 변경이 있을 때만 데이터를 커밋한 뒤 GitHub Pages로 배포한다. push 시에도 재배포된다.
 
@@ -67,6 +67,7 @@ A. 건강 정보는 연구 설계에 따라 신뢰도 차이가 커서, RCT·메
 ```bash
 python3 scripts/collect.py   # PubMed 수집 + 한국어 번역 (인터넷 필요)
 python3 scripts/build.py     # index.html 생성
+python3 -m unittest discover -s tests   # 수집기 테스트 (네트워크 불필요)
 # 생성된 index.html 을 브라우저로 열기
 ```
 
@@ -81,6 +82,7 @@ sauna-science-hub/
 ├─ scripts/
 │  ├─ collect.py                 # PubMed 수집 + 근거 등급/주제 분류 + 한국어 번역(캐시)
 │  └─ build.py                   # 정적 사이트 생성기
+├─ tests/test_collect.py         # 관련성 필터·재시도·빈 결과 보존 테스트
 ├─ data/
 │  ├─ research.json              # 수집된 논문 메타데이터
 │  └─ translations.json          # 번역 캐시
