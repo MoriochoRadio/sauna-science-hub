@@ -1,8 +1,8 @@
 {
-  "updated": "2026-11-19",
+  "updated": "2026-11-20",
   "query": "((sauna[tiab] OR saunas[tiab] OR \"sauna bathing\"[tiab] OR \"Waon therapy\"[tiab] OR \"Steam Bath\"[mh]) AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")) NOT ((\"men who have sex with men\"[tiab] OR \"sexual minority men\"[tiab] OR gay[tiab] OR bisexual[tiab] OR \"sex-on-premises\"[tiab] OR chemsex[tiab] OR \"sexually transmitted\"[tiab] OR \"weight cutting\"[tiab] OR \"weight cut\"[tiab] OR \"rapid weight loss\"[tiab] OR \"rapid weight reduction\"[tiab] OR \"SAUNA model\"[tiab] OR \"SAUNA-induced\"[tiab]) NOT (sauna[ti] OR saunas[ti]))",
   "count": 90,
-  "clinical_count": 7,
+  "clinical_count": 6,
   "articles": [
     {
       "pmid": "42213968",
@@ -167,31 +167,31 @@
       ]
     },
     {
-      "pmid": "37650138",
-      "title": "Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial.",
-      "title_ko": "관상동맥질환이 있는 성인의 핀란드 사우나 목욕과 혈관 건강: 무작위 대조 시험.",
-      "abstract": "Regular Finnish sauna use is associated with a reduced risk of cardiovascular mortality. However, physiological mechanisms underlying this association remain unknown. This study determined if an 8-wk Finnish sauna intervention improves peripheral endothelial function, microvascular function, central arterial stiffness, and blood pressure in adults with coronary artery disease (CAD). Forty-one adults (62 ± 6 yr, 33 men/8 women) with stable CAD were randomized to 8 wk of Finnish sauna use (n = 21, 4 sessions/wk, 20-30 min/session, 79°C, 13% relative humidity) or a control intervention (n = 20, lifestyle maintenance). Brachial artery flow-mediated dilation (FMD), carotid-femoral pulse wave velocity (cf-PWV), total (area under the curve) and peak postocclusion forearm reactive hyperemia, and blood pressure (automated auscultation) were measured before and after the intervention. After the sauna intervention, resting core temperature was lower (-0.27°C [-0.54, -0.01], P = 0.046) and sweat rate during sauna exposure was greater (0.3 L/h [0.1, 0.5], P = 0.003). The change in brachial artery FMD did not differ between interventions (control: 0.07% [-0.99, +1.14] vs. sauna: 0.15% [-0.89, +1.19], interaction P = 0.909). The change in total (P = 0.031) and peak (P = 0.024) reactive hyperemia differed between interventions due to a nonsignificant decrease in response to the sauna intervention and an increase in response to control. The change in cf-PWV (P = 0.816), systolic (P = 0.951), and diastolic (P = 0.292) blood pressure did not differ between interventions. These results demonstrate that four sessions of Finnish sauna bathing per week for 8 wk does not improve markers of vascular health in adults with stable CAD.NEW & NOTEWORTHY This study determined if unsupervised Finnish sauna bathing for 8 wk improves markers of vascular health in adults with coronary artery disease. Finnish sauna bathing reduced resting core temperature and improved sweating capacity, indicative of heat acclimation. Despite evidence of heat acclimation, Finnish sauna bathing did not improve markers of endothelial function, microvascular function, arterial stiffness, or blood pressure.",
-      "abstract_ko": "정기적인 핀란드식 사우나 이용은 심혈관계 사망 위험 감소와 관련이 있습니다. 그러나 이 연관성의 기초가 되는 생리적 메커니즘은 아직 알려지지 않았습니다. 이 연구에서는 8주간의 핀란드식 사우나 개입이 관상동맥질환(CAD)이 있는 성인의 말초 내피 기능, 미세혈관 기능, 중심 동맥 경직 및 혈압을 개선하는지 여부를 확인했습니다. CAD가 안정적인 41명의 성인(62 ± 6세, 남성 33명/여성 8명)을 무작위로 8주 동안 핀란드식 사우나 사용(n = 21, 4회 세션/주, 20-30분/세션, 79°C, 13% 상대 습도) 또는 대조 중재(n = 20, 생활 방식 유지)로 배정했습니다. 중재 전후에 상완 동맥 흐름 매개 확장(FMD), 경동맥-대퇴 맥파 속도(cf-PWV), 총(곡선 아래 면적) 및 최대 폐색 후 팔뚝 반응성 충혈 및 혈압(자동 청진)을 측정했습니다. 사우나 개입 후 휴식 중 심부 체온은 더 낮아졌고(-0.27°C[-0.54, -0.01], P = 0.046) 사우나 노출 중 땀 발생률은 더 높았습니다(0.3 L/h [0.1, 0.5], P = 0.003). 상완 동맥 FMD의 변화는 중재 간에 차이가 없었습니다(대조군: 0.07%[-0.99, +1.14] 대 사우나: 0.15%[-0.89, +1.19], 상호 작용 P = 0.909). 총 변화(P = 0.031)와 최고치(P = 0.024) 반응성 충혈은 사우나 중재에 대한 반응의 유의미한 감소와 대조군에 대한 반응의 증가로 인해 중재 간에 차이가 있었습니다. cf-PWV(P = 0.816), 수축기(P = 0.951), 확장기(P = 0.292) 혈압의 변화는 중재 간에 차이가 없었습니다. 이러한 결과는 8주 동안 주당 4회 핀란드 사우나 목욕이 안정적인 CAD를 가진 성인의 혈관 건강 지표를 개선하지 못한다는 것을 보여줍니다. 신규 및 참고 사항 이 연구에서는 감독 없이 8주 동안 핀란드 사우나 목욕을 하는 것이 관상동맥 질환이 있는 성인의 혈관 건강 지표를 개선하는지 여부를 결정했습니다. 핀란드식 사우나 목욕은 휴식 중 심부 체온을 감소시키고 발한 능력을 향상시켜 열 적응을 나타냅니다. 열 순응의 증거에도 불구하고 핀란드식 사우나 목욕은 내피 기능, 미세혈관 기능, 동맥 경직 또는 혈압 지표를 개선하지 못했습니다.",
-      "journal": "Journal of applied physiology (Bethesda, Md. : 1985)",
-      "year": "2023",
-      "volume": "135",
-      "issue": "4",
-      "pages": "795-804",
+      "pmid": "43053672",
+      "title": "Sauna bathing as a health intervention: a qualitative study of personal experiences.",
+      "title_ko": "",
+      "abstract": "Sauna bathing has been shown to provide multiple physical and psychological benefits, including reduced cardiovascular risk, pain relief, stress reduction, improved sleep, and enhanced wellbeing. The present study aims to explore sauna bathers' experiences of sauna bathing and consider its potential relevance to health-promoting nursing practice. Using a qualitative, inductive design, the study was conducted in southern Sweden and involved semi-structured interviews with eight participants aged 31-71 years. Data were analysed with a qualitative content analysis. Two main categories and five subcategories emerged. The findings indicate that sauna bathing can alleviate pain, support management of chronic conditions, and promote relaxation and holistic wellbeing. Perceived benefits were influenced by individual preferences and contextual factors. Conclusion: From a Public Health Nurse perspective, sauna bathing may represent an accessible practice with promising implications for health promotion in primary care. Future research should investigate the combined effects of sauna bathing and physical activity to identify possible additive benefits and strengthen the evidence base for integrating sauna use into primary healthcare.",
+      "abstract_ko": "",
+      "journal": "International journal of circumpolar health",
+      "year": "2026",
+      "volume": "85",
+      "issue": "1",
+      "pages": "2765024",
       "authors": [
-        "Debray Amélie",
-        "Gravel Hugo",
-        "Garceau Laurence",
-        "Bartlett Audrey-Ann",
-        "Chaseling Georgia K",
-        "Barry Hadiatou"
+        "Stenkilsson Hoff Jenny",
+        "Johansson Amanda",
+        "Svensson Hilda",
+        "Lennkvist Maria",
+        "Engström Åsa"
       ],
-      "doi": "10.1152/japplphysiol.00322.2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37650138/",
-      "evidence": "무작위 대조 시험(RCT)",
-      "is_clinical": true,
+      "doi": "10.1080/22423982.2026.2765024",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/43053672/",
+      "evidence": "원저(유형 미표기)",
+      "is_clinical": false,
       "categories": [
         "심혈관",
-        "사망률·수명"
+        "정신건강",
+        "통증·염증"
       ]
     },
     {
