@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "query": "((sauna[tiab] OR saunas[tiab] OR \"sauna bathing\"[tiab] OR \"Waon therapy\"[tiab] OR \"Steam Bath\"[mh]) AND (health OR cardiovascular OR mortality OR \"clinical trial\" OR \"randomized\" OR cognition OR metabolic OR recovery OR \"blood pressure\")) NOT ((\"men who have sex with men\"[tiab] OR \"sexual minority men\"[tiab] OR gay[tiab] OR bisexual[tiab] OR \"sex-on-premises\"[tiab] OR chemsex[tiab] OR \"sexually transmitted\"[tiab] OR \"weight cutting\"[tiab] OR \"weight cut\"[tiab] OR \"rapid weight loss\"[tiab] OR \"rapid weight reduction\"[tiab] OR \"SAUNA model\"[tiab] OR \"SAUNA-induced\"[tiab]) NOT (sauna[ti] OR saunas[ti]))",
   "count": 90,
   "clinical_count": 6,
